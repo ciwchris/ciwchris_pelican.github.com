@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="https://www.facebook.com/2008/fbml">
+<head>
+    <title>Introduction to PowerShell</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Open Graph tags -->
+
+            <meta property="og:type" content="article"/>
+            <meta property="og:title" content="Introduction to PowerShell"/>
+            <meta property="og:url" content="/blog/introduction-to-powershell.html"/>
+            <meta property="og:description" content=""/>
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="/theme/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/theme/css/pygments.css" rel="stylesheet">
+    <link rel="stylesheet" href="/theme/css/style.css" type="text/css"/>
+    <link rel="stylesheet" href="/theme/css/main.css" type="text/css"/>
+    <!-- JavaScript plugins (requires jQuery) -->
+    <script src="http://code.jquery.com/jquery.js"></script>
+
+
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="" class="navbar-brand">Notes to self</a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/archives.html"><i class="icon-th-list"></i>Archives</a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</nav>
+<!-- /.navbar -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="/blog/introduction-to-powershell.html"
+                       rel="bookmark"
+                       title="Permalink to Introduction to PowerShell">
+                        Introduction to PowerShell
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="icon-calendar"></i>Thu 26 September 2013
+    </span>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="/tags/powershell.html">powershell</a>
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>Notes from the Pluralsight course <a href="http://pluralsight.com/training/Courses/TableOfContents/powershell-intro">Introduction to PowerShell</a></p>
+<h3>Introduction</h3>
+<figure class='code'>
+<figcaption class='code-title'><span>Aliases</span></figcaption>
+
+<div class="highlight"><pre><span class="nb">get-alias</span>
+<span class="nb">set-alias</span> <span class="n">list</span> <span class="nb">get-childitem</span>
+<span class="nb">export-alias</span> <span class="n">myalias</span><span class="p">.</span><span class="n">csv</span> <span class="n">lis</span><span class="p">*</span>
+<span class="nb">import-alias</span> <span class="n">myalias</span><span class="p">.</span><span class="n">csv</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Help</span></figcaption>
+
+<div class="highlight"><pre><span class="nb">get-command</span> <span class="n">-verb</span> <span class="s2">&quot;get&quot;</span>
+<span class="nb">get-command</span> <span class="n">-noun</span> <span class="s2">&quot;service&quot;</span>
+<span class="nb">get-command</span> <span class="p">-?</span> <span class="c"># Help on get-command</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+
+<div class="highlight"><pre><span class="n">gci</span> <span class="p">|</span>
+  <span class="nb">where-object</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">length</span> <span class="o">-gt</span> <span class="n">100kb</span> <span class="p">}</span> <span class="p">|</span>
+  <span class="nb">sort-object</span> <span class="n">length</span> <span class="p">|</span>
+  <span class="n">ft</span> <span class="n">-property</span> <span class="n">name</span><span class="p">,</span> <span class="n">length</span> <span class="n">-autosize</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Providers</span></figcaption>
+
+<div class="highlight"><pre><span class="nb">get-psprovider</span>
+<span class="nb">get-psdrive</span>
+<span class="nb">clear-host</span>
+<span class="nb">set-location</span> <span class="n">env</span><span class="err">:</span>
+<span class="n">gci</span>
+<span class="nb">set-location</span> <span class="k">alias</span><span class="err">:</span>
+<span class="n">gci</span>
+<span class="nb">get-pssnapin</span>
+<span class="nb">get-pssnapin</span> <span class="n">-registered</span>
+<span class="nb">add-pssnapin</span> <span class="n">SqlServerCmdletSnapin100</span>
+<span class="nb">remove-pssnapin</span> <span class="n">SqlServerCmdletSnapin100</span>
+</pre></div>
+
+
+</figure>
+
+<h3>Variables</h3>
+<figure class='code'>
+
+<div class="highlight"><pre><span class="nv">$hi</span> <span class="p">=</span> <span class="s2">&quot;Hello World&quot;</span>
+<span class="nv">$hi</span> <span class="c"># same is write-host $hi</span>
+<span class="no">[System.Int32]</span><span class="nv">$myint</span> <span class="p">=</span> <span class="n">42</span> <span class="c"># or [int] $myint = 42</span>
+</pre></div>
+
+
+</figure>
+
+<p>Comparisons</p>
+<ul>
+<li>-eq</li>
+<li>-ne</li>
+<li>-gt</li>
+<li>-lt</li>
+<li>-ge</li>
+<li>-le</li>
+<li>-Like # wildcard matching</li>
+<li>-NotLike</li>
+<li>-Match # regex matching</li>
+<li>-NotMatch</li>
+<li>Data on right side of comparison is converted to the data type of the left side</li>
+</ul>
+<figure class='code'>
+<figcaption class='code-title'><span>*-Variable</span></figcaption>
+
+<div class="highlight"><pre><span class="nb">New-Variable</span>  <span class="n">-Name</span> <span class="n">var</span> <span class="n">-Value</span> <span class="n">123</span>
+<span class="nb">Get-Variable</span> <span class="n">var</span> <span class="n">-valueonly</span>
+<span class="nb">Get-Variable</span>
+<span class="nb">Set-Variable</span> <span class="n">-Name</span> <span class="n">var</span> <span class="n">-Value</span> <span class="n">789</span>
+<span class="nb">Clear-Variable</span> <span class="n">-Name</span> <span class="n">var</span>
+<span class="nb">Remove-Variable</span> <span class="n">-Name</span> <span class="n">var</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Strings</span></figcaption>
+
+<div class="highlight"><pre><span class="s2">&quot;Hello &quot;&quot;Word&quot;&quot;&quot;</span>
+<span class="nv">$heretext</span> <span class="p">=</span> <span class="sh">@&quot;</span>
+<span class="sh">text</span>
+<span class="sh">more</span>
+<span class="sh">    with a tab</span>
+<span class="sh">    ending</span>
+<span class="sh">&quot;@</span>
+<span class="s2">&quot;There are </span><span class="si">$((gci)</span><span class="s2">.count) items&quot;</span>
+</pre></div>
+
+
+</figure>
+
+<p>Special characters</p>
+<ul>
+<li>b: backspace</li>
+<li>n: newline</li>
+<li>r: carriage return</li>
+<li>t: tab</li>
+</ul>
+<figure class='code'>
+<figcaption class='code-title'><span>Array</span></figcaption>
+
+<div class="highlight"><pre><span class="nv">$array</span> <span class="p">=</span> <span class="s2">&quot;one&quot;</span><span class="p">,</span> <span class="s2">&quot;two&quot;</span>
+<span class="nv">$array</span> <span class="p">=</span> <span class="err">@</span><span class="p">(</span><span class="s2">&quot;one&quot;</span><span class="p">,</span> <span class="s2">&quot;two&quot;</span><span class="p">)</span> <span class="c"># formal syntax</span>
+<span class="nv">$array</span> <span class="p">=</span> <span class="n">1</span><span class="p">..</span><span class="n">5</span> <span class="c"># range</span>
+<span class="nv">$array</span><span class="p">[</span><span class="n">0</span><span class="p">]</span>
+<span class="nv">$array</span> <span class="n">-contain</span> <span class="n">2</span>
+<span class="nv">$array</span> <span class="n">-notcontain</span> <span class="n">20</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>HashTables</span></figcaption>
+
+<div class="highlight"><pre><span class="nv">$hash</span> <span class="p">=</span> <span class="err">@</span><span class="p">{</span><span class="s2">&quot;Key&quot;</span> <span class="p">=</span> <span class="s2">&quot;Value&quot;</span> <span class="p">}</span>
+<span class="nv">$hash</span><span class="p">[</span><span class="s2">&quot;Key&quot;</span><span class="p">]</span>
+<span class="nv">$hash</span><span class="p">.</span><span class="s2">&quot;Key&quot;</span>
+<span class="nv">$mykey</span> <span class="p">=</span> <span class="s2">&quot;Key&quot;</span>
+<span class="nv">$hash</span><span class="p">.</span><span class="nv">$mykey</span>
+<span class="nv">$hash</span><span class="p">.$(</span><span class="nv">$mykey</span><span class="p">)</span> <span class="c"># can use an expression</span>
+<span class="nv">$hash</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="s2">&quot;Key&quot;</span><span class="p">)</span>
+<span class="nv">$hash</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s2">&quot;Key&quot;</span><span class="p">)</span>
+<span class="nv">$hash</span><span class="p">.</span><span class="n">ContainsValue</span><span class="p">(</span><span class="s2">&quot;Value&quot;</span><span class="p">)</span>
+<span class="nv">$hash</span><span class="p">.</span><span class="n">Keys</span>
+<span class="nv">$hash</span><span class="p">.</span><span class="n">Values</span>
+<span class="nv">$hash</span><span class="p">.</span><span class="n">Key</span> <span class="o">-contains</span> <span class="s2">&quot;Key&quot;</span>
+<span class="nv">$hash</span><span class="p">.</span><span class="n">Value</span> <span class="o">-contains</span> <span class="s2">&quot;Value&quot;</span>
+</pre></div>
+
+
+</figure>
+
+<p>Built in variables</p>
+<ul>
+<li>$true, $false</li>
+<li>$null</li>
+<li>$pwd</li>
+<li>$home</li>
+<li>$host</li>
+<li>$pid</li>
+<li>$psversiontable</li>
+<li>$_</li>
+</ul>
+<h3>Programming</h3>
+<figure class='code'>
+<figcaption class='code-title'><span>switch</span></figcaption>
+
+<div class="highlight"><pre><span class="k">switch</span> <span class="o">-casesensitive</span> <span class="o">-wildcard</span> <span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="s2">&quot;hello&quot;</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="s2">&quot;Te*&quot;</span> <span class="p">{</span><span class="s2">&quot;Found test&quot;</span><span class="err">;</span> <span class="k">break</span><span class="p">}</span>
+    <span class="s2">&quot;hello&quot;</span> <span class="p">{</span><span class="s2">&quot;Found hello&quot;</span><span class="err">;</span> <span class="k">break</span><span class="p">}</span>
+    <span class="k">default</span> <span class="p">{</span><span class="s2">&quot;Found none&quot;</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>for loops</span></figcaption>
+
+<div class="highlight"><pre><span class="nv">$i</span> <span class="p">=</span> <span class="n">0</span>
+<span class="k">for</span> <span class="p">(</span><span class="err">;</span> <span class="nv">$i</span> <span class="o">-lt</span> <span class="p">&lt;</span> <span class="n">5</span><span class="err">;</span> <span class="nv">$i</span><span class="p">++)</span>
+<span class="p">{</span>
+    <span class="nv">$i</span>
+<span class="p">}</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$file</span> <span class="k">in</span> <span class="n">gci</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$file</span><span class="p">.</span><span class="n">name</span>
+<span class="p">}</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Script Block</span></figcaption>
+
+<div class="highlight"><pre><span class="nv">$a</span> <span class="p">=</span> <span class="p">{</span><span class="nb">clear-host</span><span class="err">;</span> <span class="s2">&quot;hello&quot;</span><span class="p">}</span>
+<span class="nv">$a</span>
+<span class="p">&amp;</span> <span class="nv">$a</span> <span class="c"># run the script block</span>
+<span class="p">&amp;</span> <span class="p">{</span><span class="nb">clear-host</span><span class="err">;</span> <span class="s2">&quot;hello&quot;</span><span class="p">}</span>
+
+<span class="nv">$value</span> <span class="p">=</span> <span class="p">{</span><span class="n">41</span> <span class="p">+</span> <span class="n">1</span><span class="p">}</span>
+<span class="n">1</span> <span class="p">+</span> <span class="p">(&amp;</span><span class="nv">$value</span><span class="p">)</span>
+
+<span class="nv">$value</span> <span class="p">=</span> <span class="p">{</span><span class="n">42</span><span class="err">;</span> <span class="nb">write-host</span> <span class="s2">&quot;hello&quot;</span> <span class="p">}</span> <span class="c"># will return 42 and execute the write-host</span>
+<span class="nv">$value</span> <span class="p">=</span> <span class="p">{</span><span class="k">return</span> <span class="n">42</span><span class="err">;</span> <span class="nb">write-host</span> <span class="s2">&quot;hello&quot;</span> <span class="p">}</span> <span class="c"># only returns 42</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Passing Parameters</span></figcaption>
+
+<div class="highlight"><pre><span class="nv">$qa</span> <span class="p">=</span> <span class="p">{</span>
+    <span class="nv">$question</span> <span class="p">=</span> <span class="nv">$args</span><span class="p">[</span><span class="n">0</span><span class="p">]</span>
+    <span class="nv">$answer</span> <span class="p">=</span> <span class="nv">$args</span><span class="p">[</span><span class="n">1</span><span class="p">]</span>
+    <span class="nb">write-host</span> <span class="s2">&quot;$question and the answer $answer&quot;</span>
+<span class="p">}</span>
+<span class="p">&amp;</span><span class="nv">$qa</span> <span class="s2">&quot;What is&quot;</span> <span class="s2">&quot;The answer&quot;</span>
+
+<span class="nv">$qa</span> <span class="p">=</span> <span class="p">{</span>
+    <span class="k">param</span><span class="p">(</span><span class="nv">$question</span><span class="p">,</span> <span class="no">[string]</span><span class="nv">$answer</span> <span class="p">=</span> <span class="s2">&quot;default answer&quot;</span><span class="p">)</span>
+    <span class="nb">write-host</span> <span class="s2">&quot;$question and the answer $answer&quot;</span>
+<span class="p">}</span>
+<span class="p">&amp;</span><span class="nv">$qa</span> <span class="s2">&quot;What is&quot;</span> <span class="s2">&quot;The answer&quot;</span>
+<span class="p">&amp;</span><span class="nv">$qa</span> <span class="n">-question</span> <span class="s2">&quot;What is&quot;</span> <span class="n">-answer</span> <span class="s2">&quot;The answer&quot;</span>
+<span class="p">&amp;</span><span class="nv">$qa</span> <span class="n">-q</span> <span class="s2">&quot;What is&quot;</span> <span class="n">-a</span> <span class="s2">&quot;The answer&quot;</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Piplining Parameters</span></figcaption>
+
+<div class="highlight"><pre><span class="nv">$files</span> <span class="p">=</span> 
+<span class="p">{</span>
+    <span class="k">param</span> <span class="p">(</span><span class="nv">$headertext</span> <span class="p">=</span> <span class="s2">&quot;default header&quot;</span><span class="p">)</span>
+    <span class="k">begin</span> <span class="p">{</span> <span class="s2">&quot;runs first&quot;</span> <span class="p">}</span>
+    <span class="k">process</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$_</span><span class="p">.</span><span class="n">name</span> <span class="o">-like</span> <span class="s2">&quot;*.ps1&quot;</span><span class="p">)</span>
+        <span class="p">{</span> <span class="k">return</span> <span class="nv">$_</span><span class="p">.</span><span class="n">Name</span> <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">end</span> <span class="p">{</span> <span class="s2">&quot;runs afterward&quot;</span> <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">gci</span> <span class="p">|</span> <span class="p">&amp;</span><span class="nv">$files</span>
+</pre></div>
+
+
+</figure>
+
+<p>Scoping</p>
+<ul>
+<li>Variables outside a script block are available inside a block</li>
+<li>If set inside the script block it makes a copy</li>
+<li>Only exists while within the script block</li>
+</ul>
+<figure class='code'>
+<figcaption class='code-title'><span>Scopes</span></figcaption>
+
+<div class="highlight"><pre><span class="nv">$var</span> <span class="p">=</span> <span class="n">42</span>
+<span class="p">&amp;</span> <span class="p">{</span> <span class="nv">$var</span> <span class="p">=</span> <span class="n">33</span><span class="err">;</span>
+    <span class="nb">write-host</span> <span class="nv">$var</span>
+    <span class="nb">write-host</span> <span class="p">(</span><span class="nb">Get-Variable</span> <span class="n">var</span> <span class="n">-valueonly</span> <span class="n">-scope</span> <span class="n">1</span><span class="p">)}</span>
+<span class="nb">write-host</span> <span class="nv">$var</span>
+
+<span class="nv">$global:var</span> <span class="p">=</span> <span class="n">42</span> <span class="c"># can be used anywhere</span>
+<span class="nv">$private:var</span> <span class="p">=</span> <span class="n">42</span> <span class="c"># cannot be seen in the script block</span>
+
+<span class="n">Functions</span>
+<span class="p">-</span> <span class="n">Parameters</span> <span class="n">are</span> <span class="n">values</span> <span class="n">objects</span> <span class="n">by</span> <span class="k">default</span>
+<span class="p">-</span> <span class="n">Can</span> <span class="n">work</span> <span class="n">with</span> <span class="n">the</span> <span class="n">pipeline</span><span class="p">,</span> <span class="n">like</span> <span class="n">script</span> <span class="n">blocks</span>
+
+<span class="p">{%</span> <span class="n">include_code</span> <span class="n">lang</span><span class="err">:</span><span class="n">PowerShell</span> <span class="n">Functions</span>
+<span class="k">function</span>  <span class="nb">Set-Var</span><span class="p">(</span><span class="no">[ref]</span> <span class="nv">$var</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$var</span><span class="p">.</span><span class="n">Value</span> <span class="p">=</span> <span class="n">33</span>
+<span class="p">}</span>
+<span class="nv">$var</span> <span class="p">=</span> <span class="n">42</span>
+<span class="nb">Set-Var</span> <span class="p">(</span><span class="no">[ref]</span> <span class="nv">$var</span><span class="p">)</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Filters</span></figcaption>
+
+<div class="highlight"><pre><span class="k">filter</span> <span class="nb">Show-PS1Files</span>
+<span class="p">{</span>
+    <span class="nv">$filename</span> <span class="p">=</span> <span class="nv">$_</span><span class="p">.</span><span class="n">Name</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$filename</span> <span class="o">-like</span> <span class="s2">&quot;*.ps1&quot;</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="nv">$_</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">gci</span> <span class="p">|</span> <span class="nb">show-ps1files</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Output to the pipeline</span></figcaption>
+
+<div class="highlight"><pre><span class="k">function</span> <span class="nb">Get-ChildName</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">param</span><span class="p">(</span><span class="no">[switch]</span><span class="nv">$verbose</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$verbose</span><span class="p">.</span><span class="n">IsPresent</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$VerbosePreference</span> <span class="p">=</span> <span class="s2">&quot;Continue&quot;</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="nv">$VerbosePreference</span> <span class="p">=</span> <span class="s2">&quot;SilentlyContinue&quot;</span>
+    <span class="p">}</span>
+    <span class="nb">Write-Verbose</span> <span class="s2">&quot;More info here&quot;</span>
+    <span class="nb">Write-Output</span> <span class="p">(</span><span class="n">gci</span> <span class="p">|</span> <span class="nb">select-object</span> <span class="s2">&quot;Name&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nb">Get-ChildName</span> <span class="n">-verbose</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span><span class="nv">$_</span><span class="p">.</span><span class="n">name</span> <span class="o">-like</span> <span class="s2">&quot;*.ps1&quot;</span><span class="p">}</span>
+</pre></div>
+
+
+</figure>
+
+<p>Help Content: Get-Help about_comment_based_help</p>
+<ul>
+<li>.SYNOPSIS</li>
+<li>.DESCRIPTION</li>
+<li>.PARAMETER</li>
+<li>.EXAMPLE</li>
+<li>.INPUTS</li>
+<li>.OUTPUTS</li>
+<li>.NOTES</li>
+<li>.LINK</li>
+</ul>
+<figure class='code'>
+<figcaption class='code-title'><span>Help Content</span></figcaption>
+
+<div class="highlight"><pre><span class="k">function</span> <span class="nb">Get-ChildName</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="cm">&lt;#</span>
+<span class="cm">    .SYNPOSIS</span>
+<span class="cm">    Returns something</span>
+<span class="cm">#&gt;</span>
+    <span class="nb">Write-Output</span> <span class="p">(</span><span class="n">gci</span> <span class="p">|</span> <span class="nb">select-object</span> <span class="s2">&quot;Name&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Files</span></figcaption>
+
+<div class="highlight"><pre><span class="nv">$a</span> <span class="p">=</span> <span class="nb">Get-Content</span> <span class="s2">&quot;test.txt&quot;</span>
+<span class="nv">$a</span><span class="p">[</span><span class="n">2</span><span class="p">]</span> <span class="c"># uses an array to store the contents</span>
+<span class="nv">$all</span> <span class="p">=</span> <span class="no">[string]</span><span class="err">::</span><span class="n">Join</span><span class="p">(</span><span class="no">[System.Environment]</span><span class="err">::</span><span class="n">NewLine</span><span class="p">,</span> <span class="nv">$a</span><span class="p">)</span> <span class="c"># or `r`n</span>
+
+<span class="nb">Set-Content</span> <span class="n">-Value</span> <span class="nv">$all</span> <span class="n">-Path</span> <span class="s2">&quot;new.txt&quot;</span>
+<span class="nb">Add-Content</span> <span class="n">-Value</span> <span class="s2">&quot;More stuff&quot;</span> <span class="n">-Path</span> <span class="s2">&quot;new.txt&quot;</span>
+<span class="nb">Remove-Item</span> <span class="s2">&quot;new.txt&quot;</span>
+<span class="nb">Test-Path</span> <span class="s2">&quot;test.txt&quot;</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>XML Filse</span></figcaption>
+
+<div class="highlight"><pre><span class="nv">$xml</span> <span class="p">=</span> <span class="sh">@&quot;</span>
+<span class="sh">&lt;root&gt;</span>
+<span class="sh">    &lt;one&gt;value&lt;/one&gt;</span>
+<span class="sh">&lt;/root&gt;</span>
+<span class="sh">&quot;@</span>
+<span class="nv">$xml</span> <span class="p">|</span> <span class="nb">Out-File</span> <span class="s2">&quot;test.xml&quot;</span>
+
+<span class="nv">$testXml</span> <span class="p">=</span> <span class="nb">new-object</span> <span class="n">xml</span>
+<span class="nv">$testXml</span><span class="p">.</span><span class="n">Load</span><span class="p">(</span><span class="s2">&quot;test.xml&quot;</span><span class="p">)</span>
+<span class="nv">$one</span> <span class="p">=</span> <span class="nv">$testXml</span><span class="p">.</span><span class="n">root</span><span class="p">.</span><span class="n">one</span>
+<span class="nv">$testXml</span><span class="p">.</span><span class="n">Save</span><span class="p">(</span><span class="s2">&quot;test.xml&quot;</span><span class="p">)</span>
+
+<span class="no">[xml]</span><span class="nv">$testXml</span> <span class="p">=</span> <span class="nb">Get-Content</span> <span class="s2">&quot;test.xml&quot;</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Misc</span></figcaption>
+
+<div class="highlight"><pre><span class="nv">$choice</span> <span class="p">=</span> <span class="nb">Read-Host</span> <span class="n">-Prompt</span> <span class="s2">&quot;Select something&quot;</span>
+<span class="nv">$padding</span> <span class="p">=</span> <span class="s2">&quot; &quot;</span> <span class="p">*</span> <span class="n">10</span> <span class="c"># repeat an item</span>
+</pre></div>
+
+
+</figure>
+            </div>
+        </article>
+    </section>
+
+        </div>
+        <div class="col-lg-3 well well-sm" id="sidebar">
+<aside>
+    <section>
+        <ul class="list-group list-group-flush">
+
+
+
+
+            <li class="list-group-item"><h4><i class="icon-book icon-large"></i>Recent Posts</h4></li>
+                <li class="list-group-item">
+                    <a href="/blog/formatting-with-powershell.html">
+                        Formatting with PowerShell
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a href="/blog/introduction-to-powershell.html">
+                        Introduction to PowerShell
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a href="/blog/bash-shell-basics.html">
+                        Bash shell basics
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a href="/blog/starting-a-technology-radar.html">
+                        Starting a technology radar
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a href="/blog/mocking-with-moq.html">
+                        Mocking with Moq
+                    </a>
+                </li>
+
+            <li class="list-group-item"><a href="/tags.html"><h4><i class="icon-tags icon-large"></i>Tags</h4></a></li>
+                <li class="list-group-item tag-1">
+                    <a href="/tags/vim.html">
+                        vim
+                    </a>
+                </li>
+                <li class="list-group-item tag-2">
+                    <a href="/tags/powershell.html">
+                        powershell
+                    </a>
+                </li>
+                <li class="list-group-item tag-4">
+                    <a href="/tags/philosophy.html">
+                        philosophy
+                    </a>
+                </li>
+                <li class="list-group-item tag-4">
+                    <a href="/tags/tests.html">
+                        tests
+                    </a>
+                </li>
+                <li class="list-group-item tag-4">
+                    <a href="/tags/craftsmanship.html">
+                        craftsmanship
+                    </a>
+                </li>
+                <li class="list-group-item tag-4">
+                    <a href="/tags/cli.html">
+                        cli
+                    </a>
+                </li>
+                <li class="list-group-item tag-4">
+                    <a href="/tags/techradar.html">
+                        techradar
+                    </a>
+                </li>
+                <li class="list-group-item tag-4">
+                    <a href="/tags/c.html">
+                        c#
+                    </a>
+                </li>
+        </ul>
+    </section>
+</aside>        </div>
+    </div>
+</div>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="/theme/js/respond.min.js"></script>
+</body>
+</html>

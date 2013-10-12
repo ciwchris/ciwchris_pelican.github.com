@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="https://www.facebook.com/2008/fbml">
+<head>
+    <title>Entering escape in insert mode</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Open Graph tags -->
+
+            <meta property="og:type" content="article"/>
+            <meta property="og:title" content="Entering escape in insert mode"/>
+            <meta property="og:url" content="/blog/entering-escape-in-insert-mode.html"/>
+            <meta property="og:description" content=""/>
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="/theme/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/theme/css/pygments.css" rel="stylesheet">
+    <link rel="stylesheet" href="/theme/css/style.css" type="text/css"/>
+    <link rel="stylesheet" href="/theme/css/main.css" type="text/css"/>
+    <!-- JavaScript plugins (requires jQuery) -->
+    <script src="http://code.jquery.com/jquery.js"></script>
+
+
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="" class="navbar-brand">Notes to self</a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/archives.html"><i class="icon-th-list"></i>Archives</a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</nav>
+<!-- /.navbar -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="/blog/entering-escape-in-insert-mode.html"
+                       rel="bookmark"
+                       title="Permalink to Entering escape in insert mode">
+                        Entering escape in insert mode
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="icon-calendar"></i>Sat 16 February 2013
+    </span>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="/tags/vim.html">vim</a>
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>In the previous post I created a macro which made use of an 'escape':</p>
+<figure class='code'>
+
+<div class="highlight"><pre>^dwA ^[pxj
+</pre></div>
+
+
+</figure>
+
+<p>When outputting the contents of the register containing this macro the 'escape' is translated as <code>^[</code>. This shouldn't be surpising. This format is known as <a href="http://en.wikipedia.org/wiki/Caret_notation">caret notation</a> and is used to represent non-printable control characters in ASCII. That explains the caret, but why the bracket? Interestingly, the bracket, by default, can be used as an alternative to the 'escape' key in Vim, <code>h: i-ctrl-[</code>. The reason for the bracket has to do with <a href="http://en.wikipedia.org/wiki/Control_character#How_control_characters_map_to_keyboards">how control characters are mapped on keyboards</a>. As stated in the article, control characters are rendered by the ASCII value of the non-printable character plus 64. In this case the 'escape' key has the <a href="http://en.wikipedia.org/wiki/ASCII#ASCII_control_characters">ASCII value of 27</a>. Adding 64 to this value gives us the decimal value of 91, which is <a href="http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters">represented by the bracket, '['</a>. And that is why the 'escape' was rendered as <code>^[</code> in the macro. <code>h: key-notation</code> contains a table detailing how many non-printable characters can be rendered in Vim.</p>
+<p>The follow up question to this would be, "if I were to create the macro myself how would I type <code>^[</code>?" If the caret key was literally used then it would instruct Vim to move to the "first non-blank character of the line", <code>:h ^</code>. Not our desired outcome. To type an 'escape' it is necessary to use 'ctrl-v', which will "insert next non-digit literally", <code>:h i_ctrl-v</code>. So to use an 'escape' in a macro being created manually type: 'ctrl-v' followed by 'escape'.</p>
+            </div>
+        </article>
+    </section>
+
+        </div>
+        <div class="col-lg-3 well well-sm" id="sidebar">
+<aside>
+    <section>
+        <ul class="list-group list-group-flush">
+
+
+
+
+            <li class="list-group-item"><h4><i class="icon-book icon-large"></i>Recent Posts</h4></li>
+                <li class="list-group-item">
+                    <a href="/blog/formatting-with-powershell.html">
+                        Formatting with PowerShell
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a href="/blog/introduction-to-powershell.html">
+                        Introduction to PowerShell
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a href="/blog/bash-shell-basics.html">
+                        Bash shell basics
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a href="/blog/starting-a-technology-radar.html">
+                        Starting a technology radar
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a href="/blog/mocking-with-moq.html">
+                        Mocking with Moq
+                    </a>
+                </li>
+
+            <li class="list-group-item"><a href="/tags.html"><h4><i class="icon-tags icon-large"></i>Tags</h4></a></li>
+                <li class="list-group-item tag-1">
+                    <a href="/tags/vim.html">
+                        vim
+                    </a>
+                </li>
+                <li class="list-group-item tag-2">
+                    <a href="/tags/powershell.html">
+                        powershell
+                    </a>
+                </li>
+                <li class="list-group-item tag-4">
+                    <a href="/tags/philosophy.html">
+                        philosophy
+                    </a>
+                </li>
+                <li class="list-group-item tag-4">
+                    <a href="/tags/tests.html">
+                        tests
+                    </a>
+                </li>
+                <li class="list-group-item tag-4">
+                    <a href="/tags/craftsmanship.html">
+                        craftsmanship
+                    </a>
+                </li>
+                <li class="list-group-item tag-4">
+                    <a href="/tags/cli.html">
+                        cli
+                    </a>
+                </li>
+                <li class="list-group-item tag-4">
+                    <a href="/tags/techradar.html">
+                        techradar
+                    </a>
+                </li>
+                <li class="list-group-item tag-4">
+                    <a href="/tags/c.html">
+                        c#
+                    </a>
+                </li>
+        </ul>
+    </section>
+</aside>        </div>
+    </div>
+</div>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="/theme/js/respond.min.js"></script>
+</body>
+</html>
