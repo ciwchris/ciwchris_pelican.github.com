@@ -1,2 +1,4 @@
-__pycache__
+__pycache__/
 srv.pid
+pelican.pid
+output/
