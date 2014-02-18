@@ -423,48 +423,50 @@
 <figure class='code'>
 <figcaption class='code-title'><span>Help Content</span></figcaption>
 
-<div class="highlight"><pre><span class="k">function</span> <span class="nb">Get-ChildName</span><span class="p">()</span>
+<div class="highlight"><pre><span class="k">function</span> <span class="nb">Add-Extension</span> 
 <span class="p">{</span>
+    <span class="k">param</span> <span class="p">(</span><span class="no">[string]</span><span class="nv">$Name</span><span class="p">,</span><span class="no">[string]</span><span class="nv">$Extension</span> <span class="p">=</span> <span class="s2">&quot;txt&quot;</span><span class="p">)</span>
+    <span class="nv">$name</span> <span class="p">=</span> <span class="nv">$name</span> <span class="p">+</span> <span class="s2">&quot;.&quot;</span> <span class="p">+</span> <span class="nv">$extension</span>
+    <span class="nv">$name</span>
 
-    <span class="cm">&lt;#</span>
-<span class="cm">    </span><span class="sd">.SYNOPSIS</span><span class="cm"> </span>
-<span class="cm">    Adds a file name extension to a supplied name.</span>
+<span class="cm">&lt;#</span>
+<span class="sd">.SYNOPSIS</span><span class="cm"> </span>
+<span class="cm">Adds a file name extension to a supplied name.</span>
 
-<span class="cm">    </span><span class="sd">.DESCRIPTION</span><span class="cm"></span>
-<span class="cm">    Adds a file name extension to a supplied name. </span>
-<span class="cm">    Takes any strings for the file name or extension.</span>
+<span class="sd">.DESCRIPTION</span><span class="cm"></span>
+<span class="cm">Adds a file name extension to a supplied name. </span>
+<span class="cm">Takes any strings for the file name or extension.</span>
 
-<span class="cm">    </span><span class="sd">.PARAMETER</span><span class="cm"> Name</span>
-<span class="cm">    Specifies the file name.</span>
+<span class="sd">.PARAMETER</span><span class="cm"> Name</span>
+<span class="cm">Specifies the file name.</span>
 
-<span class="cm">    </span><span class="sd">.PARAMETER</span><span class="cm"> Extension</span>
-<span class="cm">    Specifies the extension. &quot;Txt&quot; is the default.</span>
+<span class="sd">.PARAMETER</span><span class="cm"> Extension</span>
+<span class="cm">Specifies the extension. &quot;Txt&quot; is the default.</span>
 
-<span class="cm">    </span><span class="sd">.INPUTS</span><span class="cm"></span>
-<span class="cm">    None. You cannot pipe objects to Add-Extension.</span>
+<span class="sd">.INPUTS</span><span class="cm"></span>
+<span class="cm">None. You cannot pipe objects to Add-Extension.</span>
 
-<span class="cm">    </span><span class="sd">.OUTPUTS</span><span class="cm"></span>
-<span class="cm">    System.String. Add-Extension returns a string with the extension or file name.</span>
+<span class="sd">.OUTPUTS</span><span class="cm"></span>
+<span class="cm">System.String. Add-Extension returns a string with the extension or file name.</span>
 
-<span class="cm">    </span><span class="sd">.EXAMPLE</span><span class="cm"></span>
-<span class="cm">    C:\PS&gt; extension -name &quot;File&quot;</span>
-<span class="cm">    File.txt</span>
+<span class="sd">.EXAMPLE</span><span class="cm"></span>
+<span class="cm">C:\PS&gt; extension -name &quot;File&quot;</span>
+<span class="cm">File.txt</span>
 
-<span class="cm">    </span><span class="sd">.EXAMPLE</span><span class="cm"></span>
-<span class="cm">    C:\PS&gt; extension -name &quot;File&quot; -extension &quot;doc&quot;</span>
-<span class="cm">    File.doc</span>
+<span class="sd">.EXAMPLE</span><span class="cm"></span>
+<span class="cm">C:\PS&gt; extension -name &quot;File&quot; -extension &quot;doc&quot;</span>
+<span class="cm">File.doc</span>
 
-<span class="cm">    </span><span class="sd">.EXAMPLE</span><span class="cm"></span>
-<span class="cm">    C:\PS&gt; extension &quot;File&quot; &quot;doc&quot;</span>
-<span class="cm">    File.doc</span>
+<span class="sd">.EXAMPLE</span><span class="cm"></span>
+<span class="cm">C:\PS&gt; extension &quot;File&quot; &quot;doc&quot;</span>
+<span class="cm">File.doc</span>
 
-<span class="cm">    </span><span class="sd">.LINK</span><span class="cm"></span>
-<span class="cm">    http://www.fabrikam.com/extension.html</span>
+<span class="sd">.LINK</span><span class="cm"></span>
+<span class="cm">http://www.fabrikam.com/extension.html</span>
 
-<span class="cm">    </span><span class="sd">.LINK</span><span class="cm"></span>
-<span class="cm">    Set-Item</span>
+<span class="sd">.LINK</span><span class="cm"></span>
+<span class="cm">Set-Item</span>
 <span class="cm">#&gt;</span>
-    <span class="nb">Write-Output</span> <span class="p">(</span><span class="n">gci</span> <span class="p">|</span> <span class="nb">select-object</span> <span class="s2">&quot;Name&quot;</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -532,6 +534,11 @@
 
             <li class="list-group-item"><h4><i class="icon-book icon-large"></i>Recent Posts</h4></li>
                 <li class="list-group-item">
+                    <a href="http://ciwchris.github.io/blog/sicp-highlights.html">
+                        Structure and Interpretation of Computer Programs: Highlighted Text
+                    </a>
+                </li>
+                <li class="list-group-item">
                     <a href="http://ciwchris.github.io/blog/using-purnam-with-angular-part-1.html">
                         Using AngularJS with ClojureScript: Part 1
                     </a>
@@ -549,11 +556,6 @@
                 <li class="list-group-item">
                     <a href="http://ciwchris.github.io/blog/bash-shell-basics.html">
                         Bash shell basics
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="http://ciwchris.github.io/blog/starting-a-technology-radar.html">
-                        Starting a technology radar
                     </a>
                 </li>
 
@@ -574,13 +576,18 @@
                     </a>
                 </li>
                 <li class="list-group-item tag-4">
-                    <a href="http://ciwchris.github.io/tags/mocking.html">
-                        mocking
+                    <a href="http://ciwchris.github.io/tags/techradar.html">
+                        techradar
                     </a>
                 </li>
                 <li class="list-group-item tag-4">
-                    <a href="http://ciwchris.github.io/tags/clojurescript-angular.html">
-                        clojurescript angular
+                    <a href="http://ciwchris.github.io/tags/philosophy.html">
+                        philosophy
+                    </a>
+                </li>
+                <li class="list-group-item tag-4">
+                    <a href="http://ciwchris.github.io/tags/c.html">
+                        c#
                     </a>
                 </li>
                 <li class="list-group-item tag-4">
@@ -589,13 +596,8 @@
                     </a>
                 </li>
                 <li class="list-group-item tag-4">
-                    <a href="http://ciwchris.github.io/tags/tests.html">
-                        tests
-                    </a>
-                </li>
-                <li class="list-group-item tag-4">
-                    <a href="http://ciwchris.github.io/tags/philosophy.html">
-                        philosophy
+                    <a href="http://ciwchris.github.io/tags/mocking.html">
+                        mocking
                     </a>
                 </li>
         </ul>

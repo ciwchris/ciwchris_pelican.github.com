@@ -58,6 +58,91 @@
             <article>
                 <header class="page-header">
                     <h1>
+                        <a href="http://ciwchris.github.io/blog/sicp-highlights.html"
+                           rel="bookmark"
+                           title="Permalink to Structure and Interpretation of Computer Programs: Highlighted Text">
+                            Structure and Interpretation of Computer Programs: Highlighted Text
+                        </a>
+                    </h1>
+                </header>
+                <div class="entry-content">
+                    <div class="panel">
+                        <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="icon-calendar"></i>Mon 17 February 2014
+    </span>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://ciwchris.github.io/tags/sicp-lisp-books.html">sicp lisp books</a>
+</footer><!-- /.post-info -->                        </div>
+                    </div>
+                    <p>Text highlighted during an initial reading of
+<a href="http://mitpress.mit.edu/sicp/full-text/book/book-Z-H-10.html">Structure and Interpretation of Computer Programs</a></p>
+<h1>Chapter 1</h1>
+<p>Master software engineers have the ability to organize programs so that they can be reasonably sure that the resulting processes will perform the tasks intended.</p>
+<p>The most significant of these features is the fact that Lisp descriptions of processes, called procedures, can themselves be represented and manipulated as Lisp data.</p>
+<h2>1.1</h2>
+<p>In programming, we deal with two kinds of elements: procedures and data. (Later we will discover that they are really not so distinct.)</p>
+<p>substitution model
+normal-order evaluation vs applicative-order evaluation</p>
+<p>The word predicate is used for procedures that return true or false, as well as for expressions that evaluate to true or false.</p>
+<p>The contrast between function and procedure is a reflection of the general distinction between describing properties of things and describing how to do things, or, as it is sometimes referred to, the distinction between declarative knowledge and imperative knowledge.</p>
+<p>block structure
+lexical scoping</p>
+<h2>1.2 (very boring chapter primarily having to do with mathematics and calculating space and operations)</h2>
+<p>linear recursive process vs linear iterative process</p>
+<p>It will execute an iterative process in constant space, even if the iterative process is described by a recursive procedure. An implementation with this property is called tail-recursive.</p>
+<h2>1.3</h2>
+<p>Procedures that manipulate procedures are called higher-order procedures.</p>
+<p>Experienced programmers know how to choose procedural formulations that are particularly perspicuous, and where useful elements of the process are exposed as separate entities that can be reused in other applications.</p>
+<p>expert programmers know how to choose the level of abstraction appropriate to their task.</p>
+<p>Lisp, unlike other common programming languages, awards procedures full first-class status. This poses challenges for efficient implementation, but the resulting gain in expressive power is enormous.</p>
+<h1>Chapter 2</h1>
+<p>The general technique of isolating the parts of a program that deal with how data objects are represented from the parts of a program that deal with how data objects are used is a powerful design methodology called data abstraction.
+closure -- that the glue we use for combining data objects should allow us to combine not only primitive data objects, but compound data objects as well.</p>
+<h2>2.1</h2>
+<p>Data abstraction is a methodology that enables us to isolate how a compound data object is used from the details of how it is constructed from more primitive data objects.</p>
+<p>Data objects constructed from pairs are called list-structured data.</p>
+<h2>2.2</h2>
+<p>The word nil is a contraction of the Latin word nihil, which means ``nothing.''</p>
+<p>The difference between the two definitions is not that the computer is performing a different process (it isn't) but that we think about the process differently. In effect, map helps establish an abstraction barrier that isolates the implementation of procedures that transform lists from the details of how the elements of the list are extracted and combined.</p>
+<p>In working with compound data, we've stressed how data abstraction permits us to design programs without becoming enmeshed in the details of data representations, and how abstraction preserves for us the flexibility to experiment with alternative representations.</p>
+<p>The value of expressing programs as sequence operations is that this helps us make program designs that are modular, that is, designs that are constructed by combining relatively independent pieces.</p>
+<p>stratified design, the notion that a complex system should be structured as a sequence of levels that are described using a sequence of languages. Each level is constructed by combining parts that are regarded as primitive at that level, and the parts constructed at each level are used as primitives at the next level.</p>
+<p>Stratified design helps make programs robust, that is, it makes it likely that small changes in a specification will require correspondingly small changes in the program.</p>
+<h2>2.3</h2>
+<p>Symbolic differentiation is of special historical significance in Lisp. It was one of the motivating examples behind the development of a computer language for symbol manipulation. </p>
+<p>We can represent trees by using lists. Each node will be a list of three items: the entry at the node, the left subtree, and the right subtree.</p>
+<p>We have examined options for using lists to represent sets and have seen how the choice of representation for a data object can have a large impact on the performance of the programs that use the data.</p>
+<p>The designer can create an initial implementation using a simple, straightforward representation such as unordered lists. This will be unsuitable for the eventual system, but it can be useful in providing a ``quick and dirty'' data base with which to test the rest of the system. Later on, the data representation can be modified to be more sophisticated. If the data base is accessed in terms of abstract selectors and constructors, this change in representation will not require any changes to the rest of the system.</p>
+<h2>2.4</h2>
+<p>These data-abstraction barriers are powerful tools for controlling complexity. By isolating the underlying representations of data objects, we can divide the task of designing a large program into smaller tasks that can be performed separately. </p>
+<p>So in addition to the data-abstraction barriers that isolate representation from use, we need abstraction barriers that isolate different design choices from each other and permit different choices to coexist in a single program. </p>
+<p>Our main technique for building generic procedures will be to work in terms of data objects that have type tags, that is, data objects that include explicit information about how they are to be processed.</p>
+<p>The principle of least commitment: The abstraction barrier formed by the selectors and constructors permits us to defer to the last possible moment the choice of a concrete representation for our data objects and thus retain maximum flexibility in our system design.</p>
+<p>The general strategy of checking the type of a datum and calling an appropriate procedure is called dispatching on type.</p>
+<p>data-directed programming: Here we will implement the interface as a single procedure that looks up the combination of the operation name and argument type in the table to find the correct procedure to apply, and then applies it to the contents of the argument.</p>
+<p>message passing: An alternative implementation strategy is to decompose the table into columns and, instead of using <code>intelligent operations'' that dispatch on data types, to work with</code>intelligent data objects'' that dispatch on operation names.</p>
+<h2>2.5</h2>
+<p>Often the different data types are not completely independent, and there may be ways by which objects of one type may be viewed as being of another type. This process is called coercion.</p>
+<p>In general, we can implement this idea by designing coercion procedures that transform an object of one type into an equivalent object of another type.</p>
+<p>hierarchy of types, in which, for example, integers are a subtype of rational numbers</p>
+<p>in which each type has at most one supertype and at most one subtype. Such a structure, called a tower,</p>
+<h1>Chapter 3</h1>
+<p>In particular, we need strategies to help us structure large systems so that they will be modular, that is, so that they can be divided ``naturally'' into coherent parts that can be separately developed and maintained.</p>
+<p>The first organizational strategy concentrates on objects, viewing a large system as a collection of distinct objects whose behaviors may change over time. An alternative organizational strategy concentrates on the streams of information that flow in the system, much as an electrical engineer views a signal-processing system.</p>
+<p>The difficulties of dealing with objects, change, and identity are a fundamental consequence of the need to grapple with time in our computational models.</p>
+<p>delayed evaluation: The stream approach can be most fully exploited when we decouple simulated time in our model from the order of the events that take place in the computer during evaluation.</p>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <header class="page-header">
+                    <h1>
                         <a href="http://ciwchris.github.io/blog/using-purnam-with-angular-part-1.html"
                            rel="bookmark"
                            title="Permalink to Using AngularJS with ClojureScript: Part 1">
@@ -1216,48 +1301,50 @@
 <figure class='code'>
 <figcaption class='code-title'><span>Help Content</span></figcaption>
 
-<div class="highlight"><pre><span class="k">function</span> <span class="nb">Get-ChildName</span><span class="p">()</span>
+<div class="highlight"><pre><span class="k">function</span> <span class="nb">Add-Extension</span> 
 <span class="p">{</span>
+    <span class="k">param</span> <span class="p">(</span><span class="no">[string]</span><span class="nv">$Name</span><span class="p">,</span><span class="no">[string]</span><span class="nv">$Extension</span> <span class="p">=</span> <span class="s2">&quot;txt&quot;</span><span class="p">)</span>
+    <span class="nv">$name</span> <span class="p">=</span> <span class="nv">$name</span> <span class="p">+</span> <span class="s2">&quot;.&quot;</span> <span class="p">+</span> <span class="nv">$extension</span>
+    <span class="nv">$name</span>
 
-    <span class="cm">&lt;#</span>
-<span class="cm">    </span><span class="sd">.SYNOPSIS</span><span class="cm"> </span>
-<span class="cm">    Adds a file name extension to a supplied name.</span>
+<span class="cm">&lt;#</span>
+<span class="sd">.SYNOPSIS</span><span class="cm"> </span>
+<span class="cm">Adds a file name extension to a supplied name.</span>
 
-<span class="cm">    </span><span class="sd">.DESCRIPTION</span><span class="cm"></span>
-<span class="cm">    Adds a file name extension to a supplied name. </span>
-<span class="cm">    Takes any strings for the file name or extension.</span>
+<span class="sd">.DESCRIPTION</span><span class="cm"></span>
+<span class="cm">Adds a file name extension to a supplied name. </span>
+<span class="cm">Takes any strings for the file name or extension.</span>
 
-<span class="cm">    </span><span class="sd">.PARAMETER</span><span class="cm"> Name</span>
-<span class="cm">    Specifies the file name.</span>
+<span class="sd">.PARAMETER</span><span class="cm"> Name</span>
+<span class="cm">Specifies the file name.</span>
 
-<span class="cm">    </span><span class="sd">.PARAMETER</span><span class="cm"> Extension</span>
-<span class="cm">    Specifies the extension. &quot;Txt&quot; is the default.</span>
+<span class="sd">.PARAMETER</span><span class="cm"> Extension</span>
+<span class="cm">Specifies the extension. &quot;Txt&quot; is the default.</span>
 
-<span class="cm">    </span><span class="sd">.INPUTS</span><span class="cm"></span>
-<span class="cm">    None. You cannot pipe objects to Add-Extension.</span>
+<span class="sd">.INPUTS</span><span class="cm"></span>
+<span class="cm">None. You cannot pipe objects to Add-Extension.</span>
 
-<span class="cm">    </span><span class="sd">.OUTPUTS</span><span class="cm"></span>
-<span class="cm">    System.String. Add-Extension returns a string with the extension or file name.</span>
+<span class="sd">.OUTPUTS</span><span class="cm"></span>
+<span class="cm">System.String. Add-Extension returns a string with the extension or file name.</span>
 
-<span class="cm">    </span><span class="sd">.EXAMPLE</span><span class="cm"></span>
-<span class="cm">    C:\PS&gt; extension -name &quot;File&quot;</span>
-<span class="cm">    File.txt</span>
+<span class="sd">.EXAMPLE</span><span class="cm"></span>
+<span class="cm">C:\PS&gt; extension -name &quot;File&quot;</span>
+<span class="cm">File.txt</span>
 
-<span class="cm">    </span><span class="sd">.EXAMPLE</span><span class="cm"></span>
-<span class="cm">    C:\PS&gt; extension -name &quot;File&quot; -extension &quot;doc&quot;</span>
-<span class="cm">    File.doc</span>
+<span class="sd">.EXAMPLE</span><span class="cm"></span>
+<span class="cm">C:\PS&gt; extension -name &quot;File&quot; -extension &quot;doc&quot;</span>
+<span class="cm">File.doc</span>
 
-<span class="cm">    </span><span class="sd">.EXAMPLE</span><span class="cm"></span>
-<span class="cm">    C:\PS&gt; extension &quot;File&quot; &quot;doc&quot;</span>
-<span class="cm">    File.doc</span>
+<span class="sd">.EXAMPLE</span><span class="cm"></span>
+<span class="cm">C:\PS&gt; extension &quot;File&quot; &quot;doc&quot;</span>
+<span class="cm">File.doc</span>
 
-<span class="cm">    </span><span class="sd">.LINK</span><span class="cm"></span>
-<span class="cm">    http://www.fabrikam.com/extension.html</span>
+<span class="sd">.LINK</span><span class="cm"></span>
+<span class="cm">http://www.fabrikam.com/extension.html</span>
 
-<span class="cm">    </span><span class="sd">.LINK</span><span class="cm"></span>
-<span class="cm">    Set-Item</span>
+<span class="sd">.LINK</span><span class="cm"></span>
+<span class="cm">Set-Item</span>
 <span class="cm">#&gt;</span>
-    <span class="nb">Write-Output</span> <span class="p">(</span><span class="n">gci</span> <span class="p">|</span> <span class="nb">select-object</span> <span class="s2">&quot;Name&quot;</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -1535,38 +1622,6 @@ join *grades <span class="c"># Using keys</span>
                 </div>
             </article>
             <hr/>
-            <article>
-                <header class="page-header">
-                    <h1>
-                        <a href="http://ciwchris.github.io/blog/starting-a-technology-radar.html"
-                           rel="bookmark"
-                           title="Permalink to Starting a technology radar">
-                            Starting a technology radar
-                        </a>
-                    </h1>
-                </header>
-                <div class="entry-content">
-                    <div class="panel">
-                        <div class="panel-body">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="icon-calendar"></i>Mon 26 August 2013
-    </span>
-
-
-
-<span class="label label-default">Tags</span>
-	<a href="http://ciwchris.github.io/tags/techradar.html">techradar</a>
-</footer><!-- /.post-info -->                        </div>
-                    </div>
-                    <p>I became intrigued by the idea of creating a <a href="http://www.thoughtworks.com/radar">Technology Radar</a> while listening to <a href="nealford.com">Neal Ford</a> on the <a href="http://thinkrelevance.com/blog/2013/07/26/neal-ford-of-thoughtworks-episode-036">Relevance Podcast</a>. Initially the plan was to <a href="http://nealford.com/memeagora/2013/05/28/build_your_own_technology_radar.html">create a radar</a> for our department at work. My thinking was that it would give focus to developers, which technology to concentrate on and which should be used in projects, as well as give visibility as to what directions developers are exploring, and therefore what may start appearing in projects. It would also give management a good visual, and explanation if we did a write up, as to what we are using and where we are heading. It's questionable whether any action will be taken to create one but after reading the section on creating a <em>Personal Radar</em> I became motivated to create my own.</p>
-<p>Why did I create my own radar? I consume information from a variety of sources. As a result I'm exposed to many interesting topics and ideas. I've come to realize it is too many. I tend to find one interesting topic, begin to pursue it only to be interrupted by the next interesting thing to come my way. In the end I have an awareness of many things but have learned none. I therefore concluded that I needed to focus on a small number of items, but still allow myself to be exposed to other items as well. I decided a <em>Personal Radar</em> may help me do just that. Each quarter, or perhaps twice a year, I will update a personal radar. The items I focus on will be selected from the radar. When I produce the next radar then I will select a new set of items to focus on. My hope is that I may become disciplined and learn an item more in-depth before moving on to the next interesting thing. So without further delay, below is my personal radar, probably for the remainder of the year, and explanation text, a work in progress.</p>
-<p><a href="/pages/technology-radar.html">Personal Radar</a><br />
-<a href="/technology-radar-explanation.html">Radar Explanation</a></p>
-                </div>
-            </article>
-            <hr/>
 
         <ul class="pagination">
                 <li class="prev disabled"><a href="#">&laquo;</a></li>
@@ -1574,6 +1629,8 @@ join *grades <span class="c"># Using keys</span>
                         href="http://ciwchris.github.io/index.html">1</a></li>
                 <li class=""><a
                         href="http://ciwchris.github.io/index2.html">2</a></li>
+                <li class=""><a
+                        href="http://ciwchris.github.io/index3.html">3</a></li>
                 <li class="next"><a
                         href="http://ciwchris.github.io/index2.html">&raquo;</a></li>
         </ul>
@@ -1587,6 +1644,11 @@ join *grades <span class="c"># Using keys</span>
 
 
             <li class="list-group-item"><h4><i class="icon-book icon-large"></i>Recent Posts</h4></li>
+                <li class="list-group-item">
+                    <a href="http://ciwchris.github.io/blog/sicp-highlights.html">
+                        Structure and Interpretation of Computer Programs: Highlighted Text
+                    </a>
+                </li>
                 <li class="list-group-item">
                     <a href="http://ciwchris.github.io/blog/using-purnam-with-angular-part-1.html">
                         Using AngularJS with ClojureScript: Part 1
@@ -1607,11 +1669,6 @@ join *grades <span class="c"># Using keys</span>
                         Bash shell basics
                     </a>
                 </li>
-                <li class="list-group-item">
-                    <a href="http://ciwchris.github.io/blog/starting-a-technology-radar.html">
-                        Starting a technology radar
-                    </a>
-                </li>
 
             <li class="list-group-item"><a href="http://ciwchris.github.io/tags.html"><h4><i class="icon-tags icon-large"></i>Tags</h4></a></li>
                 <li class="list-group-item tag-1">
@@ -1630,13 +1687,18 @@ join *grades <span class="c"># Using keys</span>
                     </a>
                 </li>
                 <li class="list-group-item tag-4">
-                    <a href="http://ciwchris.github.io/tags/mocking.html">
-                        mocking
+                    <a href="http://ciwchris.github.io/tags/techradar.html">
+                        techradar
                     </a>
                 </li>
                 <li class="list-group-item tag-4">
-                    <a href="http://ciwchris.github.io/tags/clojurescript-angular.html">
-                        clojurescript angular
+                    <a href="http://ciwchris.github.io/tags/philosophy.html">
+                        philosophy
+                    </a>
+                </li>
+                <li class="list-group-item tag-4">
+                    <a href="http://ciwchris.github.io/tags/c.html">
+                        c#
                     </a>
                 </li>
                 <li class="list-group-item tag-4">
@@ -1645,13 +1707,8 @@ join *grades <span class="c"># Using keys</span>
                     </a>
                 </li>
                 <li class="list-group-item tag-4">
-                    <a href="http://ciwchris.github.io/tags/tests.html">
-                        tests
-                    </a>
-                </li>
-                <li class="list-group-item tag-4">
-                    <a href="http://ciwchris.github.io/tags/philosophy.html">
-                        philosophy
+                    <a href="http://ciwchris.github.io/tags/mocking.html">
+                        mocking
                     </a>
                 </li>
         </ul>
