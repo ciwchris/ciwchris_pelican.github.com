@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = 'Chris'
 SITENAME = 'Notes to self'
-SITEURL = ''
+SITEURL = 'http://ciwchris.github.io'
 
 TIMEZONE = 'America/Los_Angeles'
 THEME = '../pelican-bootstrap3'
@@ -21,7 +21,8 @@ WITH_FUTURE_DATES = True
 DEFAULT_LANG = 'en'
 
 # Feed generation is usually not desired when developing
-FEED_ALL_ATOM = None
+FEED_DOMAIN = SITEURL
+FEED_ALL_ATOM = 'feeds/all.atom.xml'
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
