@@ -7,9 +7,9 @@ SITENAME = 'Notes to self'
 SITEURL = 'http://ciwchris.github.io'
 
 TIMEZONE = 'America/Los_Angeles'
-THEME = '../pelican-bootstrap3'
+THEME = 'pelican-bootstrap3'
 TAG_CLOUD_MAX_ITEMS = 8
-PLUGIN_PATH = '../pelican-plugins'
+PLUGIN_PATH = 'pelican-plugins'
 PLUGINS = ['liquid_tags.include_code']
 STATIC_PATHS = ['images','js','code','pages']
 DISPLAY_PAGES_ON_MENU = False
