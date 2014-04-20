@@ -1,0 +1,6 @@
+[submodule "pelican-plugins"]
+	path = pelican-plugins
+	url = git@github.com:ciwchris/pelican-plugins.git
+[submodule "pelican-bootstrap3"]
+	path = pelican-bootstrap3
+	url = git@github.com:ciwchris/pelican-bootstrap3.git
