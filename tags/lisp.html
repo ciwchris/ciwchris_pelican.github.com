@@ -3,14 +3,15 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>Notes to self - lisp</title>
+    <title>lisp - Notes to self</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
 
     <!-- Open Graph tags -->
-
+        <meta property="og:site_name" content="Notes to self" />
             <meta property="og:type" content="website"/>
             <meta property="og:title" content="Notes to self"/>
             <meta property="og:url" content="http://ciwchris.github.io"/>
@@ -19,18 +20,18 @@
     <!-- Bootstrap -->
         <link rel="stylesheet" href="http://ciwchris.github.io/theme/css/bootstrap.min.css" type="text/css"/>
     <link href="http://ciwchris.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
-    <link href="http://ciwchris.github.io/theme/css/pygments.css" rel="stylesheet">
+
+    <link href="http://ciwchris.github.io/theme/css/pygments/native.css" rel="stylesheet">
     <link rel="stylesheet" href="http://ciwchris.github.io/theme/css/style.css" type="text/css"/>
     <link rel="stylesheet" href="http://ciwchris.github.io/theme/css/main.css" type="text/css"/>
-    <!-- JavaScript plugins (requires jQuery) -->
-    <script src="http://code.jquery.com/jquery.js"></script>
 
         <link href="http://ciwchris.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
               title="Notes to self ATOM Feed"/>
 
 </head>
 <body>
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -39,28 +40,30 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="http://ciwchris.github.io" class="navbar-brand">Notes to self</a>
+            <a href="http://ciwchris.github.io/" class="navbar-brand">
+Notes to self            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="http://ciwchris.github.io/archives.html"><i class="icon-th-list"></i>Archives</a></li>
+                <li><a href="http://ciwchris.github.io/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
     </div>
-</nav>
-<!-- /.navbar -->
+</div> <!-- /.navbar -->
+
 <div class="container">
     <div class="row">
-        <div class="col-lg-9">
+        <div class="col-sm-9">
+
             <article>
                 <header class="page-header">
                     <h1>
                         <a href="http://ciwchris.github.io/blog/sicp-highlights.html"
-                           rel="bookmark"
-                           title="Permalink to Structure and Interpretation of Computer Programs: Highlighted Text">
+                            rel="bookmark"
+                            title="Permalink to Structure and Interpretation of Computer Programs: Highlighted Text">
                             Structure and Interpretation of Computer Programs: Highlighted Text
                         </a>
                     </h1>
@@ -71,7 +74,7 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="icon-calendar"></i>Mon 17 February 2014
+        <i class="fa fa-calendar"></i><time datetime="2014-02-17T20:48:00"> Mon 17 February 2014</time>
     </span>
 
 
@@ -82,6 +85,7 @@
 	<a href="http://ciwchris.github.io/tags/lisp.html">lisp</a>
         /
 	<a href="http://ciwchris.github.io/tags/books.html">books</a>
+    
 </footer><!-- /.post-info -->                        </div>
                     </div>
                     <p>Text highlighted during an initial reading of
@@ -169,72 +173,84 @@
             <hr/>
 
         </div>
-        <div class="col-lg-3 well well-sm" id="sidebar">
+        <div class="col-sm-3 well well-sm" id="sidebar">
+
 <aside>
     <section>
         <ul class="list-group list-group-flush">
 
 
 
+                <li class="list-group-item"><a href="http://ciwchris.github.io/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                    <ul class="list-group " id="tags">
+                        <li class="list-group-item tag-1">
+                            <a href="http://ciwchris.github.io/tags/vim.html">
+                                vim
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-2">
+                            <a href="http://ciwchris.github.io/tags/powershell.html">
+                                powershell
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://ciwchris.github.io/tags/tests.html">
+                                tests
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://ciwchris.github.io/tags/techradar.html">
+                                techradar
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://ciwchris.github.io/tags/sicp.html">
+                                sicp
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://ciwchris.github.io/tags/cli.html">
+                                cli
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://ciwchris.github.io/tags/books.html">
+                                books
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://ciwchris.github.io/tags/c.html">
+                                c#
+                            </a>
+                        </li>
+                    </ul>
+                </li>    
 
-            <li class="list-group-item"><h4><i class="icon-book icon-large"></i>Recent Posts</h4></li>
-                <li class="list-group-item">
-                    <a href="http://ciwchris.github.io/blog/sicp-highlights.html">
-                        Structure and Interpretation of Computer Programs: Highlighted Text
-                    </a>
-                </li>
-
-            <li class="list-group-item"><a href="http://ciwchris.github.io/tags.html"><h4><i class="icon-tags icon-large"></i>Tags</h4></a></li>
-                <li class="list-group-item tag-1">
-                    <a href="http://ciwchris.github.io/tags/vim.html">
-                        vim
-                    </a>
-                </li>
-                <li class="list-group-item tag-2">
-                    <a href="http://ciwchris.github.io/tags/powershell.html">
-                        powershell
-                    </a>
-                </li>
-                <li class="list-group-item tag-4">
-                    <a href="http://ciwchris.github.io/tags/books.html">
-                        books
-                    </a>
-                </li>
-                <li class="list-group-item tag-4">
-                    <a href="http://ciwchris.github.io/tags/philosophy.html">
-                        philosophy
-                    </a>
-                </li>
-                <li class="list-group-item tag-4">
-                    <a href="http://ciwchris.github.io/tags/techradar.html">
-                        techradar
-                    </a>
-                </li>
-                <li class="list-group-item tag-4">
-                    <a href="http://ciwchris.github.io/tags/cli.html">
-                        cli
-                    </a>
-                </li>
-                <li class="list-group-item tag-4">
-                    <a href="http://ciwchris.github.io/tags/sicp.html">
-                        sicp
-                    </a>
-                </li>
-                <li class="list-group-item tag-4">
-                    <a href="http://ciwchris.github.io/tags/craftsmanship.html">
-                        craftsmanship
-                    </a>
-                </li>
         </ul>
     </section>
+
 </aside>        </div>
     </div>
 </div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2014 Chris
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="http://ciwchris.github.io/theme/js/jquery.min.js"></script>
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="http://ciwchris.github.io/theme/js/bootstrap.min.js"></script>
 
 <!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
 <script src="http://ciwchris.github.io/theme/js/respond.min.js"></script>
+
 </body>
 </html>

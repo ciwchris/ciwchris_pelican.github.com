@@ -3,34 +3,39 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>Introduction to PowerShell</title>
+    <title>Introduction to PowerShell - Notes to self</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
 
     <!-- Open Graph tags -->
-
+        <meta property="og:site_name" content="Notes to self" />
             <meta property="og:type" content="article"/>
             <meta property="og:title" content="Introduction to PowerShell"/>
             <meta property="og:url" content="http://ciwchris.github.io/blog/introduction-to-powershell.html"/>
             <meta property="og:description" content=""/>
+            <meta property="article:published_time" content="2013-09-26" />
+                <meta property="article:section" content="" />
+                <meta property="article:tag" content="powershell" />
+                <meta property="article:author" content="Chris" />
 
     <!-- Bootstrap -->
         <link rel="stylesheet" href="http://ciwchris.github.io/theme/css/bootstrap.min.css" type="text/css"/>
     <link href="http://ciwchris.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
-    <link href="http://ciwchris.github.io/theme/css/pygments.css" rel="stylesheet">
+
+    <link href="http://ciwchris.github.io/theme/css/pygments/native.css" rel="stylesheet">
     <link rel="stylesheet" href="http://ciwchris.github.io/theme/css/style.css" type="text/css"/>
     <link rel="stylesheet" href="http://ciwchris.github.io/theme/css/main.css" type="text/css"/>
-    <!-- JavaScript plugins (requires jQuery) -->
-    <script src="http://code.jquery.com/jquery.js"></script>
 
         <link href="http://ciwchris.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
               title="Notes to self ATOM Feed"/>
 
 </head>
 <body>
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -39,22 +44,24 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="http://ciwchris.github.io" class="navbar-brand">Notes to self</a>
+            <a href="http://ciwchris.github.io/" class="navbar-brand">
+Notes to self            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="http://ciwchris.github.io/archives.html"><i class="icon-th-list"></i>Archives</a></li>
+                <li><a href="http://ciwchris.github.io/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
     </div>
-</nav>
-<!-- /.navbar -->
+</div> <!-- /.navbar -->
+
 <div class="container">
     <div class="row">
-        <div class="col-lg-9">
+        <div class="col-sm-9">
+
     <section id="content">
         <article>
             <header class="page-header">
@@ -72,13 +79,14 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="icon-calendar"></i>Thu 26 September 2013
+        <i class="fa fa-calendar"></i><time datetime="2013-09-26T21:41:00"> Thu 26 September 2013</time>
     </span>
 
 
 
 <span class="label label-default">Tags</span>
 	<a href="http://ciwchris.github.io/tags/powershell.html">powershell</a>
+    
 </footer><!-- /.post-info -->                    </div>
                 </div>
                 <p>Notes from the Pluralsight course <a href="http://pluralsight.com/training/Courses/TableOfContents/powershell-intro">Introduction to PowerShell</a></p>
@@ -423,50 +431,48 @@
 <figure class='code'>
 <figcaption class='code-title'><span>Help Content</span></figcaption>
 
-<div class="highlight"><pre><span class="k">function</span> <span class="nb">Add-Extension</span> 
+<div class="highlight"><pre><span class="k">function</span> <span class="nb">Get-ChildName</span><span class="p">()</span>
 <span class="p">{</span>
-    <span class="k">param</span> <span class="p">(</span><span class="no">[string]</span><span class="nv">$Name</span><span class="p">,</span><span class="no">[string]</span><span class="nv">$Extension</span> <span class="p">=</span> <span class="s2">&quot;txt&quot;</span><span class="p">)</span>
-    <span class="nv">$name</span> <span class="p">=</span> <span class="nv">$name</span> <span class="p">+</span> <span class="s2">&quot;.&quot;</span> <span class="p">+</span> <span class="nv">$extension</span>
-    <span class="nv">$name</span>
 
-<span class="cm">&lt;#</span>
-<span class="sd">.SYNOPSIS</span><span class="cm"> </span>
-<span class="cm">Adds a file name extension to a supplied name.</span>
+    <span class="cm">&lt;#</span>
+<span class="cm">    </span><span class="sd">.SYNOPSIS</span><span class="cm"> </span>
+<span class="cm">    Adds a file name extension to a supplied name.</span>
 
-<span class="sd">.DESCRIPTION</span><span class="cm"></span>
-<span class="cm">Adds a file name extension to a supplied name. </span>
-<span class="cm">Takes any strings for the file name or extension.</span>
+<span class="cm">    </span><span class="sd">.DESCRIPTION</span><span class="cm"></span>
+<span class="cm">    Adds a file name extension to a supplied name. </span>
+<span class="cm">    Takes any strings for the file name or extension.</span>
 
-<span class="sd">.PARAMETER</span><span class="cm"> Name</span>
-<span class="cm">Specifies the file name.</span>
+<span class="cm">    </span><span class="sd">.PARAMETER</span><span class="cm"> Name</span>
+<span class="cm">    Specifies the file name.</span>
 
-<span class="sd">.PARAMETER</span><span class="cm"> Extension</span>
-<span class="cm">Specifies the extension. &quot;Txt&quot; is the default.</span>
+<span class="cm">    </span><span class="sd">.PARAMETER</span><span class="cm"> Extension</span>
+<span class="cm">    Specifies the extension. &quot;Txt&quot; is the default.</span>
 
-<span class="sd">.INPUTS</span><span class="cm"></span>
-<span class="cm">None. You cannot pipe objects to Add-Extension.</span>
+<span class="cm">    </span><span class="sd">.INPUTS</span><span class="cm"></span>
+<span class="cm">    None. You cannot pipe objects to Add-Extension.</span>
 
-<span class="sd">.OUTPUTS</span><span class="cm"></span>
-<span class="cm">System.String. Add-Extension returns a string with the extension or file name.</span>
+<span class="cm">    </span><span class="sd">.OUTPUTS</span><span class="cm"></span>
+<span class="cm">    System.String. Add-Extension returns a string with the extension or file name.</span>
 
-<span class="sd">.EXAMPLE</span><span class="cm"></span>
-<span class="cm">C:\PS&gt; extension -name &quot;File&quot;</span>
-<span class="cm">File.txt</span>
+<span class="cm">    </span><span class="sd">.EXAMPLE</span><span class="cm"></span>
+<span class="cm">    C:\PS&gt; extension -name &quot;File&quot;</span>
+<span class="cm">    File.txt</span>
 
-<span class="sd">.EXAMPLE</span><span class="cm"></span>
-<span class="cm">C:\PS&gt; extension -name &quot;File&quot; -extension &quot;doc&quot;</span>
-<span class="cm">File.doc</span>
+<span class="cm">    </span><span class="sd">.EXAMPLE</span><span class="cm"></span>
+<span class="cm">    C:\PS&gt; extension -name &quot;File&quot; -extension &quot;doc&quot;</span>
+<span class="cm">    File.doc</span>
 
-<span class="sd">.EXAMPLE</span><span class="cm"></span>
-<span class="cm">C:\PS&gt; extension &quot;File&quot; &quot;doc&quot;</span>
-<span class="cm">File.doc</span>
+<span class="cm">    </span><span class="sd">.EXAMPLE</span><span class="cm"></span>
+<span class="cm">    C:\PS&gt; extension &quot;File&quot; &quot;doc&quot;</span>
+<span class="cm">    File.doc</span>
 
-<span class="sd">.LINK</span><span class="cm"></span>
-<span class="cm">http://www.fabrikam.com/extension.html</span>
+<span class="cm">    </span><span class="sd">.LINK</span><span class="cm"></span>
+<span class="cm">    http://www.fabrikam.com/extension.html</span>
 
-<span class="sd">.LINK</span><span class="cm"></span>
-<span class="cm">Set-Item</span>
+<span class="cm">    </span><span class="sd">.LINK</span><span class="cm"></span>
+<span class="cm">    Set-Item</span>
 <span class="cm">#&gt;</span>
+    <span class="nb">Write-Output</span> <span class="p">(</span><span class="n">gci</span> <span class="p">|</span> <span class="nb">select-object</span> <span class="s2">&quot;Name&quot;</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -520,96 +526,89 @@
 
 </figure>
             </div>
+            <!-- /.entry-content -->
         </article>
     </section>
 
         </div>
-        <div class="col-lg-3 well well-sm" id="sidebar">
+        <div class="col-sm-3 well well-sm" id="sidebar">
+
 <aside>
     <section>
         <ul class="list-group list-group-flush">
 
 
 
+                <li class="list-group-item"><a href="http://ciwchris.github.io/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                    <ul class="list-group " id="tags">
+                        <li class="list-group-item tag-1">
+                            <a href="http://ciwchris.github.io/tags/vim.html">
+                                vim
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-2">
+                            <a href="http://ciwchris.github.io/tags/powershell.html">
+                                powershell
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://ciwchris.github.io/tags/tests.html">
+                                tests
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://ciwchris.github.io/tags/techradar.html">
+                                techradar
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://ciwchris.github.io/tags/sicp.html">
+                                sicp
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://ciwchris.github.io/tags/cli.html">
+                                cli
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://ciwchris.github.io/tags/books.html">
+                                books
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://ciwchris.github.io/tags/c.html">
+                                c#
+                            </a>
+                        </li>
+                    </ul>
+                </li>    
 
-            <li class="list-group-item"><h4><i class="icon-book icon-large"></i>Recent Posts</h4></li>
-                <li class="list-group-item">
-                    <a href="http://ciwchris.github.io/blog/sicp-highlights.html">
-                        Structure and Interpretation of Computer Programs: Highlighted Text
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="http://ciwchris.github.io/blog/using-purnam-with-angular-part-1.html">
-                        Using AngularJS with ClojureScript: Part 1
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="http://ciwchris.github.io/blog/formatting-with-powershell.html">
-                        Formatting with PowerShell
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="http://ciwchris.github.io/blog/introduction-to-powershell.html">
-                        Introduction to PowerShell
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="http://ciwchris.github.io/blog/bash-shell-basics.html">
-                        Bash shell basics
-                    </a>
-                </li>
-
-            <li class="list-group-item"><a href="http://ciwchris.github.io/tags.html"><h4><i class="icon-tags icon-large"></i>Tags</h4></a></li>
-                <li class="list-group-item tag-1">
-                    <a href="http://ciwchris.github.io/tags/vim.html">
-                        vim
-                    </a>
-                </li>
-                <li class="list-group-item tag-2">
-                    <a href="http://ciwchris.github.io/tags/powershell.html">
-                        powershell
-                    </a>
-                </li>
-                <li class="list-group-item tag-4">
-                    <a href="http://ciwchris.github.io/tags/cli.html">
-                        cli
-                    </a>
-                </li>
-                <li class="list-group-item tag-4">
-                    <a href="http://ciwchris.github.io/tags/techradar.html">
-                        techradar
-                    </a>
-                </li>
-                <li class="list-group-item tag-4">
-                    <a href="http://ciwchris.github.io/tags/philosophy.html">
-                        philosophy
-                    </a>
-                </li>
-                <li class="list-group-item tag-4">
-                    <a href="http://ciwchris.github.io/tags/c.html">
-                        c#
-                    </a>
-                </li>
-                <li class="list-group-item tag-4">
-                    <a href="http://ciwchris.github.io/tags/craftsmanship.html">
-                        craftsmanship
-                    </a>
-                </li>
-                <li class="list-group-item tag-4">
-                    <a href="http://ciwchris.github.io/tags/mocking.html">
-                        mocking
-                    </a>
-                </li>
         </ul>
     </section>
+
 </aside>        </div>
     </div>
 </div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2014 Chris
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="http://ciwchris.github.io/theme/js/jquery.min.js"></script>
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="http://ciwchris.github.io/theme/js/bootstrap.min.js"></script>
 
 <!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
 <script src="http://ciwchris.github.io/theme/js/respond.min.js"></script>
+
 </body>
 </html>

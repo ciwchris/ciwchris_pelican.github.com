@@ -3,14 +3,15 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>Notes to self - Tags</title>
+    <title>Tags - Notes to self</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
 
     <!-- Open Graph tags -->
-
+        <meta property="og:site_name" content="Notes to self" />
             <meta property="og:type" content="website"/>
             <meta property="og:title" content="Notes to self"/>
             <meta property="og:url" content="http://ciwchris.github.io"/>
@@ -19,18 +20,18 @@
     <!-- Bootstrap -->
         <link rel="stylesheet" href="http://ciwchris.github.io/theme/css/bootstrap.min.css" type="text/css"/>
     <link href="http://ciwchris.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
-    <link href="http://ciwchris.github.io/theme/css/pygments.css" rel="stylesheet">
+
+    <link href="http://ciwchris.github.io/theme/css/pygments/native.css" rel="stylesheet">
     <link rel="stylesheet" href="http://ciwchris.github.io/theme/css/style.css" type="text/css"/>
     <link rel="stylesheet" href="http://ciwchris.github.io/theme/css/main.css" type="text/css"/>
-    <!-- JavaScript plugins (requires jQuery) -->
-    <script src="http://code.jquery.com/jquery.js"></script>
 
         <link href="http://ciwchris.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
               title="Notes to self ATOM Feed"/>
 
 </head>
 <body>
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -39,124 +40,267 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="http://ciwchris.github.io" class="navbar-brand">Notes to self</a>
+            <a href="http://ciwchris.github.io/" class="navbar-brand">
+Notes to self            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="http://ciwchris.github.io/archives.html"><i class="icon-th-list"></i>Archives</a></li>
+                <li><a href="http://ciwchris.github.io/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
     </div>
-</nav>
-<!-- /.navbar -->
+</div> <!-- /.navbar -->
+
 <div class="container">
     <div class="row">
-        <div class="col-lg-9">
+        <div class="col-sm-9">
+
     <section id="tags">
         <h1>Tags for Notes to self</h1>
-        <ul>                <li><a href="http://ciwchris.github.io/tags/c.html">c#</a> (1)</li>
-                <li><a href="http://ciwchris.github.io/tags/cli.html">cli</a> (1)</li>
-                <li><a href="http://ciwchris.github.io/tags/clojurescript-angular.html">clojurescript angular</a> (1)</li>
-                <li><a href="http://ciwchris.github.io/tags/craftsmanship.html">craftsmanship</a> (1)</li>
-                <li><a href="http://ciwchris.github.io/tags/mocking.html">mocking</a> (1)</li>
-                <li><a href="http://ciwchris.github.io/tags/philosophy.html">philosophy</a> (1)</li>
-                <li><a href="http://ciwchris.github.io/tags/powershell.html">powershell</a> (2)</li>
-                <li><a href="http://ciwchris.github.io/tags/sicp-lisp-books.html">sicp lisp books</a> (1)</li>
-                <li><a href="http://ciwchris.github.io/tags/techradar.html">techradar</a> (1)</li>
-                <li><a href="http://ciwchris.github.io/tags/tests.html">tests</a> (1)</li>
-                <li><a href="http://ciwchris.github.io/tags/vim.html">vim</a> (3)</li>
-        </ul>
+        <div class="panel-group" id="accordion">            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-books">books <span class="badge pull-right">1</span></a>
+                    </h4>
+                </div>
+                <div id="collapse-books" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <p><span class="categories-timestamp"><time datetime="2014-02-17T20:48:00">Mon 17 February 2014</time></span> <a href="http://ciwchris.github.io/blog/sicp-highlights.html">Structure and Interpretation of Computer Programs: Highlighted Text</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-c">c# <span class="badge pull-right">1</span></a>
+                    </h4>
+                </div>
+                <div id="collapse-c" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <p><span class="categories-timestamp"><time datetime="2013-03-04T21:29:00">Mon 04 March 2013</time></span> <a href="http://ciwchris.github.io/blog/mocking-with-moq.html">Mocking with Moq</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-cli">cli <span class="badge pull-right">1</span></a>
+                    </h4>
+                </div>
+                <div id="collapse-cli" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <p><span class="categories-timestamp"><time datetime="2013-09-14T18:53:00">Sat 14 September 2013</time></span> <a href="http://ciwchris.github.io/blog/bash-shell-basics.html">Bash shell basics</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-clojurescript-angular">clojurescript angular <span class="badge pull-right">1</span></a>
+                    </h4>
+                </div>
+                <div id="collapse-clojurescript-angular" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <p><span class="categories-timestamp"><time datetime="2014-01-06T15:48:00">Mon 06 January 2014</time></span> <a href="http://ciwchris.github.io/blog/using-purnam-with-angular-part-1.html">Using AngularJS with ClojureScript: Part 1</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-craftsmanship">craftsmanship <span class="badge pull-right">1</span></a>
+                    </h4>
+                </div>
+                <div id="collapse-craftsmanship" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <p><span class="categories-timestamp"><time datetime="2013-02-25T21:11:00">Mon 25 February 2013</time></span> <a href="http://ciwchris.github.io/blog/the-reasonable-expectations-of-your-CTO.html">The reasonable expectations of your CTO</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-lisp">lisp <span class="badge pull-right">1</span></a>
+                    </h4>
+                </div>
+                <div id="collapse-lisp" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <p><span class="categories-timestamp"><time datetime="2014-02-17T20:48:00">Mon 17 February 2014</time></span> <a href="http://ciwchris.github.io/blog/sicp-highlights.html">Structure and Interpretation of Computer Programs: Highlighted Text</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-mocking">mocking <span class="badge pull-right">1</span></a>
+                    </h4>
+                </div>
+                <div id="collapse-mocking" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <p><span class="categories-timestamp"><time datetime="2013-03-04T21:29:00">Mon 04 March 2013</time></span> <a href="http://ciwchris.github.io/blog/mocking-with-moq.html">Mocking with Moq</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-philosophy">philosophy <span class="badge pull-right">1</span></a>
+                    </h4>
+                </div>
+                <div id="collapse-philosophy" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <p><span class="categories-timestamp"><time datetime="2013-02-25T21:11:00">Mon 25 February 2013</time></span> <a href="http://ciwchris.github.io/blog/the-reasonable-expectations-of-your-CTO.html">The reasonable expectations of your CTO</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-powershell">powershell <span class="badge pull-right">2</span></a>
+                    </h4>
+                </div>
+                <div id="collapse-powershell" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <p><span class="categories-timestamp"><time datetime="2013-10-04T10:20:00">Fri 04 October 2013</time></span> <a href="http://ciwchris.github.io/blog/formatting-with-powershell.html">Formatting with PowerShell</a></p>
+                        <p><span class="categories-timestamp"><time datetime="2013-09-26T21:41:00">Thu 26 September 2013</time></span> <a href="http://ciwchris.github.io/blog/introduction-to-powershell.html">Introduction to PowerShell</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-sicp">sicp <span class="badge pull-right">1</span></a>
+                    </h4>
+                </div>
+                <div id="collapse-sicp" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <p><span class="categories-timestamp"><time datetime="2014-02-17T20:48:00">Mon 17 February 2014</time></span> <a href="http://ciwchris.github.io/blog/sicp-highlights.html">Structure and Interpretation of Computer Programs: Highlighted Text</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-techradar">techradar <span class="badge pull-right">1</span></a>
+                    </h4>
+                </div>
+                <div id="collapse-techradar" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <p><span class="categories-timestamp"><time datetime="2013-08-26T18:26:00">Mon 26 August 2013</time></span> <a href="http://ciwchris.github.io/blog/starting-a-technology-radar.html">Starting a technology radar</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-tests">tests <span class="badge pull-right">1</span></a>
+                    </h4>
+                </div>
+                <div id="collapse-tests" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <p><span class="categories-timestamp"><time datetime="2013-03-04T21:29:00">Mon 04 March 2013</time></span> <a href="http://ciwchris.github.io/blog/mocking-with-moq.html">Mocking with Moq</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-vim">vim <span class="badge pull-right">3</span></a>
+                    </h4>
+                </div>
+                <div id="collapse-vim" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <p><span class="categories-timestamp"><time datetime="2013-02-16T16:17:00">Sat 16 February 2013</time></span> <a href="http://ciwchris.github.io/blog/entering-escape-in-insert-mode.html">Entering escape in insert mode</a></p>
+                        <p><span class="categories-timestamp"><time datetime="2013-02-13T15:42:00">Wed 13 February 2013</time></span> <a href="http://ciwchris.github.io/blog/examining-the-contents-of-a-macro.html">Examining the contents of a macro</a></p>
+                        <p><span class="categories-timestamp"><time datetime="2013-02-11T14:30:00">Mon 11 February 2013</time></span> <a href="http://ciwchris.github.io/blog/reversing-a-file-in-vim.html">Reversing a file in vim</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </section>
         </div>
-        <div class="col-lg-3 well well-sm" id="sidebar">
+        <div class="col-sm-3 well well-sm" id="sidebar">
+
 <aside>
     <section>
         <ul class="list-group list-group-flush">
 
 
 
+                <li class="list-group-item"><a href="http://ciwchris.github.io/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                    <ul class="list-group " id="tags">
+                        <li class="list-group-item tag-1">
+                            <a href="http://ciwchris.github.io/tags/vim.html">
+                                vim
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-2">
+                            <a href="http://ciwchris.github.io/tags/powershell.html">
+                                powershell
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://ciwchris.github.io/tags/tests.html">
+                                tests
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://ciwchris.github.io/tags/techradar.html">
+                                techradar
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://ciwchris.github.io/tags/sicp.html">
+                                sicp
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://ciwchris.github.io/tags/cli.html">
+                                cli
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://ciwchris.github.io/tags/books.html">
+                                books
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://ciwchris.github.io/tags/c.html">
+                                c#
+                            </a>
+                        </li>
+                    </ul>
+                </li>    
 
-            <li class="list-group-item"><h4><i class="icon-book icon-large"></i>Recent Posts</h4></li>
-                <li class="list-group-item">
-                    <a href="http://ciwchris.github.io/blog/sicp-highlights.html">
-                        Structure and Interpretation of Computer Programs: Highlighted Text
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="http://ciwchris.github.io/blog/using-purnam-with-angular-part-1.html">
-                        Using AngularJS with ClojureScript: Part 1
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="http://ciwchris.github.io/blog/formatting-with-powershell.html">
-                        Formatting with PowerShell
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="http://ciwchris.github.io/blog/introduction-to-powershell.html">
-                        Introduction to PowerShell
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="http://ciwchris.github.io/blog/bash-shell-basics.html">
-                        Bash shell basics
-                    </a>
-                </li>
-
-            <li class="list-group-item"><a href="http://ciwchris.github.io/tags.html"><h4><i class="icon-tags icon-large"></i>Tags</h4></a></li>
-                <li class="list-group-item tag-1">
-                    <a href="http://ciwchris.github.io/tags/vim.html">
-                        vim
-                    </a>
-                </li>
-                <li class="list-group-item tag-2">
-                    <a href="http://ciwchris.github.io/tags/powershell.html">
-                        powershell
-                    </a>
-                </li>
-                <li class="list-group-item tag-4">
-                    <a href="http://ciwchris.github.io/tags/cli.html">
-                        cli
-                    </a>
-                </li>
-                <li class="list-group-item tag-4">
-                    <a href="http://ciwchris.github.io/tags/techradar.html">
-                        techradar
-                    </a>
-                </li>
-                <li class="list-group-item tag-4">
-                    <a href="http://ciwchris.github.io/tags/philosophy.html">
-                        philosophy
-                    </a>
-                </li>
-                <li class="list-group-item tag-4">
-                    <a href="http://ciwchris.github.io/tags/c.html">
-                        c#
-                    </a>
-                </li>
-                <li class="list-group-item tag-4">
-                    <a href="http://ciwchris.github.io/tags/craftsmanship.html">
-                        craftsmanship
-                    </a>
-                </li>
-                <li class="list-group-item tag-4">
-                    <a href="http://ciwchris.github.io/tags/mocking.html">
-                        mocking
-                    </a>
-                </li>
         </ul>
     </section>
+
 </aside>        </div>
     </div>
 </div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2014 Chris
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="http://ciwchris.github.io/theme/js/jquery.min.js"></script>
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="http://ciwchris.github.io/theme/js/bootstrap.min.js"></script>
 
 <!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
 <script src="http://ciwchris.github.io/theme/js/respond.min.js"></script>
+
 </body>
 </html>

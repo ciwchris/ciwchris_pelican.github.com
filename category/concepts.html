@@ -3,14 +3,15 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>Notes to self - Concepts</title>
+    <title>Concepts - Notes to self</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
 
     <!-- Open Graph tags -->
-
+        <meta property="og:site_name" content="Notes to self" />
             <meta property="og:type" content="website"/>
             <meta property="og:title" content="Notes to self"/>
             <meta property="og:url" content="http://ciwchris.github.io"/>
@@ -19,18 +20,18 @@
     <!-- Bootstrap -->
         <link rel="stylesheet" href="http://ciwchris.github.io/theme/css/bootstrap.min.css" type="text/css"/>
     <link href="http://ciwchris.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
-    <link href="http://ciwchris.github.io/theme/css/pygments.css" rel="stylesheet">
+
+    <link href="http://ciwchris.github.io/theme/css/pygments/native.css" rel="stylesheet">
     <link rel="stylesheet" href="http://ciwchris.github.io/theme/css/style.css" type="text/css"/>
     <link rel="stylesheet" href="http://ciwchris.github.io/theme/css/main.css" type="text/css"/>
-    <!-- JavaScript plugins (requires jQuery) -->
-    <script src="http://code.jquery.com/jquery.js"></script>
 
         <link href="http://ciwchris.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
               title="Notes to self ATOM Feed"/>
 
 </head>
 <body>
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -39,28 +40,30 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="http://ciwchris.github.io" class="navbar-brand">Notes to self</a>
+            <a href="http://ciwchris.github.io/" class="navbar-brand">
+Notes to self            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="http://ciwchris.github.io/archives.html"><i class="icon-th-list"></i>Archives</a></li>
+                <li><a href="http://ciwchris.github.io/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
     </div>
-</nav>
-<!-- /.navbar -->
+</div> <!-- /.navbar -->
+
 <div class="container">
     <div class="row">
-        <div class="col-lg-9">
+        <div class="col-sm-9">
+
             <article>
                 <header class="page-header">
                     <h1>
                         <a href="http://ciwchris.github.io/blog/sicp-highlights.html"
-                           rel="bookmark"
-                           title="Permalink to Structure and Interpretation of Computer Programs: Highlighted Text">
+                            rel="bookmark"
+                            title="Permalink to Structure and Interpretation of Computer Programs: Highlighted Text">
                             Structure and Interpretation of Computer Programs: Highlighted Text
                         </a>
                     </h1>
@@ -71,143 +74,183 @@
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="icon-calendar"></i>Mon 17 February 2014
+        <i class="fa fa-calendar"></i><time datetime="2014-02-17T20:48:00"> Mon 17 February 2014</time>
     </span>
 
 
 
 <span class="label label-default">Tags</span>
-	<a href="http://ciwchris.github.io/tags/sicp-lisp-books.html">sicp lisp books</a>
+	<a href="http://ciwchris.github.io/tags/sicp.html">sicp</a>
+        /
+	<a href="http://ciwchris.github.io/tags/lisp.html">lisp</a>
+        /
+	<a href="http://ciwchris.github.io/tags/books.html">books</a>
+    
 </footer><!-- /.post-info -->                        </div>
                     </div>
                     <p>Text highlighted during an initial reading of
 <a href="http://mitpress.mit.edu/sicp/full-text/book/book-Z-H-10.html">Structure and Interpretation of Computer Programs</a></p>
 <h1>Chapter 1</h1>
-<p>Master software engineers have the ability to organize programs so that they can be reasonably sure that the resulting processes will perform the tasks intended.</p>
-<p>The most significant of these features is the fact that Lisp descriptions of processes, called procedures, can themselves be represented and manipulated as Lisp data.</p>
+<ul>
+<li>Master software engineers have the ability to organize programs so that they can be reasonably sure that the resulting processes will perform the tasks intended.</li>
+<li>The most significant of these features is the fact that Lisp descriptions of processes, called procedures, can themselves be represented and manipulated as Lisp data.</li>
+</ul>
 <h2>1.1</h2>
-<p>In programming, we deal with two kinds of elements: procedures and data. (Later we will discover that they are really not so distinct.)</p>
-<p>substitution model
-normal-order evaluation vs applicative-order evaluation</p>
-<p>The word predicate is used for procedures that return true or false, as well as for expressions that evaluate to true or false.</p>
-<p>The contrast between function and procedure is a reflection of the general distinction between describing properties of things and describing how to do things, or, as it is sometimes referred to, the distinction between declarative knowledge and imperative knowledge.</p>
-<p>block structure
-lexical scoping</p>
-<h2>1.2 (very boring chapter primarily having to do with mathematics and calculating space and operations)</h2>
-<p>linear recursive process vs linear iterative process</p>
-<p>It will execute an iterative process in constant space, even if the iterative process is described by a recursive procedure. An implementation with this property is called tail-recursive.</p>
+<ul>
+<li>In programming, we deal with two kinds of elements: procedures and data. (Later we will discover that they are really not so distinct.)</li>
+<li>substitution model</li>
+<li>normal-order evaluation vs applicative-order evaluation</li>
+<li>The word predicate is used for procedures that return true or false, as well as for expressions that evaluate to true or false.</li>
+<li>The contrast between function and procedure is a reflection of the general distinction between describing properties of things and describing how to do things, or, as it is sometimes referred to, the distinction between declarative knowledge and imperative knowledge.</li>
+<li>block structure</li>
+<li>lexical scoping</li>
+</ul>
+<h2>1.2</h2>
+<p>(having to do with mathematics and calculating space and operations)</p>
+<ul>
+<li>linear recursive process vs linear iterative process</li>
+<li>It will execute an iterative process in constant space, even if the iterative process is described by a recursive procedure. An implementation with this property is called tail-recursive.</li>
+</ul>
 <h2>1.3</h2>
-<p>Procedures that manipulate procedures are called higher-order procedures.</p>
-<p>Experienced programmers know how to choose procedural formulations that are particularly perspicuous, and where useful elements of the process are exposed as separate entities that can be reused in other applications.</p>
-<p>expert programmers know how to choose the level of abstraction appropriate to their task.</p>
-<p>Lisp, unlike other common programming languages, awards procedures full first-class status. This poses challenges for efficient implementation, but the resulting gain in expressive power is enormous.</p>
+<ul>
+<li>Procedures that manipulate procedures are called higher-order procedures.</li>
+<li>Experienced programmers know how to choose procedural formulations that are particularly perspicuous, and where useful elements of the process are exposed as separate entities that can be reused in other applications.</li>
+<li>expert programmers know how to choose the level of abstraction appropriate to their task.</li>
+<li>Lisp, unlike other common programming languages, awards procedures full first-class status. This poses challenges for efficient implementation, but the resulting gain in expressive power is enormous.</li>
+</ul>
 <h1>Chapter 2</h1>
-<p>The general technique of isolating the parts of a program that deal with how data objects are represented from the parts of a program that deal with how data objects are used is a powerful design methodology called data abstraction.
-closure -- that the glue we use for combining data objects should allow us to combine not only primitive data objects, but compound data objects as well.</p>
+<ul>
+<li>The general technique of isolating the parts of a program that deal with how data objects are represented from the parts of a program that deal with how data objects are used is a powerful design methodology called data abstraction.</li>
+<li>closure -- that the glue we use for combining data objects should allow us to combine not only primitive data objects, but compound data objects as well.</li>
+</ul>
 <h2>2.1</h2>
-<p>Data abstraction is a methodology that enables us to isolate how a compound data object is used from the details of how it is constructed from more primitive data objects.</p>
-<p>Data objects constructed from pairs are called list-structured data.</p>
+<ul>
+<li>Data abstraction is a methodology that enables us to isolate how a compound data object is used from the details of how it is constructed from more primitive data objects.</li>
+<li>Data objects constructed from pairs are called list-structured data.</li>
+</ul>
 <h2>2.2</h2>
-<p>The word nil is a contraction of the Latin word nihil, which means ``nothing.''</p>
-<p>The difference between the two definitions is not that the computer is performing a different process (it isn't) but that we think about the process differently. In effect, map helps establish an abstraction barrier that isolates the implementation of procedures that transform lists from the details of how the elements of the list are extracted and combined.</p>
-<p>In working with compound data, we've stressed how data abstraction permits us to design programs without becoming enmeshed in the details of data representations, and how abstraction preserves for us the flexibility to experiment with alternative representations.</p>
-<p>The value of expressing programs as sequence operations is that this helps us make program designs that are modular, that is, designs that are constructed by combining relatively independent pieces.</p>
-<p>stratified design, the notion that a complex system should be structured as a sequence of levels that are described using a sequence of languages. Each level is constructed by combining parts that are regarded as primitive at that level, and the parts constructed at each level are used as primitives at the next level.</p>
-<p>Stratified design helps make programs robust, that is, it makes it likely that small changes in a specification will require correspondingly small changes in the program.</p>
+<ul>
+<li>The word nil is a contraction of the Latin word nihil, which means 'nothing.'</li>
+<li>The difference between the two definitions is not that the computer is performing a different process (it isn't) but that we think about the process differently. In effect, map helps establish an abstraction barrier that isolates the implementation of procedures that transform lists from the details of how the elements of the list are extracted and combined.</li>
+<li>In working with compound data, we've stressed how data abstraction permits us to design programs without becoming enmeshed in the details of data representations, and how abstraction preserves for us the flexibility to experiment with alternative representations.</li>
+<li>The value of expressing programs as sequence operations is that this helps us make program designs that are modular, that is, designs that are constructed by combining relatively independent pieces.</li>
+<li>stratified design, the notion that a complex system should be structured as a sequence of levels that are described using a sequence of languages. Each level is constructed by combining parts that are regarded as primitive at that level, and the parts constructed at each level are used as primitives at the next level.</li>
+<li>Stratified design helps make programs robust, that is, it makes it likely that small changes in a specification will require correspondingly small changes in the program.</li>
+</ul>
 <h2>2.3</h2>
-<p>Symbolic differentiation is of special historical significance in Lisp. It was one of the motivating examples behind the development of a computer language for symbol manipulation. </p>
-<p>We can represent trees by using lists. Each node will be a list of three items: the entry at the node, the left subtree, and the right subtree.</p>
-<p>We have examined options for using lists to represent sets and have seen how the choice of representation for a data object can have a large impact on the performance of the programs that use the data.</p>
-<p>The designer can create an initial implementation using a simple, straightforward representation such as unordered lists. This will be unsuitable for the eventual system, but it can be useful in providing a ``quick and dirty'' data base with which to test the rest of the system. Later on, the data representation can be modified to be more sophisticated. If the data base is accessed in terms of abstract selectors and constructors, this change in representation will not require any changes to the rest of the system.</p>
+<ul>
+<li>Symbolic differentiation is of special historical significance in Lisp. It was one of the motivating examples behind the development of a computer language for symbol manipulation. </li>
+<li>We can represent trees by using lists. Each node will be a list of three items: the entry at the node, the left subtree, and the right subtree.</li>
+<li>We have examined options for using lists to represent sets and have seen how the choice of representation for a data object can have a large impact on the performance of the programs that use the data.</li>
+<li>The designer can create an initial implementation using a simple, straightforward representation such as unordered lists. This will be unsuitable for the eventual system, but it can be useful in providing a 'quick and dirty' data base with which to test the rest of the system. Later on, the data representation can be modified to be more sophisticated. If the data base is accessed in terms of abstract selectors and constructors, this change in representation will not require any changes to the rest of the system.</li>
+</ul>
 <h2>2.4</h2>
-<p>These data-abstraction barriers are powerful tools for controlling complexity. By isolating the underlying representations of data objects, we can divide the task of designing a large program into smaller tasks that can be performed separately. </p>
-<p>So in addition to the data-abstraction barriers that isolate representation from use, we need abstraction barriers that isolate different design choices from each other and permit different choices to coexist in a single program. </p>
-<p>Our main technique for building generic procedures will be to work in terms of data objects that have type tags, that is, data objects that include explicit information about how they are to be processed.</p>
-<p>The principle of least commitment: The abstraction barrier formed by the selectors and constructors permits us to defer to the last possible moment the choice of a concrete representation for our data objects and thus retain maximum flexibility in our system design.</p>
-<p>The general strategy of checking the type of a datum and calling an appropriate procedure is called dispatching on type.</p>
-<p>data-directed programming: Here we will implement the interface as a single procedure that looks up the combination of the operation name and argument type in the table to find the correct procedure to apply, and then applies it to the contents of the argument.</p>
-<p>message passing: An alternative implementation strategy is to decompose the table into columns and, instead of using <code>intelligent operations'' that dispatch on data types, to work with</code>intelligent data objects'' that dispatch on operation names.</p>
+<ul>
+<li>These data-abstraction barriers are powerful tools for controlling complexity. By isolating the underlying representations of data objects, we can divide the task of designing a large program into smaller tasks that can be performed separately. </li>
+<li>So in addition to the data-abstraction barriers that isolate representation from use, we need abstraction barriers that isolate different design choices from each other and permit different choices to coexist in a single program. </li>
+<li>Our main technique for building generic procedures will be to work in terms of data objects that have type tags, that is, data objects that include explicit information about how they are to be processed.</li>
+<li>The principle of least commitment: The abstraction barrier formed by the selectors and constructors permits us to defer to the last possible moment the choice of a concrete representation for our data objects and thus retain maximum flexibility in our system design.</li>
+<li>The general strategy of checking the type of a datum and calling an appropriate procedure is called dispatching on type.</li>
+<li>data-directed programming: Here we will implement the interface as a single procedure that looks up the combination of the operation name and argument type in the table to find the correct procedure to apply, and then applies it to the contents of the argument.</li>
+<li>message passing: An alternative implementation strategy is to decompose the table into columns and, instead of using 'intelligent operations' that dispatch on data types, to work with 'intelligent data objects' that dispatch on operation names.</li>
+</ul>
 <h2>2.5</h2>
-<p>Often the different data types are not completely independent, and there may be ways by which objects of one type may be viewed as being of another type. This process is called coercion.</p>
-<p>In general, we can implement this idea by designing coercion procedures that transform an object of one type into an equivalent object of another type.</p>
-<p>hierarchy of types, in which, for example, integers are a subtype of rational numbers</p>
-<p>in which each type has at most one supertype and at most one subtype. Such a structure, called a tower,</p>
+<ul>
+<li>Often the different data types are not completely independent, and there may be ways by which objects of one type may be viewed as being of another type. This process is called coercion.</li>
+<li>In general, we can implement this idea by designing coercion procedures that transform an object of one type into an equivalent object of another type.</li>
+<li>hierarchy of types, in which, for example, integers are a subtype of rational numbers</li>
+<li>in which each type has at most one supertype and at most one subtype. Such a structure, called a tower,</li>
+</ul>
 <h1>Chapter 3</h1>
-<p>In particular, we need strategies to help us structure large systems so that they will be modular, that is, so that they can be divided ``naturally'' into coherent parts that can be separately developed and maintained.</p>
-<p>The first organizational strategy concentrates on objects, viewing a large system as a collection of distinct objects whose behaviors may change over time. An alternative organizational strategy concentrates on the streams of information that flow in the system, much as an electrical engineer views a signal-processing system.</p>
-<p>The difficulties of dealing with objects, change, and identity are a fundamental consequence of the need to grapple with time in our computational models.</p>
-<p>delayed evaluation: The stream approach can be most fully exploited when we decouple simulated time in our model from the order of the events that take place in the computer during evaluation.</p>
+<ul>
+<li>In particular, we need strategies to help us structure large systems so that they will be modular, that is, so that they can be divided 'naturally' into coherent parts that can be separately developed and maintained.</li>
+<li>The first organizational strategy concentrates on objects, viewing a large system as a collection of distinct objects whose behaviors may change over time. An alternative organizational strategy concentrates on the streams of information that flow in the system, much as an electrical engineer views a signal-processing system.</li>
+<li>The difficulties of dealing with objects, change, and identity are a fundamental consequence of the need to grapple with time in our computational models.</li>
+<li>delayed evaluation: The stream approach can be most fully exploited when we decouple simulated time in our model from the order of the events that take place in the computer during evaluation.</li>
+</ul>
                 </div>
             </article>
             <hr/>
 
         </div>
-        <div class="col-lg-3 well well-sm" id="sidebar">
+        <div class="col-sm-3 well well-sm" id="sidebar">
+
 <aside>
     <section>
         <ul class="list-group list-group-flush">
 
 
 
+                <li class="list-group-item"><a href="http://ciwchris.github.io/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                    <ul class="list-group " id="tags">
+                        <li class="list-group-item tag-1">
+                            <a href="http://ciwchris.github.io/tags/vim.html">
+                                vim
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-2">
+                            <a href="http://ciwchris.github.io/tags/powershell.html">
+                                powershell
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://ciwchris.github.io/tags/tests.html">
+                                tests
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://ciwchris.github.io/tags/techradar.html">
+                                techradar
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://ciwchris.github.io/tags/sicp.html">
+                                sicp
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://ciwchris.github.io/tags/cli.html">
+                                cli
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://ciwchris.github.io/tags/books.html">
+                                books
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://ciwchris.github.io/tags/c.html">
+                                c#
+                            </a>
+                        </li>
+                    </ul>
+                </li>    
 
-            <li class="list-group-item"><h4><i class="icon-book icon-large"></i>Recent Posts</h4></li>
-                <li class="list-group-item">
-                    <a href="http://ciwchris.github.io/blog/sicp-highlights.html">
-                        Structure and Interpretation of Computer Programs: Highlighted Text
-                    </a>
-                </li>
-
-            <li class="list-group-item"><a href="http://ciwchris.github.io/tags.html"><h4><i class="icon-tags icon-large"></i>Tags</h4></a></li>
-                <li class="list-group-item tag-1">
-                    <a href="http://ciwchris.github.io/tags/vim.html">
-                        vim
-                    </a>
-                </li>
-                <li class="list-group-item tag-2">
-                    <a href="http://ciwchris.github.io/tags/powershell.html">
-                        powershell
-                    </a>
-                </li>
-                <li class="list-group-item tag-4">
-                    <a href="http://ciwchris.github.io/tags/cli.html">
-                        cli
-                    </a>
-                </li>
-                <li class="list-group-item tag-4">
-                    <a href="http://ciwchris.github.io/tags/techradar.html">
-                        techradar
-                    </a>
-                </li>
-                <li class="list-group-item tag-4">
-                    <a href="http://ciwchris.github.io/tags/philosophy.html">
-                        philosophy
-                    </a>
-                </li>
-                <li class="list-group-item tag-4">
-                    <a href="http://ciwchris.github.io/tags/c.html">
-                        c#
-                    </a>
-                </li>
-                <li class="list-group-item tag-4">
-                    <a href="http://ciwchris.github.io/tags/craftsmanship.html">
-                        craftsmanship
-                    </a>
-                </li>
-                <li class="list-group-item tag-4">
-                    <a href="http://ciwchris.github.io/tags/mocking.html">
-                        mocking
-                    </a>
-                </li>
         </ul>
     </section>
+
 </aside>        </div>
     </div>
 </div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2014 Chris
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="http://ciwchris.github.io/theme/js/jquery.min.js"></script>
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="http://ciwchris.github.io/theme/js/bootstrap.min.js"></script>
 
 <!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
 <script src="http://ciwchris.github.io/theme/js/respond.min.js"></script>
+
 </body>
 </html>

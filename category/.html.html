@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="https://www.facebook.com/2008/fbml">
+<head>
+    <title> - Notes to self</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+
+    <!-- Open Graph tags -->
+        <meta property="og:site_name" content="Notes to self" />
+            <meta property="og:type" content="website"/>
+            <meta property="og:title" content="Notes to self"/>
+            <meta property="og:url" content="http://ciwchris.github.io"/>
+            <meta property="og:description" content="Notes to self"/>
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="http://ciwchris.github.io/theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="http://ciwchris.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="http://ciwchris.github.io/theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://ciwchris.github.io/theme/css/style.css" type="text/css"/>
+    <link rel="stylesheet" href="http://ciwchris.github.io/theme/css/main.css" type="text/css"/>
+
+        <link href="http://ciwchris.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Notes to self ATOM Feed"/>
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://ciwchris.github.io/" class="navbar-brand">
+Notes to self            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="http://ciwchris.github.io/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+
+            <article>
+                <header class="page-header">
+                    <h1>
+                        <a href="http://ciwchris.github.io/blog/formatting-with-powershell.html"
+                            rel="bookmark"
+                            title="Permalink to Formatting with PowerShell">
+                            Formatting with PowerShell
+                        </a>
+                    </h1>
+                </header>
+                <div class="entry-content">
+                    <div class="panel">
+                        <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2013-10-04T10:20:00"> Fri 04 October 2013</time>
+    </span>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://ciwchris.github.io/tags/powershell.html">powershell</a>
+    
+</footer><!-- /.post-info -->                        </div>
+                    </div>
+                    <p>Notes from the Pluralsight course <a href="http://pluralsight.com/training/Courses/TableOfContents/formatwithpowershell">Formatting With PowerShell</a></p>
+<h3>ToString</h3>
+<figure class='code'>
+
+<div class="highlight"><pre><span class="nv">$obj</span> <span class="p">=</span> <span class="nb">New-Object</span> <span class="n">System</span><span class="p">.</span><span class="n">Object</span>
+<span class="nv">$obj</span><span class="p">.</span><span class="n">ToString</span><span class="p">()</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Using a format provider</span></figcaption>
+
+<div class="highlight"><pre><span class="nv">$n</span> <span class="p">=</span> <span class="n">4242</span><span class="p">.</span><span class="n">42</span>
+<span class="nb">Get-Culture</span>
+<span class="nv">$c</span> <span class="p">=</span> <span class="nb">New-Object</span> <span class="n">System</span><span class="p">.</span><span class="n">Globalization</span><span class="p">.</span><span class="n">CultureInfo</span> <span class="n">de-DE</span>
+<span class="nv">$n</span><span class="p">.</span><span class="n">ToString</span><span class="p">(</span><span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="nv">$c</span><span class="p">)</span>
+</pre></div>
+
+
+</figure>
+
+<p>Numeric Format Strings</p>
+<ul>
+<li>c: Currency</li>
+<li>d: Decimal</li>
+<li>e: Exponential</li>
+<li>f: Fixed Point</li>
+<li>g: General (most compact form)</li>
+<li>n: Number</li>
+<li>p: Percent</li>
+<li>r: Round Trip (parsed back into the same numeric value</li>
+<li>x: Hexadecimal</li>
+</ul>
+<p>Custom Numeric Placeholders</p>
+<ul>
+<li>0: Zero</li>
+<li>#: Digit</li>
+<li>.: Decimal</li>
+<li>,: Group separator </li>
+<li>%: Percentage</li>
+<li>;: Section (different for positive, negative, zero)</li>
+</ul>
+<figure class='code'>
+<figcaption class='code-title'><span>Sections</span></figcaption>
+
+<div class="highlight"><pre><span class="nv">$v1</span> <span class="p">=</span> <span class="n">1</span><span class="err">;</span> <span class="nv">$v2</span> <span class="p">=</span> <span class="n">2</span><span class="err">;</span> <span class="nv">$v3</span> <span class="p">=</span> <span class="n">0</span>
+<span class="nv">$v1</span><span class="p">.</span><span class="n">ToString</span><span class="p">(</span><span class="s2">&quot;#0.0#;(#0.0#);-\0-&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>NumberFormatInfo</span></figcaption>
+
+<div class="highlight"><pre><span class="nv">$c</span> <span class="p">=</span> <span class="nb">Get-Culture</span>
+<span class="nv">$c</span> <span class="p">|</span> <span class="nb">Get-Member</span> <span class="n">-member</span> <span class="n">proptery</span> <span class="p">*</span><span class="n">format</span><span class="p">*</span>
+<span class="c"># DateTimeFormat</span>
+<span class="c"># NumberFormat</span>
+
+<span class="nv">$c</span> <span class="p">=</span> <span class="nb">New-Object</span> <span class="n">System</span><span class="p">.</span><span class="n">Globalization</span><span class="p">.</span><span class="n">CultureInfo</span> <span class="n">en-us</span>
+<span class="nv">$nf</span> <span class="p">=</span> <span class="nv">$c</span><span class="p">.</span><span class="n">NumberFormat</span>
+<span class="nv">$nf</span><span class="p">.</span><span class="n">CurrencyDecimalDigits</span> <span class="p">=</span> <span class="n">3</span>
+<span class="nv">$nf</span><span class="p">.</span><span class="n">CurrencySymbol</span> <span class="p">=</span> <span class="s2">&quot;ZOG&quot;</span>
+<span class="nv">$nf</span><span class="p">.</span><span class="n">CurrencyDecimalSeparator</span><span class="p">=</span><span class="s2">&quot;*&quot;</span>
+<span class="nv">$nf</span><span class="p">.</span><span class="n">CurrenceyGroupSeparator</span><span class="p">=</span><span class="s2">&quot;/&quot;</span>
+<span class="p">(</span><span class="n">42424242</span><span class="p">.</span><span class="n">4242</span><span class="p">).</span><span class="n">ToString</span><span class="p">(</span><span class="s2">&quot;C2&quot;</span><span class="p">,</span><span class="nv">$nf</span><span class="p">)</span>
+<span class="c"># ZOG 42/424/242*42</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>TimeSpan</span></figcaption>
+
+<div class="highlight"><pre><span class="nv">$ms</span> <span class="p">=</span> <span class="nb">Get-Date</span> <span class="s2">&quot;August 9, 1995&quot;</span>
+<span class="nv">$today</span> <span class="p">=</span> <span class="nb">Get-Date</span>
+<span class="nv">$time</span><span class="n">-span</span> <span class="p">=</span> <span class="nb">New-TimeSpan</span> <span class="n">-start</span> <span class="nv">$ms</span> <span class="n">-end</span> <span class="nv">$today</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Enums</span></figcaption>
+
+<div class="highlight"><pre><span class="nv">$enum</span> <span class="p">=</span> <span class="no">[System.Windows.Forms.Day]</span>
+<span class="s2">&quot;{0,9} {1,9} {2,4} {3,10}&quot;</span> <span class="o">-f</span> <span class="s2">&quot;g&quot;</span><span class="p">,</span> <span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span> <span class="c">#heading</span>
+<span class="k">Foreach</span> <span class="p">(</span><span class="nv">$e</span> <span class="k">in</span> <span class="no">[System.enum]</span><span class="err">::</span><span class="n">getvalues</span><span class="p">(</span><span class="nv">$enum</span><span class="p">))</span> <span class="p">{</span>
+    <span class="s2">&quot;{0,9} {1,9} {2,4} {3,10}&quot;</span> <span class="o">-f</span>
+    <span class="nv">$e</span><span class="p">.</span><span class="n">ToString</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">),</span><span class="nv">$e</span><span class="p">.</span><span class="n">ToString</span><span class="p">(</span><span class="s2">&quot;f&quot;</span><span class="p">),</span><span class="nv">$e</span><span class="p">.</span><span class="n">ToString</span><span class="p">(</span><span class="s2">&quot;d&quot;</span><span class="p">),</span> <span class="nv">$e</span><span class="p">.</span><span class="n">ToString</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+
+
+</figure>
+
+<h3>Composite Format String</h3>
+<p>{I, [W [: F]]}</p>
+<ul>
+<li>I: index into array</li>
+<li>W: width<ul>
+<li>Positive: right justified</li>
+<li>Negative: left justified</li>
+</ul>
+</li>
+<li>F: format string</li>
+</ul>
+<figure class='code'>
+
+<div class="highlight"><pre><span class="s2">&quot;{0} [{1,4}]=[{1,-4], and costs {2,-10:c}&quot;</span> <span class="o">-f</span> <span class="n">1</span><span class="p">,</span> <span class="n">2</span><span class="p">,</span> <span class="n">42</span><span class="p">.</span><span class="n">4242</span>
+<span class="s2">&quot;Today is {0}&quot;</span> <span class="o">-f</span> <span class="p">(</span><span class="nb">Get-Date</span><span class="p">).</span><span class="n">ToString</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
+<span class="s2">&quot;Today is {0:g}&quot;</span> <span class="o">-f</span> <span class="nb">Get-Date</span>
+<span class="nv">$a</span> <span class="p">=</span> <span class="s2">&quot;{0,10} {1,10} {2,10:c}&quot;</span>
+<span class="nv">$a</span> <span class="o">-f</span> <span class="n">1</span><span class="p">,</span> <span class="n">2</span><span class="p">,</span> <span class="n">42</span>
+</pre></div>
+
+
+</figure>
+
+<h3>Format-*</h3>
+<p>Formatting Rules</p>
+<ul>
+<li>VIEW loaded in Format.Ps1XML</li>
+<li>PropertySet in Type.Ps1XML and move to next rule</li>
+<li>Property count<ul>
+<li>Use properties in default PropertySet</li>
+<li>All properties</li>
+</ul>
+</li>
+<li>5 or more: use Format-List</li>
+<li>&lt; 5: use Format-Table</li>
+</ul>
+<p>Table/List Formatting</p>
+<ul>
+<li>XML View defined in Format.Ps1XML</li>
+<li>XML Property Set in Type.Ps1XML</li>
+<li>Total properties</li>
+</ul>
+<figure class='code'>
+<figcaption class='code-title'><span>AutoSize</span></figcaption>
+
+<div class="highlight"><pre><span class="n">gps</span> <span class="n">notepad</span> <span class="p">|</span> <span class="n">ft</span> <span class="n">ProcessName</span><span class="p">,</span> <span class="n">CPU</span> <span class="n">-Autosize</span>
+</pre></div>
+
+
+</figure>
+
+<p>Truncation</p>
+<ul>
+<li>-Wrap: Prevent truncating<ul>
+<li>But will still stop at 4 lines</li>
+</ul>
+</li>
+<li>$FormatEnumerationLimit: to increase the lines beyond the default of 4</li>
+</ul>
+<p>Format-Wide: display single property using multiple columns</p>
+<figure class='code'>
+<figcaption class='code-title'><span>Format-Wide</span></figcaption>
+
+<div class="highlight"><pre><span class="n">gps</span> <span class="p">|</span> <span class="n">fw</span> <span class="n">-property</span> <span class="n">name</span> <span class="n">-column</span> <span class="n">5</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Select-Object</span></figcaption>
+
+<div class="highlight"><pre><span class="n">gps</span> <span class="p">|</span> <span class="nb">select-object</span> <span class="n">-first</span> <span class="n">20</span> <span class="n">name</span><span class="p">,</span> <span class="n">handles</span><span class="p">,</span> <span class="n">cpu</span>
+<span class="n">gps</span> <span class="p">|</span> <span class="nb">select-object</span> <span class="p">*,</span> <span class="err">@</span><span class="p">{</span><span class="n">Label</span><span class="p">=</span><span class="s1">&#39;ComputerName&#39;</span><span class="err">;</span><span class="n">Expression</span><span class="p">={</span><span class="nv">$_</span><span class="p">.</span><span class="n">Name</span><span class="p">}}</span>
+</pre></div>
+
+
+</figure>
+
+<h3>Hash Tables</h3>
+<figure class='code'>
+<figcaption class='code-title'><span>Hash Table</span></figcaption>
+
+<div class="highlight"><pre><span class="nv">$ht</span> <span class="p">=</span> <span class="err">@</span><span class="p">{</span><span class="n">name</span><span class="p">=</span><span class="s2">&quot;Thomas Lee&quot;</span><span class="err">;</span> <span class="n">course</span><span class="p">=</span><span class="s1">&#39;Formatting&#39;</span><span class="p">}</span>
+<span class="nv">$ht</span> <span class="p">+=</span> <span class="err">@</span><span class="p">{</span><span class="n">vendor</span><span class="p">=</span><span class="s2">&quot;Pluralsight&quot;</span><span class="err">;</span> <span class="n">modules</span><span class="p">=</span><span class="n">6</span><span class="p">}</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Hash Table Properties</span></figcaption>
+
+<div class="highlight"><pre><span class="nv">$pn</span> <span class="p">=</span> <span class="err">@</span><span class="p">{</span><span class="n">Label</span><span class="p">=</span><span class="s2">&quot;Process Name&quot;</span><span class="err">;</span> <span class="n">Expression</span><span class="p">={</span><span class="nv">$_</span><span class="p">.</span><span class="n">name</span><span class="p">}</span><span class="err">;</span> <span class="n">Alignment</span> <span class="p">=</span> <span class="s2">&quot;right&quot;</span> <span class="p">}</span>
+<span class="nv">$cpu</span> <span class="p">=</span> <span class="err">@</span><span class="p">{</span><span class="n">Label</span><span class="p">=</span><span class="s2">&quot;CPU Used&quot;</span><span class="err">;</span> <span class="n">Expression</span><span class="p">={</span><span class="nv">$_</span><span class="p">.</span><span class="n">CPU</span><span class="p">}</span><span class="err">;</span> <span class="n">Alignment</span> <span class="p">=</span> <span class="s2">&quot;right&quot;</span><span class="err">;</span> <span class="n">FormatString</span><span class="p">=</span><span class="s2">&quot;N3&quot;</span><span class="p">}</span>
+<span class="n">gps</span> <span class="n">notepad</span> <span class="p">|</span> <span class="n">ft</span> <span class="nv">$pn</span><span class="p">,</span><span class="nv">$cpu</span> <span class="n">-auto</span>
+</pre></div>
+
+
+</figure>
+
+<h3>XML Format Files</h3>
+<ul>
+<li>Stored in $Pshome folder</li>
+<li>Update-FormatData: load new format files using </li>
+</ul>
+<figure class='code'>
+<figcaption class='code-title'><span>Display Format</span></figcaption>
+
+<div class="highlight"><pre><span class="n">cat</span> <span class="s1">&#39;.\test.format.ps1xml&#39;</span>
+<span class="p">&lt;</span><span class="k">?</span><span class="n">xml</span> <span class="n">version</span><span class="p">=</span><span class="s1">&#39;1.0&#39;</span> <span class="n">encoding</span><span class="p">=</span><span class="s1">&#39;utf-8&#39;</span> <span class="p">?&gt;</span>
+<span class="p">&lt;</span><span class="n">Configuration</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="n">DefaultSettings</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="n">PropertyCountForTable</span><span class="p">&gt;</span><span class="n">3</span><span class="p">&lt;/</span><span class="n">PropertyCountForTable</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="n">WrapTables</span><span class="p">/&gt;</span>
+    <span class="p">&lt;/</span><span class="n">DefaultSettings</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="n">SelectionSets</span><span class="p">&gt;&lt;/</span><span class="n">SelectionSets</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="n">Controls</span><span class="p">&gt;&lt;/</span><span class="n">Controls</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="n">ViewDefinitions</span><span class="p">&gt;&lt;/</span><span class="n">ViewDefinitions</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="n">Configuration</span><span class="p">&gt;</span>
+<span class="nb">Update-FormatData</span> <span class="n">-Prepend</span> <span class="s1">&#39;.\test.form.ps1xml&#39;</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Format Lists</span></figcaption>
+
+<div class="highlight"><pre><span class="n">cat</span> <span class="s1">&#39;.\test.format.ps1xml&#39;</span>
+<span class="p">&lt;</span><span class="k">?</span><span class="n">xml</span> <span class="n">version</span><span class="p">=</span><span class="s1">&#39;1.0&#39;</span> <span class="n">encoding</span><span class="p">=</span><span class="s1">&#39;utf-8&#39;</span> <span class="p">?&gt;</span>
+<span class="p">&lt;</span><span class="n">Configuration</span><span class="p">&gt;&lt;</span><span class="n">ViewDefinitions</span><span class="p">&gt;&lt;</span><span class="n">View</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="n">Name</span><span class="p">&gt;</span><span class="n">CPUCost</span><span class="p">&lt;/</span><span class="n">Name</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="n">ViewSelectedBy</span><span class="p">&gt;&lt;</span><span class="n">TypeName</span><span class="p">&gt;</span><span class="n">System</span><span class="p">.</span><span class="n">Diagnostics</span><span class="p">.</span><span class="k">Process</span><span class="p">&lt;/</span><span class="n">TypeName</span><span class="p">&gt;&lt;/</span><span class="n">ViewSelectedBy</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="n">ListControl</span><span class="p">&gt;&lt;</span><span class="n">ListEntries</span><span class="p">&gt;&lt;</span><span class="n">ListEntry</span><span class="p">&gt;&lt;</span><span class="n">ListItems</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="n">ListItem</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="n">Label</span><span class="p">&gt;</span><span class="k">Process</span> <span class="n">Name</span><span class="p">&lt;/</span><span class="n">Label</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="n">PropertyName</span><span class="p">&gt;</span><span class="n">ProcessName</span><span class="p">&lt;/</span><span class="n">PropertyName</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="n">ListItem</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="n">ListItem</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="n">Label</span><span class="p">&gt;</span><span class="n">CPU</span> <span class="n">Cost</span><span class="p">&lt;/</span><span class="n">Label</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="n">ScriptBlock</span><span class="p">&gt;(</span><span class="nv">$_</span><span class="p">.</span><span class="n">cpu</span> <span class="p">*</span> <span class="n">10</span><span class="p">)</span> <span class="p">+</span> <span class="n">4</span><span class="p">&lt;/</span><span class="n">ScriptBlock</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="n">FormatString</span><span class="p">&gt;</span><span class="n">C3</span><span class="p">&lt;/</span><span class="n">FormatString</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="n">ItemSelectionCondition</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="n">ScriptBlock</span><span class="p">&gt;</span><span class="nv">$_</span><span class="p">.</span><span class="n">CPU</span> <span class="n">_GE</span> <span class="p">.</span><span class="n">5</span><span class="p">&lt;/</span><span class="n">ScriptBlock</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="n">ItemSelectionCondition</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="n">ListItem</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="n">ListItems</span><span class="p">&gt;&lt;/</span><span class="n">ListEntry</span><span class="p">&gt;&lt;/</span><span class="n">ListEntries</span><span class="p">&gt;&lt;/</span><span class="n">ListControl</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="n">View</span><span class="p">&gt;&lt;/</span><span class="n">ViewDefinitons</span><span class="p">&gt;&lt;/</span><span class="n">Configuration</span><span class="p">&gt;</span>
+<span class="nb">Update-FormatData</span> <span class="s1">&#39;.\test.form.ps1xml&#39;</span>
+<span class="n">gps</span> <span class="n">e</span><span class="p">*</span> <span class="p">|</span> <span class="n">fl</span> <span class="n">-view</span> <span class="n">CPUCost</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Format Tables</span></figcaption>
+
+<div class="highlight"><pre><span class="n">cat</span> <span class="s1">&#39;.\test.format.ps1xml&#39;</span>
+<span class="p">&lt;</span><span class="k">?</span><span class="n">xml</span> <span class="n">version</span><span class="p">=</span><span class="s1">&#39;1.0&#39;</span> <span class="n">encoding</span><span class="p">=</span><span class="s1">&#39;utf-8&#39;</span> <span class="p">?&gt;</span>
+<span class="p">&lt;</span><span class="n">Configuration</span><span class="p">&gt;&lt;</span><span class="n">ViewDefinitions</span><span class="p">&gt;&lt;</span><span class="n">View</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="n">Name</span><span class="p">&gt;</span><span class="n">CPUCost</span><span class="p">&lt;/</span><span class="n">Name</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="n">ViewSelectedBy</span><span class="p">&gt;&lt;</span><span class="n">TypeName</span><span class="p">&gt;</span><span class="n">System</span><span class="p">.</span><span class="n">Diagnostics</span><span class="p">.</span><span class="k">Process</span><span class="p">&lt;/</span><span class="n">TypeName</span><span class="p">&gt;&lt;/</span><span class="n">ViewSelectedBy</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="n">TableControl</span><span class="p">&gt;&lt;</span><span class="n">TableHeaders</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="n">TableColumnHeader</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="n">Label</span><span class="p">&gt;</span><span class="k">Process</span> <span class="n">Name</span><span class="p">&lt;/</span><span class="n">Label</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="n">Width</span><span class="p">&gt;</span><span class="n">15</span><span class="p">&lt;/</span><span class="n">Width</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="n">Alignment</span><span class="p">&gt;</span><span class="n">Right</span><span class="p">&lt;/</span><span class="n">Alignment</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="n">TableColumnHeader</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="n">TableColumnHeader</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="n">Label</span><span class="p">&gt;</span><span class="n">CPU</span> <span class="n">Cost</span><span class="p">&lt;/</span><span class="n">Label</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="n">Width</span><span class="p">&gt;</span><span class="n">15</span><span class="p">&lt;/</span><span class="n">Width</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="n">Alignment</span><span class="p">&gt;</span><span class="n">Right</span><span class="p">&lt;/</span><span class="n">Alignment</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="n">TableColumnHeader</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="n">TableRowEntries</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="n">TableRowEntry</span><span class="p">&gt;&lt;</span><span class="n">TableColumnItems</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="n">TableColumnItem</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="n">PropertyName</span><span class="p">&gt;</span><span class="n">Name</span><span class="p">&lt;/</span><span class="n">PropertyName</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="n">Alignment</span><span class="p">&gt;</span><span class="n">Left</span><span class="p">&lt;/</span><span class="n">Alignment</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="n">TableColumnItem</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="n">TableColumnItem</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="n">ScriptBlock</span><span class="p">&gt;(</span><span class="nv">$_</span><span class="p">.</span><span class="n">cpu</span> <span class="p">*</span> <span class="n">10</span><span class="p">)</span> <span class="p">+</span> <span class="n">4</span><span class="p">&lt;/</span><span class="n">ScriptBlock</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="n">Alignment</span><span class="p">&gt;</span><span class="n">Right</span><span class="p">&lt;/</span><span class="n">Alignment</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="n">FormatString</span><span class="p">&gt;</span><span class="n">N2</span><span class="p">&lt;/</span><span class="n">FormatString</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="n">TableColumnItem</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="n">TableColumnItems</span><span class="p">&gt;&lt;/</span><span class="n">TableRowEntry</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="n">TableRowEntries</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="n">View</span><span class="p">&gt;&lt;/</span><span class="n">ViewDefinitons</span><span class="p">&gt;&lt;/</span><span class="n">Configuration</span><span class="p">&gt;</span>
+<span class="nb">Update-FormatData</span> <span class="s1">&#39;.\test.form.ps1xml&#39;</span>
+<span class="n">gps</span> <span class="n">e</span><span class="p">*</span> <span class="p">|</span> <span class="n">ft</span> <span class="n">-view</span> <span class="n">CPUCost</span>
+</pre></div>
+
+
+</figure>
+
+<h3>Output</h3>
+<ul>
+<li>Out-String: sends output as a series of strings</li>
+<li>Out-File: file</li>
+<li>Out-Printer: Out-Printer snagit</li>
+<li>Out-GridView: WPF grid<ul>
+<li>PowerShell v3 has -PassThru</li>
+</ul>
+</li>
+<li>Out-Null: supresses</li>
+<li>Out-Default: default formatter</li>
+<li>Out-Host: to the command line<ul>
+<li>Has -Paging</li>
+</ul>
+</li>
+</ul>
+<figure class='code'>
+<figcaption class='code-title'><span>View all properties</span></figcaption>
+
+<div class="highlight"><pre><span class="nv">$s</span> <span class="p">=</span> <span class="nb">Get-Service</span> <span class="p">|</span> <span class="n">ft</span> <span class="n">-property</span> <span class="p">*</span> <span class="n">-auto</span> <span class="p">|</span> <span class="nb">Out-String</span> <span class="n">-width</span> <span class="n">700</span> <span class="p">|</span> <span class="nb">Out-File</span> <span class="n">test</span><span class="p">.</span><span class="n">txt</span>
+</pre></div>
+
+
+</figure>
+
+<p>Constrained Language in XML: used by PowerShell remoting
+- Import-CLiXML
+- Export-CLiXML
+- ConvertTo-XML</p>
+<figure class='code'>
+<figcaption class='code-title'><span>XML</span></figcaption>
+
+<div class="highlight"><pre><span class="nv">$xml</span> <span class="p">=</span> <span class="n">gps</span> <span class="p">|</span> <span class="nb">ConvertTo-XML</span>
+<span class="nv">$xml</span><span class="p">.</span><span class="n">Save</span><span class="p">()</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>CSV</span></figcaption>
+
+<div class="highlight"><pre><span class="nv">$object</span> <span class="p">=</span> <span class="nb">Import-Csv</span> <span class="n">-name</span> <span class="n">test</span><span class="p">.</span><span class="n">csv</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>HTML</span></figcaption>
+
+<div class="highlight"><pre><span class="n">gps</span> <span class="p">|</span> <span class="nb">ConvertTo-HTML</span> <span class="p">|</span> <span class="nb">Out-File</span> <span class="n">test</span><span class="p">.</span><span class="n">html</span>
+</pre></div>
+
+
+</figure>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <header class="page-header">
+                    <h1>
+                        <a href="http://ciwchris.github.io/blog/introduction-to-powershell.html"
+                            rel="bookmark"
+                            title="Permalink to Introduction to PowerShell">
+                            Introduction to PowerShell
+                        </a>
+                    </h1>
+                </header>
+                <div class="entry-content">
+                    <div class="panel">
+                        <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2013-09-26T21:41:00"> Thu 26 September 2013</time>
+    </span>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://ciwchris.github.io/tags/powershell.html">powershell</a>
+    
+</footer><!-- /.post-info -->                        </div>
+                    </div>
+                    <p>Notes from the Pluralsight course <a href="http://pluralsight.com/training/Courses/TableOfContents/powershell-intro">Introduction to PowerShell</a></p>
+<h3>Introduction</h3>
+<figure class='code'>
+<figcaption class='code-title'><span>Aliases</span></figcaption>
+
+<div class="highlight"><pre><span class="nb">get-alias</span>
+<span class="nb">set-alias</span> <span class="n">list</span> <span class="nb">get-childitem</span>
+<span class="nb">export-alias</span> <span class="n">myalias</span><span class="p">.</span><span class="n">csv</span> <span class="n">lis</span><span class="p">*</span>
+<span class="nb">import-alias</span> <span class="n">myalias</span><span class="p">.</span><span class="n">csv</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Help</span></figcaption>
+
+<div class="highlight"><pre><span class="nb">get-command</span> <span class="n">-verb</span> <span class="s2">&quot;get&quot;</span>
+<span class="nb">get-command</span> <span class="n">-noun</span> <span class="s2">&quot;service&quot;</span>
+<span class="nb">get-command</span> <span class="p">-?</span> <span class="c"># Help on get-command</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+
+<div class="highlight"><pre><span class="n">gci</span> <span class="p">|</span>
+  <span class="nb">where-object</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">length</span> <span class="o">-gt</span> <span class="n">100kb</span> <span class="p">}</span> <span class="p">|</span>
+  <span class="nb">sort-object</span> <span class="n">length</span> <span class="p">|</span>
+  <span class="n">ft</span> <span class="n">-property</span> <span class="n">name</span><span class="p">,</span> <span class="n">length</span> <span class="n">-autosize</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Providers</span></figcaption>
+
+<div class="highlight"><pre><span class="nb">get-psprovider</span>
+<span class="nb">get-psdrive</span>
+<span class="nb">clear-host</span>
+<span class="nb">set-location</span> <span class="n">env</span><span class="err">:</span>
+<span class="n">gci</span>
+<span class="nb">set-location</span> <span class="k">alias</span><span class="err">:</span>
+<span class="n">gci</span>
+<span class="nb">get-pssnapin</span>
+<span class="nb">get-pssnapin</span> <span class="n">-registered</span>
+<span class="nb">add-pssnapin</span> <span class="n">SqlServerCmdletSnapin100</span>
+<span class="nb">remove-pssnapin</span> <span class="n">SqlServerCmdletSnapin100</span>
+</pre></div>
+
+
+</figure>
+
+<h3>Variables</h3>
+<figure class='code'>
+
+<div class="highlight"><pre><span class="nv">$hi</span> <span class="p">=</span> <span class="s2">&quot;Hello World&quot;</span>
+<span class="nv">$hi</span> <span class="c"># same is write-host $hi</span>
+<span class="no">[System.Int32]</span><span class="nv">$myint</span> <span class="p">=</span> <span class="n">42</span> <span class="c"># or [int] $myint = 42</span>
+</pre></div>
+
+
+</figure>
+
+<p>Comparisons</p>
+<ul>
+<li>-eq</li>
+<li>-ne</li>
+<li>-gt</li>
+<li>-lt</li>
+<li>-ge</li>
+<li>-le</li>
+<li>-Like # wildcard matching</li>
+<li>-NotLike</li>
+<li>-Match # regex matching</li>
+<li>-NotMatch</li>
+<li>Data on right side of comparison is converted to the data type of the left side</li>
+</ul>
+<figure class='code'>
+<figcaption class='code-title'><span>*-Variable</span></figcaption>
+
+<div class="highlight"><pre><span class="nb">New-Variable</span>  <span class="n">-Name</span> <span class="n">var</span> <span class="n">-Value</span> <span class="n">123</span>
+<span class="nb">Get-Variable</span> <span class="n">var</span> <span class="n">-valueonly</span>
+<span class="nb">Get-Variable</span>
+<span class="nb">Set-Variable</span> <span class="n">-Name</span> <span class="n">var</span> <span class="n">-Value</span> <span class="n">789</span>
+<span class="nb">Clear-Variable</span> <span class="n">-Name</span> <span class="n">var</span>
+<span class="nb">Remove-Variable</span> <span class="n">-Name</span> <span class="n">var</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Strings</span></figcaption>
+
+<div class="highlight"><pre><span class="s2">&quot;Hello &quot;&quot;Word&quot;&quot;&quot;</span>
+<span class="nv">$heretext</span> <span class="p">=</span> <span class="sh">@&quot;</span>
+<span class="sh">text</span>
+<span class="sh">more</span>
+<span class="sh">    with a tab</span>
+<span class="sh">    ending</span>
+<span class="sh">&quot;@</span>
+<span class="s2">&quot;There are </span><span class="si">$((gci)</span><span class="s2">.count) items&quot;</span>
+</pre></div>
+
+
+</figure>
+
+<p>Special characters</p>
+<ul>
+<li>b: backspace</li>
+<li>n: newline</li>
+<li>r: carriage return</li>
+<li>t: tab</li>
+</ul>
+<figure class='code'>
+<figcaption class='code-title'><span>Array</span></figcaption>
+
+<div class="highlight"><pre><span class="nv">$array</span> <span class="p">=</span> <span class="s2">&quot;one&quot;</span><span class="p">,</span> <span class="s2">&quot;two&quot;</span>
+<span class="nv">$array</span> <span class="p">=</span> <span class="err">@</span><span class="p">(</span><span class="s2">&quot;one&quot;</span><span class="p">,</span> <span class="s2">&quot;two&quot;</span><span class="p">)</span> <span class="c"># formal syntax</span>
+<span class="nv">$array</span> <span class="p">=</span> <span class="n">1</span><span class="p">..</span><span class="n">5</span> <span class="c"># range</span>
+<span class="nv">$array</span><span class="p">[</span><span class="n">0</span><span class="p">]</span>
+<span class="nv">$array</span> <span class="n">-contain</span> <span class="n">2</span>
+<span class="nv">$array</span> <span class="n">-notcontain</span> <span class="n">20</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>HashTables</span></figcaption>
+
+<div class="highlight"><pre><span class="nv">$hash</span> <span class="p">=</span> <span class="err">@</span><span class="p">{</span><span class="s2">&quot;Key&quot;</span> <span class="p">=</span> <span class="s2">&quot;Value&quot;</span> <span class="p">}</span>
+<span class="nv">$hash</span><span class="p">[</span><span class="s2">&quot;Key&quot;</span><span class="p">]</span>
+<span class="nv">$hash</span><span class="p">.</span><span class="s2">&quot;Key&quot;</span>
+<span class="nv">$mykey</span> <span class="p">=</span> <span class="s2">&quot;Key&quot;</span>
+<span class="nv">$hash</span><span class="p">.</span><span class="nv">$mykey</span>
+<span class="nv">$hash</span><span class="p">.$(</span><span class="nv">$mykey</span><span class="p">)</span> <span class="c"># can use an expression</span>
+<span class="nv">$hash</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="s2">&quot;Key&quot;</span><span class="p">)</span>
+<span class="nv">$hash</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s2">&quot;Key&quot;</span><span class="p">)</span>
+<span class="nv">$hash</span><span class="p">.</span><span class="n">ContainsValue</span><span class="p">(</span><span class="s2">&quot;Value&quot;</span><span class="p">)</span>
+<span class="nv">$hash</span><span class="p">.</span><span class="n">Keys</span>
+<span class="nv">$hash</span><span class="p">.</span><span class="n">Values</span>
+<span class="nv">$hash</span><span class="p">.</span><span class="n">Key</span> <span class="o">-contains</span> <span class="s2">&quot;Key&quot;</span>
+<span class="nv">$hash</span><span class="p">.</span><span class="n">Value</span> <span class="o">-contains</span> <span class="s2">&quot;Value&quot;</span>
+</pre></div>
+
+
+</figure>
+
+<p>Built in variables</p>
+<ul>
+<li>$true, $false</li>
+<li>$null</li>
+<li>$pwd</li>
+<li>$home</li>
+<li>$host</li>
+<li>$pid</li>
+<li>$psversiontable</li>
+<li>$_</li>
+</ul>
+<h3>Programming</h3>
+<figure class='code'>
+<figcaption class='code-title'><span>switch</span></figcaption>
+
+<div class="highlight"><pre><span class="k">switch</span> <span class="o">-casesensitive</span> <span class="o">-wildcard</span> <span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="s2">&quot;hello&quot;</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="s2">&quot;Te*&quot;</span> <span class="p">{</span><span class="s2">&quot;Found test&quot;</span><span class="err">;</span> <span class="k">break</span><span class="p">}</span>
+    <span class="s2">&quot;hello&quot;</span> <span class="p">{</span><span class="s2">&quot;Found hello&quot;</span><span class="err">;</span> <span class="k">break</span><span class="p">}</span>
+    <span class="k">default</span> <span class="p">{</span><span class="s2">&quot;Found none&quot;</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>for loops</span></figcaption>
+
+<div class="highlight"><pre><span class="nv">$i</span> <span class="p">=</span> <span class="n">0</span>
+<span class="k">for</span> <span class="p">(</span><span class="err">;</span> <span class="nv">$i</span> <span class="o">-lt</span> <span class="p">&lt;</span> <span class="n">5</span><span class="err">;</span> <span class="nv">$i</span><span class="p">++)</span>
+<span class="p">{</span>
+    <span class="nv">$i</span>
+<span class="p">}</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$file</span> <span class="k">in</span> <span class="n">gci</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$file</span><span class="p">.</span><span class="n">name</span>
+<span class="p">}</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Script Block</span></figcaption>
+
+<div class="highlight"><pre><span class="nv">$a</span> <span class="p">=</span> <span class="p">{</span><span class="nb">clear-host</span><span class="err">;</span> <span class="s2">&quot;hello&quot;</span><span class="p">}</span>
+<span class="nv">$a</span>
+<span class="p">&amp;</span> <span class="nv">$a</span> <span class="c"># run the script block</span>
+<span class="p">&amp;</span> <span class="p">{</span><span class="nb">clear-host</span><span class="err">;</span> <span class="s2">&quot;hello&quot;</span><span class="p">}</span>
+
+<span class="nv">$value</span> <span class="p">=</span> <span class="p">{</span><span class="n">41</span> <span class="p">+</span> <span class="n">1</span><span class="p">}</span>
+<span class="n">1</span> <span class="p">+</span> <span class="p">(&amp;</span><span class="nv">$value</span><span class="p">)</span>
+
+<span class="nv">$value</span> <span class="p">=</span> <span class="p">{</span><span class="n">42</span><span class="err">;</span> <span class="nb">write-host</span> <span class="s2">&quot;hello&quot;</span> <span class="p">}</span> <span class="c"># will return 42 and execute the write-host</span>
+<span class="nv">$value</span> <span class="p">=</span> <span class="p">{</span><span class="k">return</span> <span class="n">42</span><span class="err">;</span> <span class="nb">write-host</span> <span class="s2">&quot;hello&quot;</span> <span class="p">}</span> <span class="c"># only returns 42</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Passing Parameters</span></figcaption>
+
+<div class="highlight"><pre><span class="nv">$qa</span> <span class="p">=</span> <span class="p">{</span>
+    <span class="nv">$question</span> <span class="p">=</span> <span class="nv">$args</span><span class="p">[</span><span class="n">0</span><span class="p">]</span>
+    <span class="nv">$answer</span> <span class="p">=</span> <span class="nv">$args</span><span class="p">[</span><span class="n">1</span><span class="p">]</span>
+    <span class="nb">write-host</span> <span class="s2">&quot;$question and the answer $answer&quot;</span>
+<span class="p">}</span>
+<span class="p">&amp;</span><span class="nv">$qa</span> <span class="s2">&quot;What is&quot;</span> <span class="s2">&quot;The answer&quot;</span>
+
+<span class="nv">$qa</span> <span class="p">=</span> <span class="p">{</span>
+    <span class="k">param</span><span class="p">(</span><span class="nv">$question</span><span class="p">,</span> <span class="no">[string]</span><span class="nv">$answer</span> <span class="p">=</span> <span class="s2">&quot;default answer&quot;</span><span class="p">)</span>
+    <span class="nb">write-host</span> <span class="s2">&quot;$question and the answer $answer&quot;</span>
+<span class="p">}</span>
+<span class="p">&amp;</span><span class="nv">$qa</span> <span class="s2">&quot;What is&quot;</span> <span class="s2">&quot;The answer&quot;</span>
+<span class="p">&amp;</span><span class="nv">$qa</span> <span class="n">-question</span> <span class="s2">&quot;What is&quot;</span> <span class="n">-answer</span> <span class="s2">&quot;The answer&quot;</span>
+<span class="p">&amp;</span><span class="nv">$qa</span> <span class="n">-q</span> <span class="s2">&quot;What is&quot;</span> <span class="n">-a</span> <span class="s2">&quot;The answer&quot;</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Piplining Parameters</span></figcaption>
+
+<div class="highlight"><pre><span class="nv">$files</span> <span class="p">=</span> 
+<span class="p">{</span>
+    <span class="k">param</span> <span class="p">(</span><span class="nv">$headertext</span> <span class="p">=</span> <span class="s2">&quot;default header&quot;</span><span class="p">)</span>
+    <span class="k">begin</span> <span class="p">{</span> <span class="s2">&quot;runs first&quot;</span> <span class="p">}</span>
+    <span class="k">process</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$_</span><span class="p">.</span><span class="n">name</span> <span class="o">-like</span> <span class="s2">&quot;*.ps1&quot;</span><span class="p">)</span>
+        <span class="p">{</span> <span class="k">return</span> <span class="nv">$_</span><span class="p">.</span><span class="n">Name</span> <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">end</span> <span class="p">{</span> <span class="s2">&quot;runs afterward&quot;</span> <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">gci</span> <span class="p">|</span> <span class="p">&amp;</span><span class="nv">$files</span>
+</pre></div>
+
+
+</figure>
+
+<p>Scoping</p>
+<ul>
+<li>Variables outside a script block are available inside a block</li>
+<li>If set inside the script block it makes a copy</li>
+<li>Only exists while within the script block</li>
+</ul>
+<figure class='code'>
+<figcaption class='code-title'><span>Scopes</span></figcaption>
+
+<div class="highlight"><pre><span class="nv">$var</span> <span class="p">=</span> <span class="n">42</span>
+<span class="p">&amp;</span> <span class="p">{</span> <span class="nv">$var</span> <span class="p">=</span> <span class="n">33</span><span class="err">;</span>
+    <span class="nb">write-host</span> <span class="nv">$var</span>
+    <span class="nb">write-host</span> <span class="p">(</span><span class="nb">Get-Variable</span> <span class="n">var</span> <span class="n">-valueonly</span> <span class="n">-scope</span> <span class="n">1</span><span class="p">)}</span>
+<span class="nb">write-host</span> <span class="nv">$var</span>
+
+<span class="nv">$global:var</span> <span class="p">=</span> <span class="n">42</span> <span class="c"># can be used anywhere</span>
+<span class="nv">$private:var</span> <span class="p">=</span> <span class="n">42</span> <span class="c"># cannot be seen in the script block</span>
+
+<span class="n">Functions</span>
+<span class="p">-</span> <span class="n">Parameters</span> <span class="n">are</span> <span class="n">values</span> <span class="n">objects</span> <span class="n">by</span> <span class="k">default</span>
+<span class="p">-</span> <span class="n">Can</span> <span class="n">work</span> <span class="n">with</span> <span class="n">the</span> <span class="n">pipeline</span><span class="p">,</span> <span class="n">like</span> <span class="n">script</span> <span class="n">blocks</span>
+
+<span class="p">{%</span> <span class="n">include_code</span> <span class="n">lang</span><span class="err">:</span><span class="n">PowerShell</span> <span class="n">Functions</span>
+<span class="k">function</span>  <span class="nb">Set-Var</span><span class="p">(</span><span class="no">[ref]</span> <span class="nv">$var</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$var</span><span class="p">.</span><span class="n">Value</span> <span class="p">=</span> <span class="n">33</span>
+<span class="p">}</span>
+<span class="nv">$var</span> <span class="p">=</span> <span class="n">42</span>
+<span class="nb">Set-Var</span> <span class="p">(</span><span class="no">[ref]</span> <span class="nv">$var</span><span class="p">)</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Filters</span></figcaption>
+
+<div class="highlight"><pre><span class="k">filter</span> <span class="nb">Show-PS1Files</span>
+<span class="p">{</span>
+    <span class="nv">$filename</span> <span class="p">=</span> <span class="nv">$_</span><span class="p">.</span><span class="n">Name</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$filename</span> <span class="o">-like</span> <span class="s2">&quot;*.ps1&quot;</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="nv">$_</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">gci</span> <span class="p">|</span> <span class="nb">show-ps1files</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Output to the pipeline</span></figcaption>
+
+<div class="highlight"><pre><span class="k">function</span> <span class="nb">Get-ChildName</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">param</span><span class="p">(</span><span class="no">[switch]</span><span class="nv">$verbose</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$verbose</span><span class="p">.</span><span class="n">IsPresent</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$VerbosePreference</span> <span class="p">=</span> <span class="s2">&quot;Continue&quot;</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="nv">$VerbosePreference</span> <span class="p">=</span> <span class="s2">&quot;SilentlyContinue&quot;</span>
+    <span class="p">}</span>
+    <span class="nb">Write-Verbose</span> <span class="s2">&quot;More info here&quot;</span>
+    <span class="nb">Write-Output</span> <span class="p">(</span><span class="n">gci</span> <span class="p">|</span> <span class="nb">select-object</span> <span class="s2">&quot;Name&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nb">Get-ChildName</span> <span class="n">-verbose</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span><span class="nv">$_</span><span class="p">.</span><span class="n">name</span> <span class="o">-like</span> <span class="s2">&quot;*.ps1&quot;</span><span class="p">}</span>
+</pre></div>
+
+
+</figure>
+
+<p>Help Content: Get-Help about_comment_based_help</p>
+<ul>
+<li>.SYNOPSIS</li>
+<li>.DESCRIPTION</li>
+<li>.PARAMETER</li>
+<li>.EXAMPLE</li>
+<li>.INPUTS</li>
+<li>.OUTPUTS</li>
+<li>.NOTES</li>
+<li>.LINK</li>
+</ul>
+<figure class='code'>
+<figcaption class='code-title'><span>Help Content</span></figcaption>
+
+<div class="highlight"><pre><span class="k">function</span> <span class="nb">Get-ChildName</span><span class="p">()</span>
+<span class="p">{</span>
+
+    <span class="cm">&lt;#</span>
+<span class="cm">    </span><span class="sd">.SYNOPSIS</span><span class="cm"> </span>
+<span class="cm">    Adds a file name extension to a supplied name.</span>
+
+<span class="cm">    </span><span class="sd">.DESCRIPTION</span><span class="cm"></span>
+<span class="cm">    Adds a file name extension to a supplied name. </span>
+<span class="cm">    Takes any strings for the file name or extension.</span>
+
+<span class="cm">    </span><span class="sd">.PARAMETER</span><span class="cm"> Name</span>
+<span class="cm">    Specifies the file name.</span>
+
+<span class="cm">    </span><span class="sd">.PARAMETER</span><span class="cm"> Extension</span>
+<span class="cm">    Specifies the extension. &quot;Txt&quot; is the default.</span>
+
+<span class="cm">    </span><span class="sd">.INPUTS</span><span class="cm"></span>
+<span class="cm">    None. You cannot pipe objects to Add-Extension.</span>
+
+<span class="cm">    </span><span class="sd">.OUTPUTS</span><span class="cm"></span>
+<span class="cm">    System.String. Add-Extension returns a string with the extension or file name.</span>
+
+<span class="cm">    </span><span class="sd">.EXAMPLE</span><span class="cm"></span>
+<span class="cm">    C:\PS&gt; extension -name &quot;File&quot;</span>
+<span class="cm">    File.txt</span>
+
+<span class="cm">    </span><span class="sd">.EXAMPLE</span><span class="cm"></span>
+<span class="cm">    C:\PS&gt; extension -name &quot;File&quot; -extension &quot;doc&quot;</span>
+<span class="cm">    File.doc</span>
+
+<span class="cm">    </span><span class="sd">.EXAMPLE</span><span class="cm"></span>
+<span class="cm">    C:\PS&gt; extension &quot;File&quot; &quot;doc&quot;</span>
+<span class="cm">    File.doc</span>
+
+<span class="cm">    </span><span class="sd">.LINK</span><span class="cm"></span>
+<span class="cm">    http://www.fabrikam.com/extension.html</span>
+
+<span class="cm">    </span><span class="sd">.LINK</span><span class="cm"></span>
+<span class="cm">    Set-Item</span>
+<span class="cm">#&gt;</span>
+    <span class="nb">Write-Output</span> <span class="p">(</span><span class="n">gci</span> <span class="p">|</span> <span class="nb">select-object</span> <span class="s2">&quot;Name&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Files</span></figcaption>
+
+<div class="highlight"><pre><span class="nv">$a</span> <span class="p">=</span> <span class="nb">Get-Content</span> <span class="s2">&quot;test.txt&quot;</span>
+<span class="nv">$a</span><span class="p">[</span><span class="n">2</span><span class="p">]</span> <span class="c"># uses an array to store the contents</span>
+<span class="nv">$all</span> <span class="p">=</span> <span class="no">[string]</span><span class="err">::</span><span class="n">Join</span><span class="p">(</span><span class="no">[System.Environment]</span><span class="err">::</span><span class="n">NewLine</span><span class="p">,</span> <span class="nv">$a</span><span class="p">)</span> <span class="c"># or `r`n</span>
+
+<span class="nb">Set-Content</span> <span class="n">-Value</span> <span class="nv">$all</span> <span class="n">-Path</span> <span class="s2">&quot;new.txt&quot;</span>
+<span class="nb">Add-Content</span> <span class="n">-Value</span> <span class="s2">&quot;More stuff&quot;</span> <span class="n">-Path</span> <span class="s2">&quot;new.txt&quot;</span>
+<span class="nb">Remove-Item</span> <span class="s2">&quot;new.txt&quot;</span>
+<span class="nb">Test-Path</span> <span class="s2">&quot;test.txt&quot;</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>XML Filse</span></figcaption>
+
+<div class="highlight"><pre><span class="nv">$xml</span> <span class="p">=</span> <span class="sh">@&quot;</span>
+<span class="sh">&lt;root&gt;</span>
+<span class="sh">    &lt;one&gt;value&lt;/one&gt;</span>
+<span class="sh">&lt;/root&gt;</span>
+<span class="sh">&quot;@</span>
+<span class="nv">$xml</span> <span class="p">|</span> <span class="nb">Out-File</span> <span class="s2">&quot;test.xml&quot;</span>
+
+<span class="nv">$testXml</span> <span class="p">=</span> <span class="nb">new-object</span> <span class="n">xml</span>
+<span class="nv">$testXml</span><span class="p">.</span><span class="n">Load</span><span class="p">(</span><span class="s2">&quot;test.xml&quot;</span><span class="p">)</span>
+<span class="nv">$one</span> <span class="p">=</span> <span class="nv">$testXml</span><span class="p">.</span><span class="n">root</span><span class="p">.</span><span class="n">one</span>
+<span class="nv">$testXml</span><span class="p">.</span><span class="n">Save</span><span class="p">(</span><span class="s2">&quot;test.xml&quot;</span><span class="p">)</span>
+
+<span class="no">[xml]</span><span class="nv">$testXml</span> <span class="p">=</span> <span class="nb">Get-Content</span> <span class="s2">&quot;test.xml&quot;</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Misc</span></figcaption>
+
+<div class="highlight"><pre><span class="nv">$choice</span> <span class="p">=</span> <span class="nb">Read-Host</span> <span class="n">-Prompt</span> <span class="s2">&quot;Select something&quot;</span>
+<span class="nv">$padding</span> <span class="p">=</span> <span class="s2">&quot; &quot;</span> <span class="p">*</span> <span class="n">10</span> <span class="c"># repeat an item</span>
+</pre></div>
+
+
+</figure>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <header class="page-header">
+                    <h1>
+                        <a href="http://ciwchris.github.io/blog/bash-shell-basics.html"
+                            rel="bookmark"
+                            title="Permalink to Bash shell basics">
+                            Bash shell basics
+                        </a>
+                    </h1>
+                </header>
+                <div class="entry-content">
+                    <div class="panel">
+                        <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2013-09-14T18:53:00"> Sat 14 September 2013</time>
+    </span>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://ciwchris.github.io/tags/cli.html">cli</a>
+    
+</footer><!-- /.post-info -->                        </div>
+                    </div>
+                    <p>Notes from the Pluralsight course <a href="http://pluralsight.com/training/Courses/TableOfContents/introduction-bash-shell-linux-mac-os">Introduction to the Bash Shell on Mac OS and Linux</a></p>
+<h3>Braces</h3>
+<figure class='code'>
+
+<div class="highlight"><pre>ls file?<span class="o">{</span>mine,yours<span class="o">}</span>.<span class="o">{</span>txt,png<span class="o">}</span>
+</pre></div>
+
+
+</figure>
+
+<h3>Commands</h3>
+<figure class='code'>
+
+<div class="highlight"><pre>grep 1978 oscars.tsv | sort &gt; 1978_films.txt
+cut -f 3 oscars.tsv | grep 4 | wc -l
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Sort second column as numbers in reverse order</span></figcaption>
+
+<div class="highlight"><pre>sort -rnk2 math_grades
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Unique entries with their count</span></figcaption>
+
+<div class="highlight"><pre>sort math_attendance | uniq -c | sort -nr
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Find the largest file in the directory</span></figcaption>
+
+<div class="highlight"><pre>ls -lS | head -n 2 | tail -n 1
+ls -lrS | tail -n 2 <span class="c"># Better way</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Don't exit but update as new entries come in</span></figcaption>
+
+<div class="highlight"><pre>tail -f auth.log
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Number of files in a directory</span></figcaption>
+
+<div class="highlight"><pre>ls -a | wc -l
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Search for bruce, case insensitive, in a set of files</span></figcaption>
+
+<div class="highlight"><pre>grep -i bruce *grades
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Filter out using an extended regex before working with other content</span></figcaption>
+
+<div class="highlight"><pre>grep -Ev <span class="s2">&quot;^$|lecture&quot;</span> math_attendance | sort | uniq -c | sort -nr
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Search for txt files with curious in them</span></figcaption>
+
+<div class="highlight"><pre>find . -name <span class="s1">&#39;*.txt&#39;</span> -exec grep -l curious <span class="o">{}</span> <span class="se">\;</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Change uppercase 'S' to lowercase 's'</span></figcaption>
+
+<div class="highlight"><pre>cat physics_grades | tr S s 
+tr S s &lt; physics_grades <span class="c"># More efficient method</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Change from tab separated to semicolon separated</span></figcaption>
+
+<div class="highlight"><pre>tr <span class="se">\\</span>t <span class="se">\;</span> &lt; oscars.tsv &gt; oscars.csv
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Using sed</span></figcaption>
+
+<div class="highlight"><pre>sed <span class="s1">&#39;s/something/something new/g&#39;</span> one.txt &gt; two.txt
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Combine files using columns (not append)</span></figcaption>
+
+<div class="highlight"><pre>paste *grades
+join *grades <span class="c"># Using keys</span>
+</pre></div>
+
+
+</figure>
+
+<h3>Command Substitution</h3>
+<figure class='code'>
+
+<div class="highlight"><pre><span class="nb">echo</span> <span class="s2">&quot;hello `whoami`&quot;</span> <span class="c">#old form</span>
+<span class="nb">echo</span> <span class="s2">&quot;Buy milk&quot;</span> &gt; <span class="s2">&quot;notes$(date).txt&quot;</span>
+</pre></div>
+
+
+</figure>
+
+<h3>Copy / Paste</h3>
+<p>Select text and paste with middle mouse click</p>
+<h3>Movement keys</h3>
+<ul>
+<li>ctrl-a: start of line</li>
+<li>ctrl-e: end of line</li>
+<li>ctrl-f: forward 1 char</li>
+<li>ctrl-b: backward 1 char</li>
+<li>alt-f: forward 1 word</li>
+<li>alt-b: backward 1 word</li>
+<li>ctrl-d: delete 1 char</li>
+<li>ctrl-h: delete 1 char backward</li>
+<li>alt-d: delete 1 word</li>
+<li>ctrl-w: delete 1 word backward</li>
+<li>ctrl-k: delete rest of line</li>
+<li>ctrl-u: delete from start of line</li>
+<li>ctrl-r: search back in history</li>
+</ul>
+<h3>Processes</h3>
+<ul>
+<li>C-z: stop and return to a command prompt<ul>
+<li>fg or bg to start the process again</li>
+<li>or use the job id: fg %1</li>
+</ul>
+</li>
+<li>jobs: to list the running jobs</li>
+<li>kill %1: kill job 1</li>
+<li>or by process id<ul>
+<li>ps -ef: list all processes and show the owner</li>
+<li>kill 1234</li>
+</ul>
+</li>
+</ul>
+<h3>Customization</h3>
+<ul>
+<li>alias: view aliases</li>
+<li>\ls: run normal command, not the alias for it</li>
+<li>.bashrc: executed for non-login shells</li>
+<li>.profile or .bash_profile: executed for login shells</li>
+<li>echo $PS1: reading an environment variable</li>
+<li>PS1="\h:\W /u": set an environment variable</li>
+<li>env: list all environment variables</li>
+<li>EDITOR=vim: set the editor</li>
+<li>export EDITOR: to make it visible<ul>
+<li>or export EDITOR=vim</li>
+</ul>
+</li>
+<li>chsh: change shell<ul>
+<li>\bin\zsh: change to using zsh</li>
+</ul>
+</li>
+<li>echo $SHELL: view current shell</li>
+</ul>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <header class="page-header">
+                    <h1>
+                        <a href="http://ciwchris.github.io/blog/starting-a-technology-radar.html"
+                            rel="bookmark"
+                            title="Permalink to Starting a technology radar">
+                            Starting a technology radar
+                        </a>
+                    </h1>
+                </header>
+                <div class="entry-content">
+                    <div class="panel">
+                        <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2013-08-26T18:26:00"> Mon 26 August 2013</time>
+    </span>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://ciwchris.github.io/tags/techradar.html">techradar</a>
+    
+</footer><!-- /.post-info -->                        </div>
+                    </div>
+                    <p>I became intrigued by the idea of creating a <a href="http://www.thoughtworks.com/radar">Technology Radar</a> while listening to <a href="nealford.com">Neal Ford</a> on the <a href="http://thinkrelevance.com/blog/2013/07/26/neal-ford-of-thoughtworks-episode-036">Relevance Podcast</a>. Initially the plan was to <a href="http://nealford.com/memeagora/2013/05/28/build_your_own_technology_radar.html">create a radar</a> for our department at work. My thinking was that it would give focus to developers, which technology to concentrate on and which should be used in projects, as well as give visibility as to what directions developers are exploring, and therefore what may start appearing in projects. It would also give management a good visual, and explanation if we did a write up, as to what we are using and where we are heading. It's questionable whether any action will be taken to create one but after reading the section on creating a <em>Personal Radar</em> I became motivated to create my own.</p>
+<p>Why did I create my own radar? I consume information from a variety of sources. As a result I'm exposed to many interesting topics and ideas. I've come to realize it is too many. I tend to find one interesting topic, begin to pursue it only to be interrupted by the next interesting thing to come my way. In the end I have an awareness of many things but have learned none. I therefore concluded that I needed to focus on a small number of items, but still allow myself to be exposed to other items as well. I decided a <em>Personal Radar</em> may help me do just that. Each quarter, or perhaps twice a year, I will update a personal radar. The items I focus on will be selected from the radar. When I produce the next radar then I will select a new set of items to focus on. My hope is that I may become disciplined and learn an item more in-depth before moving on to the next interesting thing. So without further delay, below is my personal radar, probably for the remainder of the year, and explanation text, a work in progress.</p>
+<p><a href="/pages/technology-radar.html">Personal Radar</a><br />
+<a href="/technology-radar-explanation.html">Radar Explanation</a></p>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <header class="page-header">
+                    <h1>
+                        <a href="http://ciwchris.github.io/blog/mocking-with-moq.html"
+                            rel="bookmark"
+                            title="Permalink to Mocking with Moq">
+                            Mocking with Moq
+                        </a>
+                    </h1>
+                </header>
+                <div class="entry-content">
+                    <div class="panel">
+                        <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2013-03-04T21:29:00"> Mon 04 March 2013</time>
+    </span>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://ciwchris.github.io/tags/c.html">c#</a>
+        /
+	<a href="http://ciwchris.github.io/tags/mocking.html">mocking</a>
+        /
+	<a href="http://ciwchris.github.io/tags/tests.html">tests</a>
+    
+</footer><!-- /.post-info -->                        </div>
+                    </div>
+                    <p>Notes for the pluralsight course <a href="http://pluralsight.com/training/Courses/TableOfContents/mocking-with-moq">Mocking With Moq</a>.</p>
+<h3>Unit tests should be</h3>
+<ul>
+<li><strong>Atomic:</strong> one small thing</li>
+<li><strong>Deterministic:</strong> pass or fail</li>
+<li><strong>Repeatable:</strong> shouldn't start failing if no code has changed</li>
+<li><strong>Isolated and order independent:</strong> nothing should affect it</li>
+<li><strong>Fast:</strong> milliseconds</li>
+<li><strong>Easy to setup:</strong> shouldn't take a lot of coding</li>
+</ul>
+<h3>Samples</h3>
+<figure class='code'>
+<figcaption class='code-title'><span>Verify a method is called</span></figcaption>
+
+<div class="highlight"><pre><span class="n">mockRepository</span><span class="p">.</span><span class="n">Setup</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">Save</span><span class="p">(</span><span class="n">It</span><span class="p">.</span><span class="n">IsAny</span><span class="p">&lt;</span><span class="n">Customer</span><span class="p">&gt;()));</span>
+
+<span class="n">mockRepository</span><span class="p">.</span><span class="n">VerifyAll</span><span class="p">();</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Verify a method was called n times</span></figcaption>
+
+<div class="highlight"><pre><span class="n">mockCustomerRepository</span><span class="p">.</span><span class="n">Verify</span><span class="p">(</span><span class="n">x</span><span class="p">=&gt;</span><span class="n">x</span><span class="p">.</span><span class="n">Save</span><span class="p">(</span><span class="n">It</span><span class="p">.</span><span class="n">IsAny</span><span class="p">&lt;</span><span class="n">Customer</span><span class="p">&gt;()),</span>
+    <span class="n">Times</span><span class="p">.</span><span class="n">Exactly</span><span class="p">(</span><span class="m">2</span><span class="p">));</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Mock return a value</span></figcaption>
+
+<div class="highlight"><pre><span class="n">mockAddressBuilder</span>
+    <span class="p">.</span><span class="n">Setup</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">From</span><span class="p">(</span><span class="n">It</span><span class="p">.</span><span class="n">IsAny</span><span class="p">&lt;</span><span class="n">CustomerToCreateDto</span><span class="p">&gt;()))</span>
+    <span class="p">.</span><span class="n">Returns</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="k">new</span> <span class="n">Address</span><span class="p">());</span>
+
+<span class="n">mockCustomerRepository</span><span class="p">.</span><span class="n">Verify</span><span class="p">(</span><span class="n">y</span><span class="p">=&gt;</span><span class="n">y</span><span class="p">.</span><span class="n">Save</span><span class="p">(</span><span class="n">It</span><span class="p">.</span><span class="n">IsAny</span><span class="p">&lt;</span><span class="n">Customer</span><span class="p">&gt;()));</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Using an out parameter</span></figcaption>
+
+<div class="highlight"><pre><span class="n">mockMailingAddressFactory</span>
+    <span class="p">.</span><span class="n">Setup</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">TryParse</span><span class="p">(</span><span class="n">It</span><span class="p">.</span><span class="n">IsAny</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;(),</span> <span class="k">out</span> <span class="n">mailingAddress</span><span class="p">))</span>
+    <span class="p">.</span><span class="n">Returns</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+
+<span class="n">mockCustomerRepository</span><span class="p">.</span><span class="n">Verify</span><span class="p">(</span><span class="n">x</span><span class="p">=&gt;</span><span class="n">x</span><span class="p">.</span><span class="n">Save</span><span class="p">(</span><span class="n">It</span><span class="p">.</span><span class="n">IsAny</span><span class="p">&lt;</span><span class="n">Customer</span><span class="p">&gt;()));</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Change the return value after each call to the mocked member</span></figcaption>
+
+<div class="highlight"><pre><span class="n">mockIdFactory</span><span class="p">.</span><span class="n">Setup</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">Create</span><span class="p">())</span>
+    <span class="p">.</span><span class="n">Returns</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="n">i</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">Callback</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="n">i</span><span class="p">++);</span>
+
+<span class="n">mockIdFactory</span><span class="p">.</span><span class="n">Verify</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">Create</span><span class="p">(),</span> <span class="n">Times</span><span class="p">.</span><span class="n">AtLeastOnce</span><span class="p">());</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Verify the arguments passed to the mocked method are as expected</span></figcaption>
+
+<div class="highlight"><pre><span class="n">mockFullNameBuilder</span><span class="p">.</span><span class="n">Setup</span><span class="p">(</span>
+    <span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">From</span><span class="p">(</span><span class="n">It</span><span class="p">.</span><span class="n">IsAny</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;(),</span> <span class="n">It</span><span class="p">.</span><span class="n">IsAny</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;()));</span>
+
+<span class="n">mockFullNameBuilder</span><span class="p">.</span><span class="n">Verify</span><span class="p">(</span><span class="n">x</span><span class="p">=&gt;</span><span class="n">x</span><span class="p">.</span><span class="n">From</span><span class="p">(</span>
+    <span class="n">It</span><span class="p">.</span><span class="n">Is</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;(</span>
+        <span class="n">fn</span><span class="p">=&gt;</span><span class="n">fn</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="n">customerToCreateDto</span><span class="p">.</span><span class="n">FirstName</span><span class="p">,</span>
+            <span class="n">StringComparison</span><span class="p">.</span><span class="n">InvariantCultureIgnoreCase</span><span class="p">)),</span>
+    <span class="n">It</span><span class="p">.</span><span class="n">Is</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;(</span>
+        <span class="n">fn</span><span class="p">=&gt;</span><span class="n">fn</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="n">customerToCreateDto</span><span class="p">.</span><span class="n">LastName</span><span class="p">,</span>
+            <span class="n">StringComparison</span><span class="p">.</span><span class="n">InvariantCultureIgnoreCase</span><span class="p">))));</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Conditionally return a value, control code flow</span></figcaption>
+
+<div class="highlight"><pre><span class="n">mockCustomerStatusFactory</span><span class="p">.</span><span class="n">Setup</span><span class="p">(</span>
+    <span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">CreateFrom</span><span class="p">(</span>
+        <span class="n">It</span><span class="p">.</span><span class="n">Is</span><span class="p">&lt;</span><span class="n">CustomerToCreateDto</span><span class="p">&gt;(</span>
+            <span class="n">y</span> <span class="p">=&gt;</span> <span class="n">y</span><span class="p">.</span><span class="n">DesiredStatus</span> <span class="p">==</span> <span class="n">CustomerStatus</span><span class="p">.</span><span class="n">Platinum</span><span class="p">)))</span>
+    <span class="p">.</span><span class="n">Returns</span><span class="p">(</span><span class="n">CustomerStatus</span><span class="p">.</span><span class="n">Platinum</span><span class="p">);</span>
+
+<span class="n">mockCustomerRepository</span><span class="p">.</span><span class="n">Verify</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">=&gt;</span><span class="n">x</span><span class="p">.</span><span class="n">SaveSpecial</span><span class="p">(</span><span class="n">It</span><span class="p">.</span><span class="n">IsAny</span><span class="p">&lt;</span><span class="n">Customer</span><span class="p">&gt;()));</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Throw an exception</span></figcaption>
+
+<div class="highlight"><pre><span class="n">mockCustomerAddressFactory</span>
+    <span class="p">.</span><span class="n">Setup</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">From</span><span class="p">(</span><span class="n">It</span><span class="p">.</span><span class="n">IsAny</span><span class="p">&lt;</span><span class="n">CustomerToCreateDto</span><span class="p">&gt;()))</span>
+    <span class="p">.</span><span class="n">Throws</span><span class="p">&lt;</span><span class="n">InvalidCustomerAddressException</span><span class="p">&gt;();</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Verify a setter has been set</span></figcaption>
+
+<div class="highlight"><pre><span class="n">mockCustomerRepository</span><span class="p">.</span><span class="n">VerifySet</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">=&gt;</span><span class="n">x</span><span class="p">.</span><span class="n">LocalTimeZone</span> <span class="p">=</span> <span class="n">It</span><span class="p">.</span><span class="n">IsAny</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;());</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Verify a getter has been called</span></figcaption>
+
+<div class="highlight"><pre><span class="n">mockApplicationSettings</span><span class="p">.</span><span class="n">Setup</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">WorkstationId</span><span class="p">).</span><span class="n">Returns</span><span class="p">(</span><span class="m">123</span><span class="p">);</span>
+
+<span class="n">mockApplicationSettings</span><span class="p">.</span><span class="n">VerifyGet</span><span class="p">(</span><span class="n">x</span><span class="p">=&gt;</span><span class="n">x</span><span class="p">.</span><span class="n">WorkstationId</span><span class="p">);</span>
+</pre></div>
+
+
+</figure>
+
+<p>For nested objects you don't have to mock each object; Moq will automatically return a mocked object if it can.</p>
+<figure class='code'>
+<figcaption class='code-title'><span>Recursive/nested properties, Moq realizes each is mockable and so will return a mock for each</span></figcaption>
+
+<div class="highlight"><pre><span class="n">mockApplicationSettings</span><span class="p">.</span><span class="n">Setup</span><span class="p">(</span>
+    <span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">SystemConfiguration</span><span class="p">.</span><span class="n">AuditingInformation</span><span class="p">.</span><span class="n">WorkstationId</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">Returns</span><span class="p">(</span><span class="m">123</span><span class="p">);</span>
+
+<span class="n">mockApplicationSettings</span><span class="p">.</span><span class="n">VerifyGet</span><span class="p">(</span>
+    <span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">SystemConfiguration</span><span class="p">.</span><span class="n">AuditingInformation</span><span class="p">.</span><span class="n">WorkstationId</span><span class="p">);</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Stub a property</span></figcaption>
+
+<div class="highlight"><pre><span class="n">mockApplicationSettings</span><span class="p">.</span><span class="n">SetupProperty</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">WorkstationId</span><span class="p">,</span> <span class="m">1234</span><span class="p">);</span>
+
+<span class="n">mockApplicationSettings</span><span class="p">.</span><span class="n">VerifyGet</span><span class="p">(</span><span class="n">x</span><span class="p">=&gt;</span><span class="n">x</span><span class="p">.</span><span class="n">WorkstationId</span><span class="p">);</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Stub all properties</span></figcaption>
+
+<div class="highlight"><pre><span class="n">mockApplicationSettings</span><span class="p">.</span><span class="n">SetupAllProperties</span><span class="p">();</span>
+<span class="n">mockApplicationSettings</span><span class="p">.</span><span class="n">Object</span><span class="p">.</span><span class="n">WorkstationId</span> <span class="p">=</span> <span class="m">2345</span><span class="p">;</span>
+
+<span class="n">mockApplicationSettings</span><span class="p">.</span><span class="n">VerifyGet</span><span class="p">(</span><span class="n">x</span><span class="p">=&gt;</span><span class="n">x</span><span class="p">.</span><span class="n">WorkstationId</span><span class="p">);</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Event</span></figcaption>
+
+<div class="highlight"><pre><span class="n">mockCustomerRepository</span><span class="p">.</span><span class="n">Raise</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">=&gt;</span><span class="n">x</span><span class="p">.</span><span class="n">NotifySalesTeam</span> <span class="p">+=</span> <span class="k">null</span><span class="p">,</span>
+    <span class="k">new</span> <span class="nf">NotifySalesTeamEventArgs</span><span class="p">(</span><span class="s">&quot;jim&quot;</span><span class="p">));</span>
+
+<span class="n">mockMailingRepository</span><span class="p">.</span><span class="n">Verify</span><span class="p">(</span>
+    <span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">NewCustomerMessage</span><span class="p">(</span><span class="n">It</span><span class="p">.</span><span class="n">IsAny</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;()));</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Custom event</span></figcaption>
+
+<div class="highlight"><pre><span class="n">mockCustomerRepository</span><span class="p">.</span><span class="n">Raise</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">=&gt;</span><span class="n">x</span><span class="p">.</span><span class="n">NotifySalesTeam</span> <span class="p">+=</span> <span class="k">null</span><span class="p">,</span>
+    <span class="s">&quot;jim&quot;</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
+
+<span class="n">mockMailingRepository</span><span class="p">.</span><span class="n">Verify</span><span class="p">(</span>
+    <span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">NewCustomerMessage</span><span class="p">(</span><span class="n">It</span><span class="p">.</span><span class="n">IsAny</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;()));</span>
+</pre></div>
+
+
+</figure>
+
+<p>Two types of mocks:</p>
+<ol>
+<li><strong>Loose:</strong> if the object doesn't have any expectations set it will return the default value for the object. It will not throw an exception when verify is called. This is the default behavior for Moq</li>
+<li><strong>Strict:</strong> exception will be thrown if the object hasn't been explicitly setup.</li>
+</ol>
+<figure class='code'>
+<figcaption class='code-title'><span>Strict mock behavior</span></figcaption>
+
+<div class="highlight"><pre><span class="kt">var</span> <span class="n">mockCustomerRepository</span> <span class="p">=</span> 
+    <span class="k">new</span> <span class="n">Mock</span><span class="p">&lt;</span><span class="n">ICustomerRepository</span><span class="p">&gt;(</span><span class="n">MockBehavior</span><span class="p">.</span><span class="n">Strict</span><span class="p">);</span>
+<span class="n">mockCustomerRepository</span><span class="p">.</span><span class="n">Setup</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">Save</span><span class="p">(</span><span class="n">It</span><span class="p">.</span><span class="n">IsAny</span><span class="p">&lt;</span><span class="n">Customer</span><span class="p">&gt;()));</span>
+
+<span class="n">mockCustomerRepository</span><span class="p">.</span><span class="n">Verify</span><span class="p">();</span>
+</pre></div>
+
+
+</figure>
+
+<p><strong>Partial mock:</strong> allows invocation of a base class implementation</p>
+<figure class='code'>
+<figcaption class='code-title'><span>Mock the SUT when working with a base class</span></figcaption>
+
+<div class="highlight"><pre><span class="n">mockNameFormatter</span><span class="p">.</span><span class="n">Object</span><span class="p">.</span><span class="n">From</span><span class="p">(</span><span class="k">new</span> <span class="n">Customer</span><span class="p">(</span><span class="s">&quot;Bob&quot;</span><span class="p">,</span> <span class="s">&quot;SAPBuilder&quot;</span><span class="p">));</span>
+
+<span class="n">mockNameFormatter</span><span class="p">.</span><span class="n">Verify</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">=&gt;</span><span class="n">x</span><span class="p">.</span><span class="n">ParseBadWordsFrom</span><span class="p">(</span><span class="n">It</span><span class="p">.</span><span class="n">IsAny</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;()),</span>
+    <span class="n">Times</span><span class="p">.</span><span class="n">Exactly</span><span class="p">(</span><span class="m">2</span><span class="p">));</span>
+</pre></div>
+
+
+</figure>
+
+<p><strong>Recursive:</strong> Set the default value of a mock to return a mocked object, <code>DefaultValue = DefaultValue.Mock</code>, instead of the object's default value, this only works if  the object is mockable. Then use <code>Mock.Get()</code> to retrieve the actual mock which can then be used like any other mocked object</p>
+<figure class='code'>
+<figcaption class='code-title'><span>Recursive mock</span></figcaption>
+
+<div class="highlight"><pre><span class="kt">var</span> <span class="n">mockAddressFormatterFactory</span> <span class="p">=</span> 
+    <span class="k">new</span> <span class="n">Mock</span><span class="p">&lt;</span><span class="n">IAddressFormatterFactory</span><span class="p">&gt;</span> 
+        <span class="p">{</span><span class="n">DefaultValue</span> <span class="p">=</span> <span class="n">DefaultValue</span><span class="p">.</span><span class="n">Mock</span><span class="p">};</span>
+<span class="kt">var</span> <span class="n">addressFormatter</span> <span class="p">=</span> <span class="n">mockAddressFormatterFactory</span>
+    <span class="p">.</span><span class="n">Object</span><span class="p">.</span><span class="n">From</span><span class="p">(</span><span class="n">It</span><span class="p">.</span><span class="n">IsAny</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;());</span>
+<span class="kt">var</span> <span class="n">mock</span> <span class="p">=</span> <span class="n">Mock</span><span class="p">.</span><span class="n">Get</span><span class="p">(</span><span class="n">addressFormatter</span><span class="p">);</span>
+
+<span class="n">mock</span><span class="p">.</span><span class="n">Verify</span><span class="p">(</span><span class="n">x</span><span class="p">=&gt;</span><span class="n">x</span><span class="p">.</span><span class="n">From</span><span class="p">(</span><span class="n">It</span><span class="p">.</span><span class="n">IsAny</span><span class="p">&lt;</span><span class="n">CustomerToCreateDto</span><span class="p">&gt;()));</span>
+</pre></div>
+
+
+</figure>
+
+<p>Use a mock factory when working with lots of dependencies. This centralizes the creation and verification of all mock objects.</p>
+<figure class='code'>
+<figcaption class='code-title'><span>Mock factory</span></figcaption>
+
+<div class="highlight"><pre><span class="kt">var</span> <span class="n">mockFactory</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MockRepository</span><span class="p">(</span><span class="n">MockBehavior</span><span class="p">.</span><span class="n">Loose</span><span class="p">)</span> 
+                <span class="p">{</span><span class="n">DefaultValue</span> <span class="p">=</span> <span class="n">DefaultValue</span><span class="p">.</span><span class="n">Mock</span><span class="p">};</span>
+<span class="kt">var</span> <span class="n">mockCustomerRepository</span> <span class="p">=</span> 
+    <span class="n">mockFactory</span><span class="p">.</span><span class="n">Create</span><span class="p">&lt;</span><span class="n">ICustomerRepository</span><span class="p">&gt;();</span>
+<span class="kt">var</span> <span class="n">mockCustomerAddressFormatter</span> <span class="p">=</span> 
+    <span class="n">mockFactory</span><span class="p">.</span><span class="n">Create</span><span class="p">&lt;</span><span class="n">ICustomerAddressFormatter</span><span class="p">&gt;();</span>
+
+<span class="n">mockFactory</span><span class="p">.</span><span class="n">Verify</span><span class="p">();</span>
+</pre></div>
+
+
+</figure>
+
+<p>When mocking protected members the member must be marked as virtual. You lose intellisense, method name must appear in a string. Must use <code>ItExpr</code> instead of <code>It</code>.</p>
+<figure class='code'>
+<figcaption class='code-title'><span>Protected members</span></figcaption>
+
+<div class="highlight"><pre><span class="n">mockCustomerNameFormatter</span><span class="p">.</span><span class="n">Protected</span><span class="p">()</span>
+    <span class="p">.</span><span class="n">Setup</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;(</span><span class="s">&quot;ParseBadWordsFrom&quot;</span><span class="p">,</span> <span class="n">ItExpr</span><span class="p">.</span><span class="n">IsAny</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;())</span>
+    <span class="p">.</span><span class="n">Returns</span><span class="p">(</span><span class="s">&quot;asdf&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">Verifiable</span><span class="p">();</span>
+
+<span class="n">mockCustomerNameFormatter</span><span class="p">.</span><span class="n">Verify</span><span class="p">();</span>
+</pre></div>
+
+
+</figure>
+                </div>
+            </article>
+            <hr/>
+
+    <ul class="pagination">
+            <li class="prev disabled"><a href="#">&laquo;</a></li>
+                <li class="active"><a
+                        href="http://ciwchris.github.io/category/.html">1</a></li>
+                <li class=""><a
+                        href="http://ciwchris.github.io/category/2.html">2</a></li>
+            <li class="next"><a
+                    href="http://ciwchris.github.io/category/.html2.html">&raquo;</a></li>
+    </ul>
+        </div>
+        <div class="col-sm-3 well well-sm" id="sidebar">
+
+<aside>
+    <section>
+        <ul class="list-group list-group-flush">
+
+
+
+                <li class="list-group-item"><a href="http://ciwchris.github.io/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                    <ul class="list-group " id="tags">
+                        <li class="list-group-item tag-1">
+                            <a href="http://ciwchris.github.io/tags/vim.html">
+                                vim
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-2">
+                            <a href="http://ciwchris.github.io/tags/powershell.html">
+                                powershell
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://ciwchris.github.io/tags/tests.html">
+                                tests
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://ciwchris.github.io/tags/techradar.html">
+                                techradar
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://ciwchris.github.io/tags/sicp.html">
+                                sicp
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://ciwchris.github.io/tags/cli.html">
+                                cli
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://ciwchris.github.io/tags/books.html">
+                                books
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://ciwchris.github.io/tags/c.html">
+                                c#
+                            </a>
+                        </li>
+                    </ul>
+                </li>    
+
+        </ul>
+    </section>
+
+</aside>        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2013 Chris
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="http://ciwchris.github.io/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="http://ciwchris.github.io/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="http://ciwchris.github.io/theme/js/respond.min.js"></script>
+
+</body>
+</html>
