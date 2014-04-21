@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>Notes for working with tmux - Notes to self</title>
+    <title>testing - Notes to self</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -12,9 +12,10 @@
 
     <!-- Open Graph tags -->
         <meta property="og:site_name" content="Notes to self" />
-            <meta property="og:type" content="article"/>
-            <meta property="og:title" content="Notes for working with tmux"/>
-            <meta property="og:url" content="http://ciwchris.github.io/notes-tmux.html"/>
+            <meta property="og:type" content="website"/>
+            <meta property="og:title" content="Notes to self"/>
+            <meta property="og:url" content="http://ciwchris.github.io"/>
+            <meta property="og:description" content="Notes to self"/>
 
     <!-- Bootstrap -->
         <link rel="stylesheet" href="http://ciwchris.github.io/theme/css/bootstrap.min.css" type="text/css"/>
@@ -57,47 +58,46 @@ Notes to self            </a>
     <div class="row">
         <div class="col-sm-9">
 
-    <section id="content" class="body">
-        <h1 class="entry-title">Notes for working with tmux</h1>
-        
-        <div class="entry-content">
-            <h3>Creating, closing and navigating</h3>
+            <article>
+                <header class="page-header">
+                    <h1>
+                        <a href="http://ciwchris.github.io/blog/helpful-tips-when-implementing-test-automation.html"
+                            rel="bookmark"
+                            title="Permalink to Helpful Tips When Implementing Test Automation">
+                            Helpful Tips When Implementing Test Automation
+                        </a>
+                    </h1>
+                </header>
+                <div class="entry-content">
+                    <div class="panel">
+                        <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2014-04-21T09:00:00"> Mon 21 April 2014</time>
+    </span>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://ciwchris.github.io/tags/testing.html">testing</a>
+    
+</footer><!-- /.post-info -->                        </div>
+                    </div>
+                    <h4>Testing Talks: <a href="http://joecolantonio.com/testtalks/08-greg-paskal-helpful-tips-when-implementing-test-automation/">08 : Greg Paskal : Helpful Tips When Implementing Test Automation</a></h4>
 <ul>
-<li>bind key: C-Space</li>
-<li>help: ?</li>
-<li>create window: c</li>
-<li>horizontal split: h</li>
-<li>vertical split: v</li>
-<li>kill pane: x</li>
-<li>kill window: q</li>
-<li>move to next window: n</li>
-<li>move to previous window: p</li>
-<li>move to window #: #</li>
-<li>find window: f</li>
+<li>Click and record makes for a nice sales demo but doesn't really have any sustainability</li>
+<li>Don't start by automating everything. Start with what will help manual testers the most, which may be populating test data.</li>
+<li>Don't just get to the finish line. Create a test framework which is maintainable by others</li>
+<li>NCurve effect: starts steep then after the top there is a gradual decline. Writing the first test is like going up the steep slope.</li>
+<li>Manual testing will never go away. Automated testing frees testers from the mundane and allows them to be creative.</li>
+<li><a href="http://www.gregpaskal.com/mets/">METS</a>: minimal essential testing strategy.</li>
+<li>Biggest problem: using tools as discovered not as designed. Set aside budget and time to learn them. Training.</li>
 </ul>
-<h3>Detach and reattach sessions</h3>
-<ul>
-<li>name session: $</li>
-<li>detach session: d</li>
-<li>reattach: tmux attach -t name</li>
-<li>Seems you cannot persist sessions for use after reboot</li>
-</ul>
-<h3>Combining and seperating panes</h3>
-<ul>
-<li>join pane: j</li>
-<li>send to pane: s</li>
-<li>breakout pane: !</li>
-<li>rename window: ,</li>
-</ul>
-<h3>Navigating with Vim</h3>
-<ul>
-<li>move to left pane: C-h</li>
-<li>move to right pane: C-l</li>
-<li>move to lower pane: C-j</li>
-<li>move to upper pane: C-k</li>
-</ul>
-        </div>
-    </section>
+                </div>
+            </article>
+            <hr/>
+
         </div>
         <div class="col-sm-3 well well-sm" id="sidebar">
 

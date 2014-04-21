@@ -61,6 +61,88 @@ Notes to self            </a>
             <article>
                 <header class="page-header">
                     <h1>
+                        <a href="http://ciwchris.github.io/blog/examining-the-contents-of-a-macro.html"
+                            rel="bookmark"
+                            title="Permalink to Examining the contents of a macro">
+                            Examining the contents of a macro
+                        </a>
+                    </h1>
+                </header>
+                <div class="entry-content">
+                    <div class="panel">
+                        <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2013-02-13T15:42:00"> Wed 13 February 2013</time>
+    </span>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://ciwchris.github.io/tags/vim.html">vim</a>
+    
+</footer><!-- /.post-info -->                        </div>
+                    </div>
+                    <p>Macros are a breeze in Vim! But often I make a mistake while recording the macro, undo my change and repeat. Hopefully I get it right the next time, but I'd rather not look at the statistics. It turns out the registers Vim stores macros in are the same set of registers used for other operations. What this means is that I can <code>put</code> the contents of the register, modify it and then <code>yank</code> it back in. Let's say I had the following list of names:</p>
+<figure class='code'>
+<figcaption class='code-title'><span>John Smith</span></figcaption>
+
+<div class="highlight"><pre><span class="n">Joe</span> <span class="n">Smith</span>
+<span class="n">Bob</span> <span class="n">Smith</span>
+<span class="n">Mike</span> <span class="n">Smith</span>
+<span class="n">Juan</span> <span class="n">Carlos</span>
+<span class="n">Jane</span> <span class="n">Smith</span>
+<span class="n">Mike</span> <span class="n">Jones</span>
+<span class="n">David</span> <span class="n">Smith</span>
+<span class="n">Sarah</span> <span class="n">Smith</span>
+<span class="n">James</span> <span class="n">Smith</span>
+</pre></div>
+
+
+</figure>
+
+<p>And I want to swap the first name and last name. There are many ways to do this but using a macro one may write:</p>
+<figure class='code'>
+
+<div class="highlight"><pre>^dwA ^[pxj
+</pre></div>
+
+
+</figure>
+
+<p>I can read these commands into register <code>a</code> by yanking the line like so, <code>"ay$</code>. Now I can use it as a macro to swap the names, <code>10@a</code>. Voilà!</p>
+<figure class='code'>
+<figcaption class='code-title'><span>Smith John</span></figcaption>
+
+<div class="highlight"><pre><span class="n">Smith</span> <span class="n">Joe</span>
+<span class="n">Smith</span> <span class="n">Bob</span>
+<span class="n">Smith</span> <span class="n">Mike</span>
+<span class="n">Carlos</span> <span class="n">Juan</span>
+<span class="n">Smith</span> <span class="n">Jane</span>
+<span class="n">Jones</span> <span class="n">Mike</span>
+<span class="n">Smith</span> <span class="n">David</span>
+<span class="n">Smith</span> <span class="n">Sarah</span>
+<span class="n">Smith</span> <span class="n">James</span>
+</pre></div>
+
+
+</figure>
+
+<p>To always make this macro avaiable I can save it in my <code>.vimrc</code>.</p>
+<figure class='code'>
+
+<div class="highlight"><pre><span class="k">let</span> @<span class="k">a</span><span class="p">=</span><span class="s1">&#39;^dwA ^[pxj&#39;</span>
+</pre></div>
+
+
+</figure>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <header class="page-header">
+                    <h1>
                         <a href="http://ciwchris.github.io/blog/reversing-a-file-in-vim.html"
                             rel="bookmark"
                             title="Permalink to Reversing a file in vim">
@@ -141,13 +223,18 @@ Notes to self            </a>
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
-                            <a href="http://ciwchris.github.io/tags/sicp.html">
-                                sicp
+                            <a href="http://ciwchris.github.io/tags/craftsmanship.html">
+                                craftsmanship
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
-                            <a href="http://ciwchris.github.io/tags/clojurescript-angular.html">
-                                clojurescript angular
+                            <a href="http://ciwchris.github.io/tags/testing.html">
+                                testing
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://ciwchris.github.io/tags/c.html">
+                                c#
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
@@ -156,18 +243,13 @@ Notes to self            </a>
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
-                            <a href="http://ciwchris.github.io/tags/techradar.html">
-                                techradar
+                            <a href="http://ciwchris.github.io/tags/philosophy.html">
+                                philosophy
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
-                            <a href="http://ciwchris.github.io/tags/cli.html">
-                                cli
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://ciwchris.github.io/tags/mocking.html">
-                                mocking
+                            <a href="http://ciwchris.github.io/tags/clojurescript-angular.html">
+                                clojurescript angular
                             </a>
                         </li>
                     </ul>

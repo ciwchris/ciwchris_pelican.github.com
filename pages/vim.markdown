@@ -26,6 +26,13 @@ Summary:
 
 - :Unite file_mru
 
+## Misc
+
+- Copy and then can paste filename
+    - :let @" = expand("%")
+    - Ctrl+R%
+- Move to next search: gn
+
 ## Todo
 
 - vim-vinegar
