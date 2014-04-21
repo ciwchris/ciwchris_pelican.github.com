@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>craftsmanship - Notes to self</title>
+    <title>Notes for working with Pelican - Notes to self</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -12,10 +12,9 @@
 
     <!-- Open Graph tags -->
         <meta property="og:site_name" content="Notes to self" />
-            <meta property="og:type" content="website"/>
-            <meta property="og:title" content="Notes to self"/>
-            <meta property="og:url" content="http://ciwchris.github.io"/>
-            <meta property="og:description" content="Notes to self"/>
+            <meta property="og:type" content="article"/>
+            <meta property="og:title" content="Notes for working with Pelican"/>
+            <meta property="og:url" content="http://ciwchris.github.io/blog-notes.html"/>
 
     <!-- Bootstrap -->
         <link rel="stylesheet" href="http://ciwchris.github.io/theme/css/bootstrap.min.css" type="text/css"/>
@@ -58,67 +57,33 @@ Notes to self            </a>
     <div class="row">
         <div class="col-sm-9">
 
-            <article>
-                <header class="page-header">
-                    <h1>
-                        <a href="http://ciwchris.github.io/blog/the-reasonable-expectations-of-your-CTO.html"
-                            rel="bookmark"
-                            title="Permalink to The reasonable expectations of your CTO">
-                            The reasonable expectations of your CTO
-                        </a>
-                    </h1>
-                </header>
-                <div class="entry-content">
-                    <div class="panel">
-                        <div class="panel-body">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2013-02-25T21:11:00"> Mon 25 February 2013</time>
-    </span>
-
-
-
-<span class="label label-default">Tags</span>
-	<a href="http://ciwchris.github.io/tags/craftsmanship.html">craftsmanship</a>
-        /
-	<a href="http://ciwchris.github.io/tags/philosophy.html">philosophy</a>
-    
-</footer><!-- /.post-info -->                        </div>
-                    </div>
-                    <p>Notes from the presentation "The Reasonable Expectations of Your CTO" given by Uncle Bob: <a href="http://vimeo.com/56708193">Demanding Professionalism: Uncle Bob @ Philly .NET User Group</a>. The talk begins approximately 21 minutes in.</p>
-<h3>Reasonable Expectations</h3>
+    <section id="content" class="body">
+        <h1 class="entry-title">Notes for working with Pelican</h1>
+        
+        <div class="entry-content">
+            <h3>Pelican</h3>
 <ul>
-<li><strong>Don't ship junk:</strong> "But we had to make a mess to make the deadline." This is a bad trade off. Take the time, it will keep you going fast later.</li>
-<li><strong>Always be ready to ship:</strong> Not all the features may be complete, but it is a business decision to ship it or not. We should always be ready, at any moment.</li>
-<li><strong>Stable Productivity:</strong> It's easy to start a project fast. Inevitably you start slowing down more and more. Start and continue well.</li>
-<li><strong>Inexpensive adaptability:</strong> A change in requirements should be cheap. It's called <em>soft</em>ware for a reason.</li>
-<li><strong>Continuous improvement:</strong> Code should be left better. Could should not be left to rot.</li>
-<li><strong>Fearless competence:</strong> Should not be afraid to change the code.</li>
-<li><strong>Extreme quality:</strong> Should feel good about the work we did. This should be our first motivation.</li>
-<li><strong>Will not dump on QA:</strong> QA should not find anything. Should be considered a failure if they do.</li>
-<li><strong>Automation:</strong> QA shouldn't have to spend a day verifying everything in the application. Automation can perform this task.</li>
-<li><strong>Nothing fragile:</strong> Shouldn't be afraid to touch something because you might break it.</li>
-<li><strong>Cover for each other:</strong> Someone else should know what you know. If you are gone someone else should be able to perform your tasks.</li>
-<li><strong>Honest estimates:</strong> Accurate versus precise. Don't say you can do something when you know you can't.</li>
-<li><strong>Say "No":</strong> When it's wrong you need to say so.</li>
-<li><strong>Continuous aggressive learning:</strong> Need to be at the front of change. We are responsible for our career.</li>
-<li><strong>Teaching:</strong> We don't train new developers how to be developers. We leave them on their own. Teaching also helps us learn.</li>
+<li>$ workon blog</li>
+<li>Copy an existing entry<ul>
+<li>Eventually use vim Utilsnips to create an entry</li>
 </ul>
-<h3>Questions</h3>
+</li>
+<li>$ make html</li>
+<li>$ make serve</li>
+<li>git push origin source</li>
+<li>cd output</li>
+<li>git push origin master</li>
+</ul>
+<h3>Virtualenv/Virtualenwrapper</h3>
 <ul>
-<li>Are any of the expectations, by themselves, unreasonable?</li>
-<li>Any of these expectations standout? Any you felt more passionate about?</li>
-<li>Were any of the comments made, while unpacking the expectations, unreasonable?</li>
-<li>How well do we meet each expectation?</li>
-<li>For those expectations we are weak can we rank in priority order and then, beginning at the highest, make a change to improve our ability to meet the expectation?</li>
+<li>$ workon blog</li>
+<li>$ deactivate</li>
+<li>$ mkvirtualenv -a path/to/dir/if/already/exists blog</li>
+<li>$ lsvirtualenv</li>
+<li>$ rmvirtualenv</li>
 </ul>
-<p>Robbie Clutton posted similar notes on this presentation which are worth viewing: <a href="http://pivotallabs.com/uncle-bob-agile-testing-and-bdd/">Agile Testing and BDD</a>.</p>
-<p>Relatedly, Bevan's post on <a href="http://www.nichesoftware.co.nz/blog/2013-01/607/secret-awesome-software">"The secret to Awesome software"</a> is well worth a read.</p>
-                </div>
-            </article>
-            <hr/>
-
+        </div>
+    </section>
         </div>
         <div class="col-sm-3 well well-sm" id="sidebar">
 
@@ -183,7 +148,7 @@ Notes to self            </a>
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2013 Chris
+         <div class="col-xs-10">&copy; 2014 Chris
             &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
