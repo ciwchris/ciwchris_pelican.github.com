@@ -1099,7 +1099,7 @@
 &lt;span class="p"&gt;-&lt;/span&gt; &lt;span class="n"&gt;Parameters&lt;/span&gt; &lt;span class="n"&gt;are&lt;/span&gt; &lt;span class="n"&gt;values&lt;/span&gt; &lt;span class="n"&gt;objects&lt;/span&gt; &lt;span class="n"&gt;by&lt;/span&gt; &lt;span class="k"&gt;default&lt;/span&gt;
 &lt;span class="p"&gt;-&lt;/span&gt; &lt;span class="n"&gt;Can&lt;/span&gt; &lt;span class="n"&gt;work&lt;/span&gt; &lt;span class="n"&gt;with&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;pipeline&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;like&lt;/span&gt; &lt;span class="n"&gt;script&lt;/span&gt; &lt;span class="n"&gt;blocks&lt;/span&gt;
 
-&lt;span class="p"&gt;{%&lt;/span&gt; &lt;span class="n"&gt;include_code&lt;/span&gt; &lt;span class="n"&gt;lang&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="n"&gt;PowerShell&lt;/span&gt; &lt;span class="n"&gt;Functions&lt;/span&gt;
+&lt;span class="p"&gt;{%&lt;/span&gt; &lt;span class="n"&gt;inline_code&lt;/span&gt; &lt;span class="n"&gt;lang&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="n"&gt;PowerShell&lt;/span&gt; &lt;span class="n"&gt;Functions&lt;/span&gt;
 &lt;span class="k"&gt;function&lt;/span&gt;  &lt;span class="nb"&gt;Set-Var&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;[ref]&lt;/span&gt; &lt;span class="nv"&gt;$var&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="nv"&gt;$var&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Value&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="n"&gt;33&lt;/span&gt;
