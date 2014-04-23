@@ -19,18 +19,18 @@ Notes for the pluralsight course [Mocking With Moq](http://pluralsight.com/train
 
 ### Samples ###
 
-{% include_code lang:csharp Verify a method is called
+{% inline_code lang:csharp Verify a method is called
 mockRepository.Setup(x => x.Save(It.IsAny<Customer>()));
 
 mockRepository.VerifyAll();
 %}
 
-{% include_code lang:csharp Verify a method was called n times
+{% inline_code lang:csharp Verify a method was called n times
 mockCustomerRepository.Verify(x=>x.Save(It.IsAny<Customer>()),
 	Times.Exactly(2));
 %}
 
-{% include_code lang:csharp Mock return a value
+{% inline_code lang:csharp Mock return a value
 mockAddressBuilder
 	.Setup(x => x.From(It.IsAny<CustomerToCreateDto>()))
 	.Returns(() => new Address());
@@ -38,7 +38,7 @@ mockAddressBuilder
 mockCustomerRepository.Verify(y=>y.Save(It.IsAny<Customer>()));
 %}
 
-{% include_code lang:csharp Using an out parameter
+{% inline_code lang:csharp Using an out parameter
 mockMailingAddressFactory
 	.Setup(x => x.TryParse(It.IsAny<string>(), out mailingAddress))
 	.Returns(true);
@@ -46,7 +46,7 @@ mockMailingAddressFactory
 mockCustomerRepository.Verify(x=>x.Save(It.IsAny<Customer>()));
 %}
 
-{% include_code lang:csharp Change the return value after each call to the mocked member
+{% inline_code lang:csharp Change the return value after each call to the mocked member
 mockIdFactory.Setup(x => x.Create())
 	.Returns(() => i)
 	.Callback(() => i++);
@@ -54,7 +54,7 @@ mockIdFactory.Setup(x => x.Create())
 mockIdFactory.Verify(x => x.Create(), Times.AtLeastOnce());
 %}
 
-{% include_code lang:csharp Verify the arguments passed to the mocked method are as expected
+{% inline_code lang:csharp Verify the arguments passed to the mocked method are as expected
 mockFullNameBuilder.Setup(
 	x => x.From(It.IsAny<string>(), It.IsAny<string>()));
 
@@ -67,7 +67,7 @@ mockFullNameBuilder.Verify(x=>x.From(
 			StringComparison.InvariantCultureIgnoreCase))));
 %}
 
-{% include_code lang:csharp Conditionally return a value, control code flow
+{% inline_code lang:csharp Conditionally return a value, control code flow
 mockCustomerStatusFactory.Setup(
 	x => x.CreateFrom(
 		It.Is<CustomerToCreateDto>(
@@ -78,25 +78,25 @@ mockCustomerRepository.Verify(
 	x=>x.SaveSpecial(It.IsAny<Customer>()));
 %}
 
-{% include_code lang:csharp Throw an exception
+{% inline_code lang:csharp Throw an exception
 mockCustomerAddressFactory
 	.Setup(x => x.From(It.IsAny<CustomerToCreateDto>()))
 	.Throws<InvalidCustomerAddressException>();
 %}
 
-{% include_code lang:csharp Verify a setter has been set
+{% inline_code lang:csharp Verify a setter has been set
 mockCustomerRepository.VerifySet(
 	x=>x.LocalTimeZone = It.IsAny<string>());
 %}
 
-{% include_code lang:csharp Verify a getter has been called
+{% inline_code lang:csharp Verify a getter has been called
 mockApplicationSettings.Setup(x => x.WorkstationId).Returns(123);
 
 mockApplicationSettings.VerifyGet(x=>x.WorkstationId);
 %}
 For nested objects you don't have to mock each object; Moq will automatically return a mocked object if it can.
 
-{% include_code lang:csharp Recursive/nested properties, Moq realizes each is mockable and so will return a mock for each
+{% inline_code lang:csharp Recursive/nested properties, Moq realizes each is mockable and so will return a mock for each
 mockApplicationSettings.Setup(
 	x => x.SystemConfiguration.AuditingInformation.WorkstationId)
 	.Returns(123);
@@ -105,20 +105,20 @@ mockApplicationSettings.VerifyGet(
 	x => x.SystemConfiguration.AuditingInformation.WorkstationId);
 %}
 
-{% include_code lang:csharp Stub a property
+{% inline_code lang:csharp Stub a property
 mockApplicationSettings.SetupProperty(x => x.WorkstationId, 1234);
 
 mockApplicationSettings.VerifyGet(x=>x.WorkstationId);
 %}
 
-{% include_code lang:csharp Stub all properties
+{% inline_code lang:csharp Stub all properties
 mockApplicationSettings.SetupAllProperties();
 mockApplicationSettings.Object.WorkstationId = 2345;
 
 mockApplicationSettings.VerifyGet(x=>x.WorkstationId);
 %}
 
-{% include_code lang:csharp Event
+{% inline_code lang:csharp Event
 mockCustomerRepository.Raise(
 	x=>x.NotifySalesTeam += null,
 	new NotifySalesTeamEventArgs("jim"));
@@ -127,7 +127,7 @@ mockMailingRepository.Verify(
 	x => x.NewCustomerMessage(It.IsAny<string>()));
 %}
 
-{% include_code lang:csharp Custom event
+{% inline_code lang:csharp Custom event
 mockCustomerRepository.Raise(
 	x=>x.NotifySalesTeam += null,
 	"jim", false);
@@ -141,7 +141,7 @@ Two types of mocks:
 1. **Loose:** if the object doesn't have any expectations set it will return the default value for the object. It will not throw an exception when verify is called. This is the default behavior for Moq
 2. **Strict:** exception will be thrown if the object hasn't been explicitly setup.
 
-{% include_code lang:csharp Strict mock behavior
+{% inline_code lang:csharp Strict mock behavior
 var mockCustomerRepository = 
 	new Mock<ICustomerRepository>(MockBehavior.Strict);
 mockCustomerRepository.Setup(x => x.Save(It.IsAny<Customer>()));
@@ -151,7 +151,7 @@ mockCustomerRepository.Verify();
 
 **Partial mock:** allows invocation of a base class implementation
 
-{% include_code lang:csharp Mock the SUT when working with a base class
+{% inline_code lang:csharp Mock the SUT when working with a base class
 mockNameFormatter.Object.From(new Customer("Bob", "SAPBuilder"));
 
 mockNameFormatter.Verify(
@@ -161,7 +161,7 @@ mockNameFormatter.Verify(
 
 **Recursive:** Set the default value of a mock to return a mocked object, `DefaultValue = DefaultValue.Mock`, instead of the object's default value, this only works if  the object is mockable. Then use `Mock.Get()` to retrieve the actual mock which can then be used like any other mocked object
 
-{% include_code lang:csharp Recursive mock
+{% inline_code lang:csharp Recursive mock
 var mockAddressFormatterFactory = 
 	new Mock<IAddressFormatterFactory> 
 		{DefaultValue = DefaultValue.Mock};
@@ -173,7 +173,7 @@ mock.Verify(x=>x.From(It.IsAny<CustomerToCreateDto>()));
 %}
 Use a mock factory when working with lots of dependencies. This centralizes the creation and verification of all mock objects.
 
-{% include_code lang:csharp Mock factory
+{% inline_code lang:csharp Mock factory
 var mockFactory = new MockRepository(MockBehavior.Loose) 
 				{DefaultValue = DefaultValue.Mock};
 var mockCustomerRepository = 
@@ -186,7 +186,7 @@ mockFactory.Verify();
 
 When mocking protected members the member must be marked as virtual. You lose intellisense, method name must appear in a string. Must use `ItExpr` instead of `It`.
 
-{% include_code lang:csharp Protected members
+{% inline_code lang:csharp Protected members
 mockCustomerNameFormatter.Protected()
 	.Setup<string>("ParseBadWordsFrom", ItExpr.IsAny<string>())
 	.Returns("asdf")

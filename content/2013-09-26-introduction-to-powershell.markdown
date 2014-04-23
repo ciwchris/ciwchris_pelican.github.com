@@ -10,27 +10,27 @@ Notes from the Pluralsight course [Introduction to PowerShell](http://pluralsigh
 
 ### Introduction
 
-{% include_code lang:PowerShell Aliases
+{% inline_code lang:PowerShell Aliases
 get-alias
 set-alias list get-childitem
 export-alias myalias.csv lis*
 import-alias myalias.csv
 %}
 
-{% include_code lang:PowerShell Help
+{% inline_code lang:PowerShell Help
 get-command -verb "get"
 get-command -noun "service"
 get-command -? # Help on get-command
 %}
 
-{% include_code lang:PowerShell
+{% inline_code lang:PowerShell
 gci |
   where-object { $_.length -gt 100kb } |
   sort-object length |
   ft -property name, length -autosize
 %}
 
-{% include_code lang:PowerShell Providers
+{% inline_code lang:PowerShell Providers
 get-psprovider
 get-psdrive
 clear-host
@@ -46,7 +46,7 @@ remove-pssnapin SqlServerCmdletSnapin100
 
 ### Variables
 
-{% include_code lang:PowerShell
+{% inline_code lang:PowerShell
 $hi = "Hello World"
 $hi # same is write-host $hi
 [System.Int32]$myint = 42 # or [int] $myint = 42
@@ -66,7 +66,7 @@ Comparisons
 - -NotMatch
 - Data on right side of comparison is converted to the data type of the left side
 
-{% include_code lang:PowerShell *-Variable
+{% inline_code lang:PowerShell *-Variable
 New-Variable  -Name var -Value 123
 Get-Variable var -valueonly
 Get-Variable
@@ -75,7 +75,7 @@ Clear-Variable -Name var
 Remove-Variable -Name var
 %}
 
-{% include_code lang:PowerShell Strings
+{% inline_code lang:PowerShell Strings
 "Hello ""Word"""
 $heretext = @"
 text
@@ -92,7 +92,7 @@ Special characters
 - r: carriage return
 - t: tab
 
-{% include_code lang:PowerShell Array
+{% inline_code lang:PowerShell Array
 $array = "one", "two"
 $array = @("one", "two") # formal syntax
 $array = 1..5 # range
@@ -101,7 +101,7 @@ $array -contain 2
 $array -notcontain 20
 %}
 
-{% include_code lang:PowerShell HashTables
+{% inline_code lang:PowerShell HashTables
 $hash = @{"Key" = "Value" }
 $hash["Key"]
 $hash."Key"
@@ -130,7 +130,7 @@ Built in variables
 
 ### Programming
 
-{% include_code lang:PowerShell switch
+{% inline_code lang:PowerShell switch
 switch -casesensitive -wildcard ("test", "hello")
 {
 	"Te*" {"Found test"; break}
@@ -139,7 +139,7 @@ switch -casesensitive -wildcard ("test", "hello")
 }
 %}
 
-{% include_code lang:PowerShell for loops
+{% inline_code lang:PowerShell for loops
 $i = 0
 for (; $i -lt < 5; $i++)
 {
@@ -151,7 +151,7 @@ foreach ($file in gci)
 }
 %}
 
-{% include_code lang:PowerShell Script Block
+{% inline_code lang:PowerShell Script Block
 $a = {clear-host; "hello"}
 $a
 & $a # run the script block
@@ -164,7 +164,7 @@ $value = {42; write-host "hello" } # will return 42 and execute the write-host
 $value = {return 42; write-host "hello" } # only returns 42
 %}
 
-{% include_code lang:PowerShell Passing Parameters
+{% inline_code lang:PowerShell Passing Parameters
 $qa = {
 	$question = $args[0]
 	$answer = $args[1]
@@ -181,7 +181,7 @@ $qa = {
 &$qa -q "What is" -a "The answer"
 %}
 
-{% include_code lang:PowerShell Piplining Parameters
+{% inline_code lang:PowerShell Piplining Parameters
 $files = 
 {
 	param ($headertext = "default header")
@@ -201,7 +201,7 @@ Scoping
 - If set inside the script block it makes a copy
 - Only exists while within the script block
 
-{% include_code lang:PowerShell Scopes
+{% inline_code lang:PowerShell Scopes
 $var = 42
 & { $var = 33;
 	write-host $var
@@ -215,7 +215,7 @@ Functions
 - Parameters are values objects by default
 - Can work with the pipeline, like script blocks
 
-{% include_code lang:PowerShell Functions
+{% inline_code lang:PowerShell Functions
 function  Set-Var([ref] $var)
 {
 	$var.Value = 33
@@ -224,7 +224,7 @@ $var = 42
 Set-Var ([ref] $var)
 %}
 
-{% include_code lang:PowerShell Filters
+{% inline_code lang:PowerShell Filters
 filter Show-PS1Files
 {
 	$filename = $_.Name
@@ -236,7 +236,7 @@ filter Show-PS1Files
 gci | show-ps1files
 %}
 
-{% include_code lang:PowerShell Output to the pipeline
+{% inline_code lang:PowerShell Output to the pipeline
 function Get-ChildName()
 {
 	param([switch]$verbose)
@@ -265,7 +265,7 @@ Help Content: Get-Help about_comment_based_help
 - .NOTES
 - .LINK
 
-{% include_code lang:PowerShell Help Content
+{% inline_code lang:PowerShell Help Content
 function Get-ChildName()
 {
 
@@ -311,7 +311,7 @@ function Get-ChildName()
 }
 %}
 
-{% include_code lang:PowerShell Files
+{% inline_code lang:PowerShell Files
 $a = Get-Content "test.txt"
 $a[2] # uses an array to store the contents
 $all = [string]::Join([System.Environment]::NewLine, $a) # or `r`n
@@ -322,7 +322,7 @@ Remove-Item "new.txt"
 Test-Path "test.txt"
 %}
 
-{% include_code lang:PowerShell XML Filse
+{% inline_code lang:PowerShell XML Filse
 $xml = @"
 <root>
 	<one>value</one>
@@ -338,7 +338,7 @@ $testXml.Save("test.xml")
 [xml]$testXml = Get-Content "test.xml"
 %}
 
-{% include_code lang:PowerShell Misc
+{% inline_code lang:PowerShell Misc
 $choice = Read-Host -Prompt "Select something"
 $padding = " " * 10 # repeat an item
 %}

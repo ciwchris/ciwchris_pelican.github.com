@@ -11,14 +11,14 @@ Notes from the Pluralsight course [Formatting With PowerShell](http://pluralsigh
 ### ToString
 
 
-{% include_code lang:PowerShell
+{% inline_code lang:PowerShell
 $obj = New-Object System.Object
 $obj.ToString()
 %}
 
 
 
-{% include_code lang:PowerShell Using a format provider
+{% inline_code lang:PowerShell Using a format provider
 $n = 4242.42
 Get-Culture
 $c = New-Object System.Globalization.CultureInfo de-DE
@@ -46,12 +46,12 @@ Custom Numeric Placeholders
 - %: Percentage
 - ;: Section (different for positive, negative, zero)
 
-{% include_code lang:PowerShell Sections
+{% inline_code lang:PowerShell Sections
 $v1 = 1; $v2 = 2; $v3 = 0
 $v1.ToString("#0.0#;(#0.0#);-\0-")
 %}
 
-{% include_code lang:PowerShell NumberFormatInfo
+{% inline_code lang:PowerShell NumberFormatInfo
 $c = Get-Culture
 $c | Get-Member -member proptery *format*
 # DateTimeFormat
@@ -67,13 +67,13 @@ $nf.CurrenceyGroupSeparator="/"
 # ZOG 42/424/242*42
 %}
 
-{% include_code lang:PowerShell TimeSpan
+{% inline_code lang:PowerShell TimeSpan
 $ms = Get-Date "August 9, 1995"
 $today = Get-Date
 $time-span = New-TimeSpan -start $ms -end $today
 %}
 
-{% include_code lang:PowerShell Enums
+{% inline_code lang:PowerShell Enums
 $enum = [System.Windows.Forms.Day]
 "{0,9} {1,9} {2,4} {3,10}" -f "g", "f", "d", "x" #heading
 Foreach ($e in [System.enum]::getvalues($enum)) {
@@ -92,7 +92,7 @@ Foreach ($e in [System.enum]::getvalues($enum)) {
 	- Negative: left justified
 - F: format string
 
-{% include_code lang:PowerShell
+{% inline_code lang:PowerShell
 "{0} [{1,4}]=[{1,-4], and costs {2,-10:c}" -f 1, 2, 42.4242
 "Today is {0}" -f (Get-Date).ToString("g")
 "Today is {0:g}" -f Get-Date
@@ -118,7 +118,7 @@ Table/List Formatting
 - XML Property Set in Type.Ps1XML
 - Total properties
 
-{% include_code lang:PowerShell AutoSize
+{% inline_code lang:PowerShell AutoSize
 gps notepad | ft ProcessName, CPU -Autosize
 %}
 
@@ -130,22 +130,22 @@ Truncation
 
 Format-Wide: display single property using multiple columns
 
-{% include_code lang:PowerShell Format-Wide
+{% inline_code lang:PowerShell Format-Wide
 gps | fw -property name -column 5
 %}
-{% include_code lang:PowerShell Select-Object
+{% inline_code lang:PowerShell Select-Object
 gps | select-object -first 20 name, handles, cpu
 gps | select-object *, @{Label='ComputerName';Expression={$_.Name}}
 %}
 
 ### Hash Tables
 
-{% include_code lang:PowerShell Hash Table
+{% inline_code lang:PowerShell Hash Table
 $ht = @{name="Thomas Lee"; course='Formatting'}
 $ht += @{vendor="Pluralsight"; modules=6}
 %}
 
-{% include_code lang:PowerShell Hash Table Properties
+{% inline_code lang:PowerShell Hash Table Properties
 $pn = @{Label="Process Name"; Expression={$_.name}; Alignment = "right" }
 $cpu = @{Label="CPU Used"; Expression={$_.CPU}; Alignment = "right"; FormatString="N3"}
 gps notepad | ft $pn,$cpu -auto
@@ -156,7 +156,7 @@ gps notepad | ft $pn,$cpu -auto
 - Stored in $Pshome folder
 - Update-FormatData: load new format files using 
 
-{% include_code lang:PowerShell Display Format
+{% inline_code lang:PowerShell Display Format
 cat '.\test.format.ps1xml'
 <?xml version='1.0' encoding='utf-8' ?>
 <Configuration>
@@ -171,7 +171,7 @@ cat '.\test.format.ps1xml'
 Update-FormatData -Prepend '.\test.form.ps1xml'
 %}
 
-{% include_code lang:PowerShell Format Lists
+{% inline_code lang:PowerShell Format Lists
 cat '.\test.format.ps1xml'
 <?xml version='1.0' encoding='utf-8' ?>
 <Configuration><ViewDefinitions><View>
@@ -197,7 +197,7 @@ gps e* | fl -view CPUCost
 %}
 
 
-{% include_code lang:PowerShell Format Tables
+{% inline_code lang:PowerShell Format Tables
 cat '.\test.format.ps1xml'
 <?xml version='1.0' encoding='utf-8' ?>
 <Configuration><ViewDefinitions><View>
@@ -244,7 +244,7 @@ gps e* | ft -view CPUCost
 - Out-Host: to the command line
 	- Has -Paging
 
-{% include_code lang:PowerShell View all properties
+{% inline_code lang:PowerShell View all properties
 $s = Get-Service | ft -property * -auto | Out-String -width 700 | Out-File test.txt
 %}
 
@@ -253,15 +253,15 @@ Constrained Language in XML: used by PowerShell remoting
 - Export-CLiXML
 - ConvertTo-XML
 
-{% include_code lang:PowerShell XML
+{% inline_code lang:PowerShell XML
 $xml = gps | ConvertTo-XML
 $xml.Save()
 %}
 
-{% include_code lang:PowerShell CSV
+{% inline_code lang:PowerShell CSV
 $object = Import-Csv -name test.csv
 %}
 
-{% include_code lang:PowerShell HTML
+{% inline_code lang:PowerShell HTML
 gps | ConvertTo-HTML | Out-File test.html
 %}

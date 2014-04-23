@@ -10,65 +10,65 @@ Notes from the Pluralsight course [Introduction to the Bash Shell on Mac OS and 
 
 ### Braces
 
-{% include_code lang:bash
+{% inline_code lang:bash
 ls file?{mine,yours}.{txt,png}
 %}
 
 ### Commands
 
-{% include_code lang:bash
+{% inline_code lang:bash
 grep 1978 oscars.tsv | sort > 1978_films.txt
 cut -f 3 oscars.tsv | grep 4 | wc -l
 %}
 
-{% include_code lang:bash Sort second column as numbers in reverse order
+{% inline_code lang:bash Sort second column as numbers in reverse order
 sort -rnk2 math_grades
 %}
 
-{% include_code lang:bash Unique entries with their count
+{% inline_code lang:bash Unique entries with their count
 sort math_attendance | uniq -c | sort -nr
 %}
 
 
-{% include_code lang:bash Find the largest file in the directory
+{% inline_code lang:bash Find the largest file in the directory
 ls -lS | head -n 2 | tail -n 1
 ls -lrS | tail -n 2 # Better way
 %}
 
-{% include_code lang:bash Don't exit but update as new entries come in
+{% inline_code lang:bash Don't exit but update as new entries come in
 tail -f auth.log
 %}
 
-{% include_code lang:bash Number of files in a directory
+{% inline_code lang:bash Number of files in a directory
 ls -a | wc -l
 %}
 
-{% include_code lang:bash Search for bruce, case insensitive, in a set of files
+{% inline_code lang:bash Search for bruce, case insensitive, in a set of files
 grep -i bruce *grades
 %}
 
-{% include_code lang:bash Filter out using an extended regex before working with other content
+{% inline_code lang:bash Filter out using an extended regex before working with other content
 grep -Ev "^$|lecture" math_attendance | sort | uniq -c | sort -nr
 %}
 
-{% include_code lang:bash Search for txt files with curious in them
+{% inline_code lang:bash Search for txt files with curious in them
 find . -name '*.txt' -exec grep -l curious {} \;
 %}
 
-{% include_code lang:bash Change uppercase 'S' to lowercase 's'
+{% inline_code lang:bash Change uppercase 'S' to lowercase 's'
 cat physics_grades | tr S s 
 tr S s < physics_grades # More efficient method
 %}
 
-{% include_code lang:bash Change from tab separated to semicolon separated
+{% inline_code lang:bash Change from tab separated to semicolon separated
 tr \\t \; < oscars.tsv > oscars.csv
 %}
 
-{% include_code lang:bash Using sed
+{% inline_code lang:bash Using sed
 sed 's/something/something new/g' one.txt > two.txt
 %}
 
-{% include_code lang:bash Combine files using columns (not append)
+{% inline_code lang:bash Combine files using columns (not append)
 paste *grades
 join *grades # Using keys
 %}
@@ -76,7 +76,7 @@ join *grades # Using keys
 
 ### Command Substitution
 
-{% include_code lang:bash
+{% inline_code lang:bash
 echo "hello `whoami`" #old form
 echo "Buy milk" > "notes$(date).txt"
 %}

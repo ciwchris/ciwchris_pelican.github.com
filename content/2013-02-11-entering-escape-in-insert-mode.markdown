@@ -8,7 +8,7 @@ Summary:
 
 In the previous post I created a macro which made use of an 'escape':
 
-{% include_code lang:vim
+{% inline_code lang:vim
 ^dwA ^[pxj
 %}
 
