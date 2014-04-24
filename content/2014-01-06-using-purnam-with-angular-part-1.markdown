@@ -1,7 +1,7 @@
 Title: Using AngularJS with ClojureScript: Part 1
 Date: 2014-01-06 15:48
 Category: ClojureScript
-Tags: clojurescript angular
+Tags: clojurescript, angular
 Slug: using-purnam-with-angular-part-1
 Author: Chris
 Summary: 
