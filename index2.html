@@ -61,6 +61,471 @@ Notes to self            </a>
             <article>
                 <header class="page-header">
                     <h1>
+                        <a href="http://ciwchris.github.io/blog/introduction-to-powershell.html"
+                            rel="bookmark"
+                            title="Permalink to Introduction to PowerShell">
+                            Introduction to PowerShell
+                        </a>
+                    </h1>
+                </header>
+                <div class="entry-content">
+                    <div class="panel">
+                        <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2013-09-26T21:41:00"> Thu 26 September 2013</time>
+    </span>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://ciwchris.github.io/tags/powershell.html">powershell</a>
+    
+</footer><!-- /.post-info -->                        </div>
+                    </div>
+                    <p>Notes from the Pluralsight course <a href="http://pluralsight.com/training/Courses/TableOfContents/powershell-intro">Introduction to PowerShell</a></p>
+<h3>Introduction</h3>
+<figure class='code'>
+<figcaption class='code-title'><span>Aliases</span></figcaption>
+
+<div class="highlight"><pre><span class="nb">get-alias</span>
+<span class="nb">set-alias</span> <span class="n">list</span> <span class="nb">get-childitem</span>
+<span class="nb">export-alias</span> <span class="n">myalias</span><span class="p">.</span><span class="n">csv</span> <span class="n">lis</span><span class="p">*</span>
+<span class="nb">import-alias</span> <span class="n">myalias</span><span class="p">.</span><span class="n">csv</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Help</span></figcaption>
+
+<div class="highlight"><pre><span class="nb">get-command</span> <span class="n">-verb</span> <span class="s2">&quot;get&quot;</span>
+<span class="nb">get-command</span> <span class="n">-noun</span> <span class="s2">&quot;service&quot;</span>
+<span class="nb">get-command</span> <span class="p">-?</span> <span class="c"># Help on get-command</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+
+<div class="highlight"><pre><span class="n">gci</span> <span class="p">|</span>
+  <span class="nb">where-object</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">length</span> <span class="o">-gt</span> <span class="n">100kb</span> <span class="p">}</span> <span class="p">|</span>
+  <span class="nb">sort-object</span> <span class="n">length</span> <span class="p">|</span>
+  <span class="n">ft</span> <span class="n">-property</span> <span class="n">name</span><span class="p">,</span> <span class="n">length</span> <span class="n">-autosize</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Providers</span></figcaption>
+
+<div class="highlight"><pre><span class="nb">get-psprovider</span>
+<span class="nb">get-psdrive</span>
+<span class="nb">clear-host</span>
+<span class="nb">set-location</span> <span class="n">env</span><span class="err">:</span>
+<span class="n">gci</span>
+<span class="nb">set-location</span> <span class="k">alias</span><span class="err">:</span>
+<span class="n">gci</span>
+<span class="nb">get-pssnapin</span>
+<span class="nb">get-pssnapin</span> <span class="n">-registered</span>
+<span class="nb">add-pssnapin</span> <span class="n">SqlServerCmdletSnapin100</span>
+<span class="nb">remove-pssnapin</span> <span class="n">SqlServerCmdletSnapin100</span>
+</pre></div>
+
+
+</figure>
+
+<h3>Variables</h3>
+<figure class='code'>
+
+<div class="highlight"><pre><span class="nv">$hi</span> <span class="p">=</span> <span class="s2">&quot;Hello World&quot;</span>
+<span class="nv">$hi</span> <span class="c"># same is write-host $hi</span>
+<span class="no">[System.Int32]</span><span class="nv">$myint</span> <span class="p">=</span> <span class="n">42</span> <span class="c"># or [int] $myint = 42</span>
+</pre></div>
+
+
+</figure>
+
+<p>Comparisons</p>
+<ul>
+<li>-eq</li>
+<li>-ne</li>
+<li>-gt</li>
+<li>-lt</li>
+<li>-ge</li>
+<li>-le</li>
+<li>-Like # wildcard matching</li>
+<li>-NotLike</li>
+<li>-Match # regex matching</li>
+<li>-NotMatch</li>
+<li>Data on right side of comparison is converted to the data type of the left side</li>
+</ul>
+<figure class='code'>
+<figcaption class='code-title'><span>*-Variable</span></figcaption>
+
+<div class="highlight"><pre><span class="nb">New-Variable</span>  <span class="n">-Name</span> <span class="n">var</span> <span class="n">-Value</span> <span class="n">123</span>
+<span class="nb">Get-Variable</span> <span class="n">var</span> <span class="n">-valueonly</span>
+<span class="nb">Get-Variable</span>
+<span class="nb">Set-Variable</span> <span class="n">-Name</span> <span class="n">var</span> <span class="n">-Value</span> <span class="n">789</span>
+<span class="nb">Clear-Variable</span> <span class="n">-Name</span> <span class="n">var</span>
+<span class="nb">Remove-Variable</span> <span class="n">-Name</span> <span class="n">var</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Strings</span></figcaption>
+
+<div class="highlight"><pre><span class="s2">&quot;Hello &quot;&quot;Word&quot;&quot;&quot;</span>
+<span class="nv">$heretext</span> <span class="p">=</span> <span class="sh">@&quot;</span>
+<span class="sh">text</span>
+<span class="sh">more</span>
+<span class="sh">    with a tab</span>
+<span class="sh">    ending</span>
+<span class="sh">&quot;@</span>
+<span class="s2">&quot;There are </span><span class="si">$((gci)</span><span class="s2">.count) items&quot;</span>
+</pre></div>
+
+
+</figure>
+
+<p>Special characters</p>
+<ul>
+<li>b: backspace</li>
+<li>n: newline</li>
+<li>r: carriage return</li>
+<li>t: tab</li>
+</ul>
+<figure class='code'>
+<figcaption class='code-title'><span>Array</span></figcaption>
+
+<div class="highlight"><pre><span class="nv">$array</span> <span class="p">=</span> <span class="s2">&quot;one&quot;</span><span class="p">,</span> <span class="s2">&quot;two&quot;</span>
+<span class="nv">$array</span> <span class="p">=</span> <span class="err">@</span><span class="p">(</span><span class="s2">&quot;one&quot;</span><span class="p">,</span> <span class="s2">&quot;two&quot;</span><span class="p">)</span> <span class="c"># formal syntax</span>
+<span class="nv">$array</span> <span class="p">=</span> <span class="n">1</span><span class="p">..</span><span class="n">5</span> <span class="c"># range</span>
+<span class="nv">$array</span><span class="p">[</span><span class="n">0</span><span class="p">]</span>
+<span class="nv">$array</span> <span class="n">-contain</span> <span class="n">2</span>
+<span class="nv">$array</span> <span class="n">-notcontain</span> <span class="n">20</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>HashTables</span></figcaption>
+
+<div class="highlight"><pre><span class="nv">$hash</span> <span class="p">=</span> <span class="err">@</span><span class="p">{</span><span class="s2">&quot;Key&quot;</span> <span class="p">=</span> <span class="s2">&quot;Value&quot;</span> <span class="p">}</span>
+<span class="nv">$hash</span><span class="p">[</span><span class="s2">&quot;Key&quot;</span><span class="p">]</span>
+<span class="nv">$hash</span><span class="p">.</span><span class="s2">&quot;Key&quot;</span>
+<span class="nv">$mykey</span> <span class="p">=</span> <span class="s2">&quot;Key&quot;</span>
+<span class="nv">$hash</span><span class="p">.</span><span class="nv">$mykey</span>
+<span class="nv">$hash</span><span class="p">.$(</span><span class="nv">$mykey</span><span class="p">)</span> <span class="c"># can use an expression</span>
+<span class="nv">$hash</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="s2">&quot;Key&quot;</span><span class="p">)</span>
+<span class="nv">$hash</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s2">&quot;Key&quot;</span><span class="p">)</span>
+<span class="nv">$hash</span><span class="p">.</span><span class="n">ContainsValue</span><span class="p">(</span><span class="s2">&quot;Value&quot;</span><span class="p">)</span>
+<span class="nv">$hash</span><span class="p">.</span><span class="n">Keys</span>
+<span class="nv">$hash</span><span class="p">.</span><span class="n">Values</span>
+<span class="nv">$hash</span><span class="p">.</span><span class="n">Key</span> <span class="o">-contains</span> <span class="s2">&quot;Key&quot;</span>
+<span class="nv">$hash</span><span class="p">.</span><span class="n">Value</span> <span class="o">-contains</span> <span class="s2">&quot;Value&quot;</span>
+</pre></div>
+
+
+</figure>
+
+<p>Built in variables</p>
+<ul>
+<li>$true, $false</li>
+<li>$null</li>
+<li>$pwd</li>
+<li>$home</li>
+<li>$host</li>
+<li>$pid</li>
+<li>$psversiontable</li>
+<li>$_</li>
+</ul>
+<h3>Programming</h3>
+<figure class='code'>
+<figcaption class='code-title'><span>switch</span></figcaption>
+
+<div class="highlight"><pre><span class="k">switch</span> <span class="o">-casesensitive</span> <span class="o">-wildcard</span> <span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="s2">&quot;hello&quot;</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="s2">&quot;Te*&quot;</span> <span class="p">{</span><span class="s2">&quot;Found test&quot;</span><span class="err">;</span> <span class="k">break</span><span class="p">}</span>
+    <span class="s2">&quot;hello&quot;</span> <span class="p">{</span><span class="s2">&quot;Found hello&quot;</span><span class="err">;</span> <span class="k">break</span><span class="p">}</span>
+    <span class="k">default</span> <span class="p">{</span><span class="s2">&quot;Found none&quot;</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>for loops</span></figcaption>
+
+<div class="highlight"><pre><span class="nv">$i</span> <span class="p">=</span> <span class="n">0</span>
+<span class="k">for</span> <span class="p">(</span><span class="err">;</span> <span class="nv">$i</span> <span class="o">-lt</span> <span class="p">&lt;</span> <span class="n">5</span><span class="err">;</span> <span class="nv">$i</span><span class="p">++)</span>
+<span class="p">{</span>
+    <span class="nv">$i</span>
+<span class="p">}</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$file</span> <span class="k">in</span> <span class="n">gci</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$file</span><span class="p">.</span><span class="n">name</span>
+<span class="p">}</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Script Block</span></figcaption>
+
+<div class="highlight"><pre><span class="nv">$a</span> <span class="p">=</span> <span class="p">{</span><span class="nb">clear-host</span><span class="err">;</span> <span class="s2">&quot;hello&quot;</span><span class="p">}</span>
+<span class="nv">$a</span>
+<span class="p">&amp;</span> <span class="nv">$a</span> <span class="c"># run the script block</span>
+<span class="p">&amp;</span> <span class="p">{</span><span class="nb">clear-host</span><span class="err">;</span> <span class="s2">&quot;hello&quot;</span><span class="p">}</span>
+
+<span class="nv">$value</span> <span class="p">=</span> <span class="p">{</span><span class="n">41</span> <span class="p">+</span> <span class="n">1</span><span class="p">}</span>
+<span class="n">1</span> <span class="p">+</span> <span class="p">(&amp;</span><span class="nv">$value</span><span class="p">)</span>
+
+<span class="nv">$value</span> <span class="p">=</span> <span class="p">{</span><span class="n">42</span><span class="err">;</span> <span class="nb">write-host</span> <span class="s2">&quot;hello&quot;</span> <span class="p">}</span> <span class="c"># will return 42 and execute the write-host</span>
+<span class="nv">$value</span> <span class="p">=</span> <span class="p">{</span><span class="k">return</span> <span class="n">42</span><span class="err">;</span> <span class="nb">write-host</span> <span class="s2">&quot;hello&quot;</span> <span class="p">}</span> <span class="c"># only returns 42</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Passing Parameters</span></figcaption>
+
+<div class="highlight"><pre><span class="nv">$qa</span> <span class="p">=</span> <span class="p">{</span>
+    <span class="nv">$question</span> <span class="p">=</span> <span class="nv">$args</span><span class="p">[</span><span class="n">0</span><span class="p">]</span>
+    <span class="nv">$answer</span> <span class="p">=</span> <span class="nv">$args</span><span class="p">[</span><span class="n">1</span><span class="p">]</span>
+    <span class="nb">write-host</span> <span class="s2">&quot;$question and the answer $answer&quot;</span>
+<span class="p">}</span>
+<span class="p">&amp;</span><span class="nv">$qa</span> <span class="s2">&quot;What is&quot;</span> <span class="s2">&quot;The answer&quot;</span>
+
+<span class="nv">$qa</span> <span class="p">=</span> <span class="p">{</span>
+    <span class="k">param</span><span class="p">(</span><span class="nv">$question</span><span class="p">,</span> <span class="no">[string]</span><span class="nv">$answer</span> <span class="p">=</span> <span class="s2">&quot;default answer&quot;</span><span class="p">)</span>
+    <span class="nb">write-host</span> <span class="s2">&quot;$question and the answer $answer&quot;</span>
+<span class="p">}</span>
+<span class="p">&amp;</span><span class="nv">$qa</span> <span class="s2">&quot;What is&quot;</span> <span class="s2">&quot;The answer&quot;</span>
+<span class="p">&amp;</span><span class="nv">$qa</span> <span class="n">-question</span> <span class="s2">&quot;What is&quot;</span> <span class="n">-answer</span> <span class="s2">&quot;The answer&quot;</span>
+<span class="p">&amp;</span><span class="nv">$qa</span> <span class="n">-q</span> <span class="s2">&quot;What is&quot;</span> <span class="n">-a</span> <span class="s2">&quot;The answer&quot;</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Piplining Parameters</span></figcaption>
+
+<div class="highlight"><pre><span class="nv">$files</span> <span class="p">=</span> 
+<span class="p">{</span>
+    <span class="k">param</span> <span class="p">(</span><span class="nv">$headertext</span> <span class="p">=</span> <span class="s2">&quot;default header&quot;</span><span class="p">)</span>
+    <span class="k">begin</span> <span class="p">{</span> <span class="s2">&quot;runs first&quot;</span> <span class="p">}</span>
+    <span class="k">process</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$_</span><span class="p">.</span><span class="n">name</span> <span class="o">-like</span> <span class="s2">&quot;*.ps1&quot;</span><span class="p">)</span>
+        <span class="p">{</span> <span class="k">return</span> <span class="nv">$_</span><span class="p">.</span><span class="n">Name</span> <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">end</span> <span class="p">{</span> <span class="s2">&quot;runs afterward&quot;</span> <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">gci</span> <span class="p">|</span> <span class="p">&amp;</span><span class="nv">$files</span>
+</pre></div>
+
+
+</figure>
+
+<p>Scoping</p>
+<ul>
+<li>Variables outside a script block are available inside a block</li>
+<li>If set inside the script block it makes a copy</li>
+<li>Only exists while within the script block</li>
+</ul>
+<figure class='code'>
+<figcaption class='code-title'><span>Scopes</span></figcaption>
+
+<div class="highlight"><pre><span class="nv">$var</span> <span class="p">=</span> <span class="n">42</span>
+<span class="p">&amp;</span> <span class="p">{</span> <span class="nv">$var</span> <span class="p">=</span> <span class="n">33</span><span class="err">;</span>
+    <span class="nb">write-host</span> <span class="nv">$var</span>
+    <span class="nb">write-host</span> <span class="p">(</span><span class="nb">Get-Variable</span> <span class="n">var</span> <span class="n">-valueonly</span> <span class="n">-scope</span> <span class="n">1</span><span class="p">)}</span>
+<span class="nb">write-host</span> <span class="nv">$var</span>
+
+<span class="nv">$global:var</span> <span class="p">=</span> <span class="n">42</span> <span class="c"># can be used anywhere</span>
+<span class="nv">$private:var</span> <span class="p">=</span> <span class="n">42</span> <span class="c"># cannot be seen in the script block</span>
+
+<span class="n">Functions</span>
+<span class="p">-</span> <span class="n">Parameters</span> <span class="n">are</span> <span class="n">values</span> <span class="n">objects</span> <span class="n">by</span> <span class="k">default</span>
+<span class="p">-</span> <span class="n">Can</span> <span class="n">work</span> <span class="n">with</span> <span class="n">the</span> <span class="n">pipeline</span><span class="p">,</span> <span class="n">like</span> <span class="n">script</span> <span class="n">blocks</span>
+
+<span class="p">{%</span> <span class="n">inline_code</span> <span class="n">lang</span><span class="err">:</span><span class="n">PowerShell</span> <span class="n">Functions</span>
+<span class="k">function</span>  <span class="nb">Set-Var</span><span class="p">(</span><span class="no">[ref]</span> <span class="nv">$var</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$var</span><span class="p">.</span><span class="n">Value</span> <span class="p">=</span> <span class="n">33</span>
+<span class="p">}</span>
+<span class="nv">$var</span> <span class="p">=</span> <span class="n">42</span>
+<span class="nb">Set-Var</span> <span class="p">(</span><span class="no">[ref]</span> <span class="nv">$var</span><span class="p">)</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Filters</span></figcaption>
+
+<div class="highlight"><pre><span class="k">filter</span> <span class="nb">Show-PS1Files</span>
+<span class="p">{</span>
+    <span class="nv">$filename</span> <span class="p">=</span> <span class="nv">$_</span><span class="p">.</span><span class="n">Name</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$filename</span> <span class="o">-like</span> <span class="s2">&quot;*.ps1&quot;</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="nv">$_</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">gci</span> <span class="p">|</span> <span class="nb">show-ps1files</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Output to the pipeline</span></figcaption>
+
+<div class="highlight"><pre><span class="k">function</span> <span class="nb">Get-ChildName</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">param</span><span class="p">(</span><span class="no">[switch]</span><span class="nv">$verbose</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$verbose</span><span class="p">.</span><span class="n">IsPresent</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$VerbosePreference</span> <span class="p">=</span> <span class="s2">&quot;Continue&quot;</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="nv">$VerbosePreference</span> <span class="p">=</span> <span class="s2">&quot;SilentlyContinue&quot;</span>
+    <span class="p">}</span>
+    <span class="nb">Write-Verbose</span> <span class="s2">&quot;More info here&quot;</span>
+    <span class="nb">Write-Output</span> <span class="p">(</span><span class="n">gci</span> <span class="p">|</span> <span class="nb">select-object</span> <span class="s2">&quot;Name&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nb">Get-ChildName</span> <span class="n">-verbose</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span><span class="nv">$_</span><span class="p">.</span><span class="n">name</span> <span class="o">-like</span> <span class="s2">&quot;*.ps1&quot;</span><span class="p">}</span>
+</pre></div>
+
+
+</figure>
+
+<p>Help Content: Get-Help about_comment_based_help</p>
+<ul>
+<li>.SYNOPSIS</li>
+<li>.DESCRIPTION</li>
+<li>.PARAMETER</li>
+<li>.EXAMPLE</li>
+<li>.INPUTS</li>
+<li>.OUTPUTS</li>
+<li>.NOTES</li>
+<li>.LINK</li>
+</ul>
+<figure class='code'>
+<figcaption class='code-title'><span>Help Content</span></figcaption>
+
+<div class="highlight"><pre><span class="k">function</span> <span class="nb">Get-ChildName</span><span class="p">()</span>
+<span class="p">{</span>
+
+    <span class="cm">&lt;#</span>
+<span class="cm">    </span><span class="sd">.SYNOPSIS</span><span class="cm"> </span>
+<span class="cm">    Adds a file name extension to a supplied name.</span>
+
+<span class="cm">    </span><span class="sd">.DESCRIPTION</span><span class="cm"></span>
+<span class="cm">    Adds a file name extension to a supplied name. </span>
+<span class="cm">    Takes any strings for the file name or extension.</span>
+
+<span class="cm">    </span><span class="sd">.PARAMETER</span><span class="cm"> Name</span>
+<span class="cm">    Specifies the file name.</span>
+
+<span class="cm">    </span><span class="sd">.PARAMETER</span><span class="cm"> Extension</span>
+<span class="cm">    Specifies the extension. &quot;Txt&quot; is the default.</span>
+
+<span class="cm">    </span><span class="sd">.INPUTS</span><span class="cm"></span>
+<span class="cm">    None. You cannot pipe objects to Add-Extension.</span>
+
+<span class="cm">    </span><span class="sd">.OUTPUTS</span><span class="cm"></span>
+<span class="cm">    System.String. Add-Extension returns a string with the extension or file name.</span>
+
+<span class="cm">    </span><span class="sd">.EXAMPLE</span><span class="cm"></span>
+<span class="cm">    C:\PS&gt; extension -name &quot;File&quot;</span>
+<span class="cm">    File.txt</span>
+
+<span class="cm">    </span><span class="sd">.EXAMPLE</span><span class="cm"></span>
+<span class="cm">    C:\PS&gt; extension -name &quot;File&quot; -extension &quot;doc&quot;</span>
+<span class="cm">    File.doc</span>
+
+<span class="cm">    </span><span class="sd">.EXAMPLE</span><span class="cm"></span>
+<span class="cm">    C:\PS&gt; extension &quot;File&quot; &quot;doc&quot;</span>
+<span class="cm">    File.doc</span>
+
+<span class="cm">    </span><span class="sd">.LINK</span><span class="cm"></span>
+<span class="cm">    http://www.fabrikam.com/extension.html</span>
+
+<span class="cm">    </span><span class="sd">.LINK</span><span class="cm"></span>
+<span class="cm">    Set-Item</span>
+<span class="cm">#&gt;</span>
+    <span class="nb">Write-Output</span> <span class="p">(</span><span class="n">gci</span> <span class="p">|</span> <span class="nb">select-object</span> <span class="s2">&quot;Name&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Files</span></figcaption>
+
+<div class="highlight"><pre><span class="nv">$a</span> <span class="p">=</span> <span class="nb">Get-Content</span> <span class="s2">&quot;test.txt&quot;</span>
+<span class="nv">$a</span><span class="p">[</span><span class="n">2</span><span class="p">]</span> <span class="c"># uses an array to store the contents</span>
+<span class="nv">$all</span> <span class="p">=</span> <span class="no">[string]</span><span class="err">::</span><span class="n">Join</span><span class="p">(</span><span class="no">[System.Environment]</span><span class="err">::</span><span class="n">NewLine</span><span class="p">,</span> <span class="nv">$a</span><span class="p">)</span> <span class="c"># or `r`n</span>
+
+<span class="nb">Set-Content</span> <span class="n">-Value</span> <span class="nv">$all</span> <span class="n">-Path</span> <span class="s2">&quot;new.txt&quot;</span>
+<span class="nb">Add-Content</span> <span class="n">-Value</span> <span class="s2">&quot;More stuff&quot;</span> <span class="n">-Path</span> <span class="s2">&quot;new.txt&quot;</span>
+<span class="nb">Remove-Item</span> <span class="s2">&quot;new.txt&quot;</span>
+<span class="nb">Test-Path</span> <span class="s2">&quot;test.txt&quot;</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>XML Filse</span></figcaption>
+
+<div class="highlight"><pre><span class="nv">$xml</span> <span class="p">=</span> <span class="sh">@&quot;</span>
+<span class="sh">&lt;root&gt;</span>
+<span class="sh">    &lt;one&gt;value&lt;/one&gt;</span>
+<span class="sh">&lt;/root&gt;</span>
+<span class="sh">&quot;@</span>
+<span class="nv">$xml</span> <span class="p">|</span> <span class="nb">Out-File</span> <span class="s2">&quot;test.xml&quot;</span>
+
+<span class="nv">$testXml</span> <span class="p">=</span> <span class="nb">new-object</span> <span class="n">xml</span>
+<span class="nv">$testXml</span><span class="p">.</span><span class="n">Load</span><span class="p">(</span><span class="s2">&quot;test.xml&quot;</span><span class="p">)</span>
+<span class="nv">$one</span> <span class="p">=</span> <span class="nv">$testXml</span><span class="p">.</span><span class="n">root</span><span class="p">.</span><span class="n">one</span>
+<span class="nv">$testXml</span><span class="p">.</span><span class="n">Save</span><span class="p">(</span><span class="s2">&quot;test.xml&quot;</span><span class="p">)</span>
+
+<span class="no">[xml]</span><span class="nv">$testXml</span> <span class="p">=</span> <span class="nb">Get-Content</span> <span class="s2">&quot;test.xml&quot;</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Misc</span></figcaption>
+
+<div class="highlight"><pre><span class="nv">$choice</span> <span class="p">=</span> <span class="nb">Read-Host</span> <span class="n">-Prompt</span> <span class="s2">&quot;Select something&quot;</span>
+<span class="nv">$padding</span> <span class="p">=</span> <span class="s2">&quot; &quot;</span> <span class="p">*</span> <span class="n">10</span> <span class="c"># repeat an item</span>
+</pre></div>
+
+
+</figure>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <header class="page-header">
+                    <h1>
                         <a href="http://ciwchris.github.io/blog/bash-shell-basics.html"
                             rel="bookmark"
                             title="Permalink to Bash shell basics">
@@ -690,46 +1155,6 @@ join *grades <span class="c"># Using keys</span>
                 </div>
             </article>
             <hr/>
-            <article>
-                <header class="page-header">
-                    <h1>
-                        <a href="http://ciwchris.github.io/blog/entering-escape-in-insert-mode.html"
-                            rel="bookmark"
-                            title="Permalink to Entering escape in insert mode">
-                            Entering escape in insert mode
-                        </a>
-                    </h1>
-                </header>
-                <div class="entry-content">
-                    <div class="panel">
-                        <div class="panel-body">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2013-02-16T16:17:00"> Sat 16 February 2013</time>
-    </span>
-
-
-
-<span class="label label-default">Tags</span>
-	<a href="http://ciwchris.github.io/tags/vim.html">vim</a>
-    
-</footer><!-- /.post-info -->                        </div>
-                    </div>
-                    <p>In the previous post I created a macro which made use of an 'escape':</p>
-<figure class='code'>
-
-<div class="highlight"><pre>^dwA ^[pxj
-</pre></div>
-
-
-</figure>
-
-<p>When outputting the contents of the register containing this macro the 'escape' is translated as <code>^[</code>. This shouldn't be surpising. This format is known as <a href="http://en.wikipedia.org/wiki/Caret_notation">caret notation</a> and is used to represent non-printable control characters in ASCII. That explains the caret, but why the bracket? Interestingly, the bracket, by default, can be used as an alternative to the 'escape' key in Vim, <code>h: i-ctrl-[</code>. The reason for the bracket has to do with <a href="http://en.wikipedia.org/wiki/Control_character#How_control_characters_map_to_keyboards">how control characters are mapped on keyboards</a>. As stated in the article, control characters are rendered by the ASCII value of the non-printable character plus 64. In this case the 'escape' key has the <a href="http://en.wikipedia.org/wiki/ASCII#ASCII_control_characters">ASCII value of 27</a>. Adding 64 to this value gives us the decimal value of 91, which is <a href="http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters">represented by the bracket, '['</a>. And that is why the 'escape' was rendered as <code>^[</code> in the macro. <code>h: key-notation</code> contains a table detailing how many non-printable characters can be rendered in Vim.</p>
-<p>The follow up question to this would be, "if I were to create the macro myself how would I type <code>^[</code>?" If the caret key was literally used then it would instruct Vim to move to the "first non-blank character of the line", <code>:h ^</code>. Not our desired outcome. To type an 'escape' it is necessary to use 'ctrl-v', which will "insert next non-digit literally", <code>:h i_ctrl-v</code>. So to use an 'escape' in a macro being created manually type: 'ctrl-v' followed by 'escape'.</p>
-                </div>
-            </article>
-            <hr/>
 
     <ul class="pagination">
             <li class="prev"><a href="http://ciwchris.github.io/index.html">&laquo;</a>
@@ -764,14 +1189,19 @@ join *grades <span class="c"># Using keys</span>
                                 powershell
                             </a>
                         </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://ciwchris.github.io/tags/clojurescript-angular.html">
-                                clojurescript angular
+                        <li class="list-group-item tag-2">
+                            <a href="http://ciwchris.github.io/tags/philosophy.html">
+                                philosophy
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
-                            <a href="http://ciwchris.github.io/tags/philosophy.html">
-                                philosophy
+                            <a href="http://ciwchris.github.io/tags/craftsmanship.html">
+                                craftsmanship
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://ciwchris.github.io/tags/c.html">
+                                c#
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
@@ -780,18 +1210,13 @@ join *grades <span class="c"># Using keys</span>
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
-                            <a href="http://ciwchris.github.io/tags/cli.html">
-                                cli
+                            <a href="http://ciwchris.github.io/tags/sicp.html">
+                                sicp
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
                             <a href="http://ciwchris.github.io/tags/testing.html">
                                 testing
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://ciwchris.github.io/tags/tests.html">
-                                tests
                             </a>
                         </li>
                     </ul>
