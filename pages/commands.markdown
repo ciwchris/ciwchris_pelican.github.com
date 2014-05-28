@@ -7,3 +7,7 @@ Author: Chris
 Summary: 
 
 - Generate resume => xelatex resume.tex
+
+- Set time
+    - Set time => sudo date +%T -s "21:08:00"
+    - Sync hardware clock => sudo hwclock -w

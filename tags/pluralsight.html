@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>agile - Notes to self</title>
+    <title>pluralsight - Notes to self</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -61,10 +61,10 @@ Notes to self            </a>
             <article>
                 <header class="page-header">
                     <h1>
-                        <a href="http://ciwchris.github.io/blog/puzzle-estimates.html"
+                        <a href="http://ciwchris.github.io/blog/understanding-and-eliminating-technical-debt.html"
                             rel="bookmark"
-                            title="Permalink to How long will it take you to finish that jigsaw puzzle?">
-                            How long will it take you to finish that jigsaw puzzle?
+                            title="Permalink to Understanding and Eliminating Technical Debt">
+                            Understanding and Eliminating Technical Debt
                         </a>
                     </h1>
                 </header>
@@ -74,28 +74,132 @@ Notes to self            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2014-04-23T19:00:00"> Wed 23 April 2014</time>
+        <i class="fa fa-calendar"></i><time datetime="2014-05-27T19:00:00"> Tue 27 May 2014</time>
     </span>
 
 
 
 <span class="label label-default">Tags</span>
-	<a href="http://ciwchris.github.io/tags/estimates.html">estimates</a>
+	<a href="http://ciwchris.github.io/tags/pluralsight.html">pluralsight</a>
         /
-	<a href="http://ciwchris.github.io/tags/agile.html">agile</a>
-        /
-	<a href="http://ciwchris.github.io/tags/philosophy.html">philosophy</a>
+	<a href="http://ciwchris.github.io/tags/practice.html">practice</a>
     
 </footer><!-- /.post-info -->                        </div>
                     </div>
-                    <h4>Estimating Puzzles</h4>
-<p>Sometimes I feel software estimates are like estimating the time to solve a jigsaw puzzle. I've solved similar puzzles but I still can't give an accurate estimate for solving this one. I have an idea, I can use my project planning experience to breakdown the assembly of the puzzle into tasks. One task to find all the edge pieces and one task to assemble the edge pieces. That sounds reasonable. Hmm... creating tasks to assemble the center pieces is more challenging. It seems my estimates will need to be less precise or they will need to be less accurate...</p>
-<h4>Estimating Software</h4>
-<p>As software developers we are asked to give an estimate on the length of time it will take us to complete a task. Some tasks are easier to estimate than others. The more known the task, the more familiar the work necessary to complete the task, and the more narrowly focused the task all help to create a more precise estimate which is also more accurate. Other tasks carry a high risk. Usually these tasks are worked on first so the risk can be addressed early. The early work leads to a better understanding of what will be needed to address the risk, from which decisions can be made, before negative consequences originating from the risk have serious impact.</p>
-<h4>Current Status</h4>
-<p>I'm currently working on a set of related tasks which are high risk. Little was known about the specifics needed to complete the tasks. We are now at the end of our iteration, modest progress was made and I feel like a failure. In some environments I'd feel better about the lack of progress than others. In the current environment I am discouraged. Statistic documents will be created. Success will be determined by how accurately our actual work hours matches our estimates. I concede estimates are necessary, unfortunately, but there is a choice on how to use the estimates. It's easy to abuse estimates. Let's find the real value of estimates. Then we all can be happy, or at least not failures.</p>
-<p><span style="text-decoration: line-through">Four hours</span></p>
-<p>Six hours</p>
+                    <p>Notes from the Pluralsight course <a href="http://pluralsight.com/training/Courses/TableOfContents/understanding-eliminating-technical-debt">Understanding and Eliminating Technical Debt</a></p>
+<h2>The problem</h2>
+<p>Technical Debt</p>
+<ul>
+<li>The quick way versus the "right" way</li>
+<li>Speeds up in the short term but slows down future development</li>
+</ul>
+<p>Technical debt is comparable to financial debt:</p>
+<ul>
+<li>Get it now =&gt; Early to market</li>
+<li>Pay interest =&gt; Refactoring</li>
+<li>Unable to repay =&gt; Unable to maintain</li>
+</ul>
+<p><a href="http://goo.gl/XeS6">Ward Cunningham on Technical Debt</a></p>
+<p><a href="http://goo.gl/fmB2b">Martian Fowler's Debt Quadrant</a></p>
+<h2>Types</h2>
+<ul>
+<li>Code: What was the developer thinking? We spend more reading code than writing it. Readability matters!<ul>
+<li>Complicated</li>
+<li>Cut and paste</li>
+<li>Tight coupling</li>
+</ul>
+</li>
+<li>Architectural: Flexibility matters, requirements change.<ul>
+<li>Missing layer: big ball of mud. Untested business logic.</li>
+<li>Missing extensibility points: Open closed principle</li>
+<li>Overlooked concern</li>
+</ul>
+</li>
+<li>Knowledge: What does it do, how it works, who's using it: Code archaeologist. Lost Knowledge must be recovered.<ul>
+<li>Dead code: red herring</li>
+</ul>
+</li>
+<li>Test: Quick and thorough or can't verify it is still working.</li>
+<li>Technological: Support new and migrate from old technologies.</li>
+</ul>
+<h2>Metrics</h2>
+<p>How can we measure lost productivity as a result of technical debt? <a href="http://goo.gl/gAq1Yx">We have no way of reasonably measuring productivity</a></p>
+<ul>
+<li>Time<ul>
+<li>Velocity = Work / Time</li>
+<li>Decrease velocity: bad estimates, laziness, technical debt</li>
+</ul>
+</li>
+<li>Code<ul>
+<li>Bad: poor measure of productivity and functionality</li>
+<li>Good: the larger the code the more likely problems will be experienced</li>
+</ul>
+</li>
+<li>Cyclomatic: Hard to maintain and test</li>
+<li>Code churn: Lots of changes to the same file or lots of authors of the same file.<ul>
+<li>Too many responsibilities (SRP)</li>
+<li>Lack of extensibility (Open Closed)</li>
+<li>Lots of bugs</li>
+</ul>
+</li>
+<li>Test metrics: trend of automated tests, manual test cases run and configuration coverage.</li>
+<li>Code coverage: aim for 100% of business logic</li>
+<li>Defect database<ul>
+<li>How many bugs were found</li>
+<li>How many found in production</li>
+<li>Which file is regularly being bug fixed</li>
+<li>How quickly were they resolved, the longer it took could point to more debt</li>
+</ul>
+</li>
+</ul>
+<h2>Communicating</h2>
+<p>Developer responses</p>
+<ul>
+<li>Cynical: it's hopeless</li>
+<li>Critical: it's your fault</li>
+<li>Cautious: too risky to change anything</li>
+<li>Cavalier: let me at it</li>
+<li>Clueless: what problem</li>
+</ul>
+<p>Incremental improvement. Don't try to fight it by yourself.</p>
+<p>The longer we leave it the more time it costs us and the harder it is to fix.</p>
+<p>Can't aim for no technical debt, we need to be pragmatic and strategic in what we attack.</p>
+<p>Make it visible</p>
+<ul>
+<li>We are strategically taking on technical debt.</li>
+<li>Two estimates: one doing it right and one taking on the debt.</li>
+<li>Technical debt is slowing me down right now.</li>
+</ul>
+<h2>Action plan</h2>
+<ul>
+<li>Knowing the current state of the system.</li>
+<li>Knowing what's coming in the future allows you to repay the appropriate technical debt.</li>
+<li>Know what we are working towards, what is our aim to prevent and address technical debt. Learn lessons from the past.</li>
+</ul>
+<p>Needs to be continually evolved and improved over the course of the project.</p>
+<h4>Technical Document</h4>
+<p>A document gives visibility to others and gives developers insight to the trade-offs and whether it truly needs to be addressed.</p>
+<ul>
+<li>What is the problem: how is it slowing us down</li>
+<li>Proposed solution: what steps can we take</li>
+<li>Estimate: quick or a lot of work</li>
+<li>Benefit: allow other features to be implemented more quickly</li>
+</ul>
+<p>Good to review before starting new versions</p>
+<h2>Repaying</h2>
+<ul>
+<li>Cover it with tests then modify it<ul>
+<li>I don't have time: it will cost more time later</li>
+<li>Don't know what it's doing: characterization tests</li>
+<li>Can't get it under test: working with legacy code</li>
+</ul>
+</li>
+<li>Make it extensible then extend it: refactor it in steps instead of changing everything at once.</li>
+<li>Modularise then rewrite: small portions at a time.<ul>
+<li><a href="http://martinfowler.com/articles/microservices.html">Micro services</a>: easily replaceable and can vary while monoliths are hard to maintain.</li>
+</ul>
+</li>
+</ul>
                 </div>
             </article>
             <hr/>

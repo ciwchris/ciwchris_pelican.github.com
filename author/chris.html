@@ -61,6 +61,151 @@ Notes to self            </a>
             <article>
                 <header class="page-header">
                     <h1>
+                        <a href="http://ciwchris.github.io/blog/understanding-and-eliminating-technical-debt.html"
+                            rel="bookmark"
+                            title="Permalink to Understanding and Eliminating Technical Debt">
+                            Understanding and Eliminating Technical Debt
+                        </a>
+                    </h1>
+                </header>
+                <div class="entry-content">
+                    <div class="panel">
+                        <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2014-05-27T19:00:00"> Tue 27 May 2014</time>
+    </span>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://ciwchris.github.io/tags/pluralsight.html">pluralsight</a>
+        /
+	<a href="http://ciwchris.github.io/tags/practice.html">practice</a>
+    
+</footer><!-- /.post-info -->                        </div>
+                    </div>
+                    <p>Notes from the Pluralsight course <a href="http://pluralsight.com/training/Courses/TableOfContents/understanding-eliminating-technical-debt">Understanding and Eliminating Technical Debt</a></p>
+<h2>The problem</h2>
+<p>Technical Debt</p>
+<ul>
+<li>The quick way versus the "right" way</li>
+<li>Speeds up in the short term but slows down future development</li>
+</ul>
+<p>Technical debt is comparable to financial debt:</p>
+<ul>
+<li>Get it now =&gt; Early to market</li>
+<li>Pay interest =&gt; Refactoring</li>
+<li>Unable to repay =&gt; Unable to maintain</li>
+</ul>
+<p><a href="http://goo.gl/XeS6">Ward Cunningham on Technical Debt</a></p>
+<p><a href="http://goo.gl/fmB2b">Martian Fowler's Debt Quadrant</a></p>
+<h2>Types</h2>
+<ul>
+<li>Code: What was the developer thinking? We spend more reading code than writing it. Readability matters!<ul>
+<li>Complicated</li>
+<li>Cut and paste</li>
+<li>Tight coupling</li>
+</ul>
+</li>
+<li>Architectural: Flexibility matters, requirements change.<ul>
+<li>Missing layer: big ball of mud. Untested business logic.</li>
+<li>Missing extensibility points: Open closed principle</li>
+<li>Overlooked concern</li>
+</ul>
+</li>
+<li>Knowledge: What does it do, how it works, who's using it: Code archaeologist. Lost Knowledge must be recovered.<ul>
+<li>Dead code: red herring</li>
+</ul>
+</li>
+<li>Test: Quick and thorough or can't verify it is still working.</li>
+<li>Technological: Support new and migrate from old technologies.</li>
+</ul>
+<h2>Metrics</h2>
+<p>How can we measure lost productivity as a result of technical debt? <a href="http://goo.gl/gAq1Yx">We have no way of reasonably measuring productivity</a></p>
+<ul>
+<li>Time<ul>
+<li>Velocity = Work / Time</li>
+<li>Decrease velocity: bad estimates, laziness, technical debt</li>
+</ul>
+</li>
+<li>Code<ul>
+<li>Bad: poor measure of productivity and functionality</li>
+<li>Good: the larger the code the more likely problems will be experienced</li>
+</ul>
+</li>
+<li>Cyclomatic: Hard to maintain and test</li>
+<li>Code churn: Lots of changes to the same file or lots of authors of the same file.<ul>
+<li>Too many responsibilities (SRP)</li>
+<li>Lack of extensibility (Open Closed)</li>
+<li>Lots of bugs</li>
+</ul>
+</li>
+<li>Test metrics: trend of automated tests, manual test cases run and configuration coverage.</li>
+<li>Code coverage: aim for 100% of business logic</li>
+<li>Defect database<ul>
+<li>How many bugs were found</li>
+<li>How many found in production</li>
+<li>Which file is regularly being bug fixed</li>
+<li>How quickly were they resolved, the longer it took could point to more debt</li>
+</ul>
+</li>
+</ul>
+<h2>Communicating</h2>
+<p>Developer responses</p>
+<ul>
+<li>Cynical: it's hopeless</li>
+<li>Critical: it's your fault</li>
+<li>Cautious: too risky to change anything</li>
+<li>Cavalier: let me at it</li>
+<li>Clueless: what problem</li>
+</ul>
+<p>Incremental improvement. Don't try to fight it by yourself.</p>
+<p>The longer we leave it the more time it costs us and the harder it is to fix.</p>
+<p>Can't aim for no technical debt, we need to be pragmatic and strategic in what we attack.</p>
+<p>Make it visible</p>
+<ul>
+<li>We are strategically taking on technical debt.</li>
+<li>Two estimates: one doing it right and one taking on the debt.</li>
+<li>Technical debt is slowing me down right now.</li>
+</ul>
+<h2>Action plan</h2>
+<ul>
+<li>Knowing the current state of the system.</li>
+<li>Knowing what's coming in the future allows you to repay the appropriate technical debt.</li>
+<li>Know what we are working towards, what is our aim to prevent and address technical debt. Learn lessons from the past.</li>
+</ul>
+<p>Needs to be continually evolved and improved over the course of the project.</p>
+<h4>Technical Document</h4>
+<p>A document gives visibility to others and gives developers insight to the trade-offs and whether it truly needs to be addressed.</p>
+<ul>
+<li>What is the problem: how is it slowing us down</li>
+<li>Proposed solution: what steps can we take</li>
+<li>Estimate: quick or a lot of work</li>
+<li>Benefit: allow other features to be implemented more quickly</li>
+</ul>
+<p>Good to review before starting new versions</p>
+<h2>Repaying</h2>
+<ul>
+<li>Cover it with tests then modify it<ul>
+<li>I don't have time: it will cost more time later</li>
+<li>Don't know what it's doing: characterization tests</li>
+<li>Can't get it under test: working with legacy code</li>
+</ul>
+</li>
+<li>Make it extensible then extend it: refactor it in steps instead of changing everything at once.</li>
+<li>Modularise then rewrite: small portions at a time.<ul>
+<li><a href="http://martinfowler.com/articles/microservices.html">Micro services</a>: easily replaceable and can vary while monoliths are hard to maintain.</li>
+</ul>
+</li>
+</ul>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <header class="page-header">
+                    <h1>
                         <a href="http://ciwchris.github.io/blog/puzzle-estimates.html"
                             rel="bookmark"
                             title="Permalink to How long will it take you to finish that jigsaw puzzle?">
@@ -668,387 +813,6 @@ Notes to self            </a>
                 </div>
             </article>
             <hr/>
-            <article>
-                <header class="page-header">
-                    <h1>
-                        <a href="http://ciwchris.github.io/blog/formatting-with-powershell.html"
-                            rel="bookmark"
-                            title="Permalink to Formatting with PowerShell">
-                            Formatting with PowerShell
-                        </a>
-                    </h1>
-                </header>
-                <div class="entry-content">
-                    <div class="panel">
-                        <div class="panel-body">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2013-10-04T10:20:00"> Fri 04 October 2013</time>
-    </span>
-
-
-
-<span class="label label-default">Tags</span>
-	<a href="http://ciwchris.github.io/tags/powershell.html">powershell</a>
-    
-</footer><!-- /.post-info -->                        </div>
-                    </div>
-                    <p>Notes from the Pluralsight course <a href="http://pluralsight.com/training/Courses/TableOfContents/formatwithpowershell">Formatting With PowerShell</a></p>
-<h3>ToString</h3>
-<figure class='code'>
-
-<div class="highlight"><pre><span class="nv">$obj</span> <span class="p">=</span> <span class="nb">New-Object</span> <span class="n">System</span><span class="p">.</span><span class="n">Object</span>
-<span class="nv">$obj</span><span class="p">.</span><span class="n">ToString</span><span class="p">()</span>
-</pre></div>
-
-
-</figure>
-
-<figure class='code'>
-<figcaption class='code-title'><span>Using a format provider</span></figcaption>
-
-<div class="highlight"><pre><span class="nv">$n</span> <span class="p">=</span> <span class="n">4242</span><span class="p">.</span><span class="n">42</span>
-<span class="nb">Get-Culture</span>
-<span class="nv">$c</span> <span class="p">=</span> <span class="nb">New-Object</span> <span class="n">System</span><span class="p">.</span><span class="n">Globalization</span><span class="p">.</span><span class="n">CultureInfo</span> <span class="n">de-DE</span>
-<span class="nv">$n</span><span class="p">.</span><span class="n">ToString</span><span class="p">(</span><span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="nv">$c</span><span class="p">)</span>
-</pre></div>
-
-
-</figure>
-
-<p>Numeric Format Strings</p>
-<ul>
-<li>c: Currency</li>
-<li>d: Decimal</li>
-<li>e: Exponential</li>
-<li>f: Fixed Point</li>
-<li>g: General (most compact form)</li>
-<li>n: Number</li>
-<li>p: Percent</li>
-<li>r: Round Trip (parsed back into the same numeric value</li>
-<li>x: Hexadecimal</li>
-</ul>
-<p>Custom Numeric Placeholders</p>
-<ul>
-<li>0: Zero</li>
-<li>#: Digit</li>
-<li>.: Decimal</li>
-<li>,: Group separator </li>
-<li>%: Percentage</li>
-<li>;: Section (different for positive, negative, zero)</li>
-</ul>
-<figure class='code'>
-<figcaption class='code-title'><span>Sections</span></figcaption>
-
-<div class="highlight"><pre><span class="nv">$v1</span> <span class="p">=</span> <span class="n">1</span><span class="err">;</span> <span class="nv">$v2</span> <span class="p">=</span> <span class="n">2</span><span class="err">;</span> <span class="nv">$v3</span> <span class="p">=</span> <span class="n">0</span>
-<span class="nv">$v1</span><span class="p">.</span><span class="n">ToString</span><span class="p">(</span><span class="s2">&quot;#0.0#;(#0.0#);-\0-&quot;</span><span class="p">)</span>
-</pre></div>
-
-
-</figure>
-
-<figure class='code'>
-<figcaption class='code-title'><span>NumberFormatInfo</span></figcaption>
-
-<div class="highlight"><pre><span class="nv">$c</span> <span class="p">=</span> <span class="nb">Get-Culture</span>
-<span class="nv">$c</span> <span class="p">|</span> <span class="nb">Get-Member</span> <span class="n">-member</span> <span class="n">proptery</span> <span class="p">*</span><span class="n">format</span><span class="p">*</span>
-<span class="c"># DateTimeFormat</span>
-<span class="c"># NumberFormat</span>
-
-<span class="nv">$c</span> <span class="p">=</span> <span class="nb">New-Object</span> <span class="n">System</span><span class="p">.</span><span class="n">Globalization</span><span class="p">.</span><span class="n">CultureInfo</span> <span class="n">en-us</span>
-<span class="nv">$nf</span> <span class="p">=</span> <span class="nv">$c</span><span class="p">.</span><span class="n">NumberFormat</span>
-<span class="nv">$nf</span><span class="p">.</span><span class="n">CurrencyDecimalDigits</span> <span class="p">=</span> <span class="n">3</span>
-<span class="nv">$nf</span><span class="p">.</span><span class="n">CurrencySymbol</span> <span class="p">=</span> <span class="s2">&quot;ZOG&quot;</span>
-<span class="nv">$nf</span><span class="p">.</span><span class="n">CurrencyDecimalSeparator</span><span class="p">=</span><span class="s2">&quot;*&quot;</span>
-<span class="nv">$nf</span><span class="p">.</span><span class="n">CurrenceyGroupSeparator</span><span class="p">=</span><span class="s2">&quot;/&quot;</span>
-<span class="p">(</span><span class="n">42424242</span><span class="p">.</span><span class="n">4242</span><span class="p">).</span><span class="n">ToString</span><span class="p">(</span><span class="s2">&quot;C2&quot;</span><span class="p">,</span><span class="nv">$nf</span><span class="p">)</span>
-<span class="c"># ZOG 42/424/242*42</span>
-</pre></div>
-
-
-</figure>
-
-<figure class='code'>
-<figcaption class='code-title'><span>TimeSpan</span></figcaption>
-
-<div class="highlight"><pre><span class="nv">$ms</span> <span class="p">=</span> <span class="nb">Get-Date</span> <span class="s2">&quot;August 9, 1995&quot;</span>
-<span class="nv">$today</span> <span class="p">=</span> <span class="nb">Get-Date</span>
-<span class="nv">$time</span><span class="n">-span</span> <span class="p">=</span> <span class="nb">New-TimeSpan</span> <span class="n">-start</span> <span class="nv">$ms</span> <span class="n">-end</span> <span class="nv">$today</span>
-</pre></div>
-
-
-</figure>
-
-<figure class='code'>
-<figcaption class='code-title'><span>Enums</span></figcaption>
-
-<div class="highlight"><pre><span class="nv">$enum</span> <span class="p">=</span> <span class="no">[System.Windows.Forms.Day]</span>
-<span class="s2">&quot;{0,9} {1,9} {2,4} {3,10}&quot;</span> <span class="o">-f</span> <span class="s2">&quot;g&quot;</span><span class="p">,</span> <span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span> <span class="c">#heading</span>
-<span class="k">Foreach</span> <span class="p">(</span><span class="nv">$e</span> <span class="k">in</span> <span class="no">[System.enum]</span><span class="err">::</span><span class="n">getvalues</span><span class="p">(</span><span class="nv">$enum</span><span class="p">))</span> <span class="p">{</span>
-    <span class="s2">&quot;{0,9} {1,9} {2,4} {3,10}&quot;</span> <span class="o">-f</span>
-    <span class="nv">$e</span><span class="p">.</span><span class="n">ToString</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">),</span><span class="nv">$e</span><span class="p">.</span><span class="n">ToString</span><span class="p">(</span><span class="s2">&quot;f&quot;</span><span class="p">),</span><span class="nv">$e</span><span class="p">.</span><span class="n">ToString</span><span class="p">(</span><span class="s2">&quot;d&quot;</span><span class="p">),</span> <span class="nv">$e</span><span class="p">.</span><span class="n">ToString</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
-<span class="p">}</span>
-</pre></div>
-
-
-</figure>
-
-<h3>Composite Format String</h3>
-<p>{I, [W [: F]]}</p>
-<ul>
-<li>I: index into array</li>
-<li>W: width<ul>
-<li>Positive: right justified</li>
-<li>Negative: left justified</li>
-</ul>
-</li>
-<li>F: format string</li>
-</ul>
-<figure class='code'>
-
-<div class="highlight"><pre><span class="s2">&quot;{0} [{1,4}]=[{1,-4], and costs {2,-10:c}&quot;</span> <span class="o">-f</span> <span class="n">1</span><span class="p">,</span> <span class="n">2</span><span class="p">,</span> <span class="n">42</span><span class="p">.</span><span class="n">4242</span>
-<span class="s2">&quot;Today is {0}&quot;</span> <span class="o">-f</span> <span class="p">(</span><span class="nb">Get-Date</span><span class="p">).</span><span class="n">ToString</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
-<span class="s2">&quot;Today is {0:g}&quot;</span> <span class="o">-f</span> <span class="nb">Get-Date</span>
-<span class="nv">$a</span> <span class="p">=</span> <span class="s2">&quot;{0,10} {1,10} {2,10:c}&quot;</span>
-<span class="nv">$a</span> <span class="o">-f</span> <span class="n">1</span><span class="p">,</span> <span class="n">2</span><span class="p">,</span> <span class="n">42</span>
-</pre></div>
-
-
-</figure>
-
-<h3>Format-*</h3>
-<p>Formatting Rules</p>
-<ul>
-<li>VIEW loaded in Format.Ps1XML</li>
-<li>PropertySet in Type.Ps1XML and move to next rule</li>
-<li>Property count<ul>
-<li>Use properties in default PropertySet</li>
-<li>All properties</li>
-</ul>
-</li>
-<li>5 or more: use Format-List</li>
-<li>&lt; 5: use Format-Table</li>
-</ul>
-<p>Table/List Formatting</p>
-<ul>
-<li>XML View defined in Format.Ps1XML</li>
-<li>XML Property Set in Type.Ps1XML</li>
-<li>Total properties</li>
-</ul>
-<figure class='code'>
-<figcaption class='code-title'><span>AutoSize</span></figcaption>
-
-<div class="highlight"><pre><span class="n">gps</span> <span class="n">notepad</span> <span class="p">|</span> <span class="n">ft</span> <span class="n">ProcessName</span><span class="p">,</span> <span class="n">CPU</span> <span class="n">-Autosize</span>
-</pre></div>
-
-
-</figure>
-
-<p>Truncation</p>
-<ul>
-<li>-Wrap: Prevent truncating<ul>
-<li>But will still stop at 4 lines</li>
-</ul>
-</li>
-<li>$FormatEnumerationLimit: to increase the lines beyond the default of 4</li>
-</ul>
-<p>Format-Wide: display single property using multiple columns</p>
-<figure class='code'>
-<figcaption class='code-title'><span>Format-Wide</span></figcaption>
-
-<div class="highlight"><pre><span class="n">gps</span> <span class="p">|</span> <span class="n">fw</span> <span class="n">-property</span> <span class="n">name</span> <span class="n">-column</span> <span class="n">5</span>
-</pre></div>
-
-
-</figure>
-
-<figure class='code'>
-<figcaption class='code-title'><span>Select-Object</span></figcaption>
-
-<div class="highlight"><pre><span class="n">gps</span> <span class="p">|</span> <span class="nb">select-object</span> <span class="n">-first</span> <span class="n">20</span> <span class="n">name</span><span class="p">,</span> <span class="n">handles</span><span class="p">,</span> <span class="n">cpu</span>
-<span class="n">gps</span> <span class="p">|</span> <span class="nb">select-object</span> <span class="p">*,</span> <span class="err">@</span><span class="p">{</span><span class="n">Label</span><span class="p">=</span><span class="s1">&#39;ComputerName&#39;</span><span class="err">;</span><span class="n">Expression</span><span class="p">={</span><span class="nv">$_</span><span class="p">.</span><span class="n">Name</span><span class="p">}}</span>
-</pre></div>
-
-
-</figure>
-
-<h3>Hash Tables</h3>
-<figure class='code'>
-<figcaption class='code-title'><span>Hash Table</span></figcaption>
-
-<div class="highlight"><pre><span class="nv">$ht</span> <span class="p">=</span> <span class="err">@</span><span class="p">{</span><span class="n">name</span><span class="p">=</span><span class="s2">&quot;Thomas Lee&quot;</span><span class="err">;</span> <span class="n">course</span><span class="p">=</span><span class="s1">&#39;Formatting&#39;</span><span class="p">}</span>
-<span class="nv">$ht</span> <span class="p">+=</span> <span class="err">@</span><span class="p">{</span><span class="n">vendor</span><span class="p">=</span><span class="s2">&quot;Pluralsight&quot;</span><span class="err">;</span> <span class="n">modules</span><span class="p">=</span><span class="n">6</span><span class="p">}</span>
-</pre></div>
-
-
-</figure>
-
-<figure class='code'>
-<figcaption class='code-title'><span>Hash Table Properties</span></figcaption>
-
-<div class="highlight"><pre><span class="nv">$pn</span> <span class="p">=</span> <span class="err">@</span><span class="p">{</span><span class="n">Label</span><span class="p">=</span><span class="s2">&quot;Process Name&quot;</span><span class="err">;</span> <span class="n">Expression</span><span class="p">={</span><span class="nv">$_</span><span class="p">.</span><span class="n">name</span><span class="p">}</span><span class="err">;</span> <span class="n">Alignment</span> <span class="p">=</span> <span class="s2">&quot;right&quot;</span> <span class="p">}</span>
-<span class="nv">$cpu</span> <span class="p">=</span> <span class="err">@</span><span class="p">{</span><span class="n">Label</span><span class="p">=</span><span class="s2">&quot;CPU Used&quot;</span><span class="err">;</span> <span class="n">Expression</span><span class="p">={</span><span class="nv">$_</span><span class="p">.</span><span class="n">CPU</span><span class="p">}</span><span class="err">;</span> <span class="n">Alignment</span> <span class="p">=</span> <span class="s2">&quot;right&quot;</span><span class="err">;</span> <span class="n">FormatString</span><span class="p">=</span><span class="s2">&quot;N3&quot;</span><span class="p">}</span>
-<span class="n">gps</span> <span class="n">notepad</span> <span class="p">|</span> <span class="n">ft</span> <span class="nv">$pn</span><span class="p">,</span><span class="nv">$cpu</span> <span class="n">-auto</span>
-</pre></div>
-
-
-</figure>
-
-<h3>XML Format Files</h3>
-<ul>
-<li>Stored in $Pshome folder</li>
-<li>Update-FormatData: load new format files using </li>
-</ul>
-<figure class='code'>
-<figcaption class='code-title'><span>Display Format</span></figcaption>
-
-<div class="highlight"><pre><span class="n">cat</span> <span class="s1">&#39;.\test.format.ps1xml&#39;</span>
-<span class="p">&lt;</span><span class="k">?</span><span class="n">xml</span> <span class="n">version</span><span class="p">=</span><span class="s1">&#39;1.0&#39;</span> <span class="n">encoding</span><span class="p">=</span><span class="s1">&#39;utf-8&#39;</span> <span class="p">?&gt;</span>
-<span class="p">&lt;</span><span class="n">Configuration</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="n">DefaultSettings</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="n">PropertyCountForTable</span><span class="p">&gt;</span><span class="n">3</span><span class="p">&lt;/</span><span class="n">PropertyCountForTable</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="n">WrapTables</span><span class="p">/&gt;</span>
-    <span class="p">&lt;/</span><span class="n">DefaultSettings</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="n">SelectionSets</span><span class="p">&gt;&lt;/</span><span class="n">SelectionSets</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="n">Controls</span><span class="p">&gt;&lt;/</span><span class="n">Controls</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="n">ViewDefinitions</span><span class="p">&gt;&lt;/</span><span class="n">ViewDefinitions</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="n">Configuration</span><span class="p">&gt;</span>
-<span class="nb">Update-FormatData</span> <span class="n">-Prepend</span> <span class="s1">&#39;.\test.form.ps1xml&#39;</span>
-</pre></div>
-
-
-</figure>
-
-<figure class='code'>
-<figcaption class='code-title'><span>Format Lists</span></figcaption>
-
-<div class="highlight"><pre><span class="n">cat</span> <span class="s1">&#39;.\test.format.ps1xml&#39;</span>
-<span class="p">&lt;</span><span class="k">?</span><span class="n">xml</span> <span class="n">version</span><span class="p">=</span><span class="s1">&#39;1.0&#39;</span> <span class="n">encoding</span><span class="p">=</span><span class="s1">&#39;utf-8&#39;</span> <span class="p">?&gt;</span>
-<span class="p">&lt;</span><span class="n">Configuration</span><span class="p">&gt;&lt;</span><span class="n">ViewDefinitions</span><span class="p">&gt;&lt;</span><span class="n">View</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="n">Name</span><span class="p">&gt;</span><span class="n">CPUCost</span><span class="p">&lt;/</span><span class="n">Name</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="n">ViewSelectedBy</span><span class="p">&gt;&lt;</span><span class="n">TypeName</span><span class="p">&gt;</span><span class="n">System</span><span class="p">.</span><span class="n">Diagnostics</span><span class="p">.</span><span class="k">Process</span><span class="p">&lt;/</span><span class="n">TypeName</span><span class="p">&gt;&lt;/</span><span class="n">ViewSelectedBy</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="n">ListControl</span><span class="p">&gt;&lt;</span><span class="n">ListEntries</span><span class="p">&gt;&lt;</span><span class="n">ListEntry</span><span class="p">&gt;&lt;</span><span class="n">ListItems</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="n">ListItem</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="n">Label</span><span class="p">&gt;</span><span class="k">Process</span> <span class="n">Name</span><span class="p">&lt;/</span><span class="n">Label</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="n">PropertyName</span><span class="p">&gt;</span><span class="n">ProcessName</span><span class="p">&lt;/</span><span class="n">PropertyName</span><span class="p">&gt;</span>
-        <span class="p">&lt;/</span><span class="n">ListItem</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="n">ListItem</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="n">Label</span><span class="p">&gt;</span><span class="n">CPU</span> <span class="n">Cost</span><span class="p">&lt;/</span><span class="n">Label</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="n">ScriptBlock</span><span class="p">&gt;(</span><span class="nv">$_</span><span class="p">.</span><span class="n">cpu</span> <span class="p">*</span> <span class="n">10</span><span class="p">)</span> <span class="p">+</span> <span class="n">4</span><span class="p">&lt;/</span><span class="n">ScriptBlock</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="n">FormatString</span><span class="p">&gt;</span><span class="n">C3</span><span class="p">&lt;/</span><span class="n">FormatString</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="n">ItemSelectionCondition</span><span class="p">&gt;</span>
-                <span class="p">&lt;</span><span class="n">ScriptBlock</span><span class="p">&gt;</span><span class="nv">$_</span><span class="p">.</span><span class="n">CPU</span> <span class="n">_GE</span> <span class="p">.</span><span class="n">5</span><span class="p">&lt;/</span><span class="n">ScriptBlock</span><span class="p">&gt;</span>
-            <span class="p">&lt;/</span><span class="n">ItemSelectionCondition</span><span class="p">&gt;</span>
-        <span class="p">&lt;/</span><span class="n">ListItem</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="n">ListItems</span><span class="p">&gt;&lt;/</span><span class="n">ListEntry</span><span class="p">&gt;&lt;/</span><span class="n">ListEntries</span><span class="p">&gt;&lt;/</span><span class="n">ListControl</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="n">View</span><span class="p">&gt;&lt;/</span><span class="n">ViewDefinitons</span><span class="p">&gt;&lt;/</span><span class="n">Configuration</span><span class="p">&gt;</span>
-<span class="nb">Update-FormatData</span> <span class="s1">&#39;.\test.form.ps1xml&#39;</span>
-<span class="n">gps</span> <span class="n">e</span><span class="p">*</span> <span class="p">|</span> <span class="n">fl</span> <span class="n">-view</span> <span class="n">CPUCost</span>
-</pre></div>
-
-
-</figure>
-
-<figure class='code'>
-<figcaption class='code-title'><span>Format Tables</span></figcaption>
-
-<div class="highlight"><pre><span class="n">cat</span> <span class="s1">&#39;.\test.format.ps1xml&#39;</span>
-<span class="p">&lt;</span><span class="k">?</span><span class="n">xml</span> <span class="n">version</span><span class="p">=</span><span class="s1">&#39;1.0&#39;</span> <span class="n">encoding</span><span class="p">=</span><span class="s1">&#39;utf-8&#39;</span> <span class="p">?&gt;</span>
-<span class="p">&lt;</span><span class="n">Configuration</span><span class="p">&gt;&lt;</span><span class="n">ViewDefinitions</span><span class="p">&gt;&lt;</span><span class="n">View</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="n">Name</span><span class="p">&gt;</span><span class="n">CPUCost</span><span class="p">&lt;/</span><span class="n">Name</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="n">ViewSelectedBy</span><span class="p">&gt;&lt;</span><span class="n">TypeName</span><span class="p">&gt;</span><span class="n">System</span><span class="p">.</span><span class="n">Diagnostics</span><span class="p">.</span><span class="k">Process</span><span class="p">&lt;/</span><span class="n">TypeName</span><span class="p">&gt;&lt;/</span><span class="n">ViewSelectedBy</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="n">TableControl</span><span class="p">&gt;&lt;</span><span class="n">TableHeaders</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="n">TableColumnHeader</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="n">Label</span><span class="p">&gt;</span><span class="k">Process</span> <span class="n">Name</span><span class="p">&lt;/</span><span class="n">Label</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="n">Width</span><span class="p">&gt;</span><span class="n">15</span><span class="p">&lt;/</span><span class="n">Width</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="n">Alignment</span><span class="p">&gt;</span><span class="n">Right</span><span class="p">&lt;/</span><span class="n">Alignment</span><span class="p">&gt;</span>
-        <span class="p">&lt;/</span><span class="n">TableColumnHeader</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="n">TableColumnHeader</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="n">Label</span><span class="p">&gt;</span><span class="n">CPU</span> <span class="n">Cost</span><span class="p">&lt;/</span><span class="n">Label</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="n">Width</span><span class="p">&gt;</span><span class="n">15</span><span class="p">&lt;/</span><span class="n">Width</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="n">Alignment</span><span class="p">&gt;</span><span class="n">Right</span><span class="p">&lt;/</span><span class="n">Alignment</span><span class="p">&gt;</span>
-        <span class="p">&lt;/</span><span class="n">TableColumnHeader</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="n">TableRowEntries</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="n">TableRowEntry</span><span class="p">&gt;&lt;</span><span class="n">TableColumnItems</span><span class="p">&gt;</span>
-                <span class="p">&lt;</span><span class="n">TableColumnItem</span><span class="p">&gt;</span>
-                    <span class="p">&lt;</span><span class="n">PropertyName</span><span class="p">&gt;</span><span class="n">Name</span><span class="p">&lt;/</span><span class="n">PropertyName</span><span class="p">&gt;</span>
-                    <span class="p">&lt;</span><span class="n">Alignment</span><span class="p">&gt;</span><span class="n">Left</span><span class="p">&lt;/</span><span class="n">Alignment</span><span class="p">&gt;</span>
-                <span class="p">&lt;/</span><span class="n">TableColumnItem</span><span class="p">&gt;</span>
-                <span class="p">&lt;</span><span class="n">TableColumnItem</span><span class="p">&gt;</span>
-                    <span class="p">&lt;</span><span class="n">ScriptBlock</span><span class="p">&gt;(</span><span class="nv">$_</span><span class="p">.</span><span class="n">cpu</span> <span class="p">*</span> <span class="n">10</span><span class="p">)</span> <span class="p">+</span> <span class="n">4</span><span class="p">&lt;/</span><span class="n">ScriptBlock</span><span class="p">&gt;</span>
-                    <span class="p">&lt;</span><span class="n">Alignment</span><span class="p">&gt;</span><span class="n">Right</span><span class="p">&lt;/</span><span class="n">Alignment</span><span class="p">&gt;</span>
-                    <span class="p">&lt;</span><span class="n">FormatString</span><span class="p">&gt;</span><span class="n">N2</span><span class="p">&lt;/</span><span class="n">FormatString</span><span class="p">&gt;</span>
-                <span class="p">&lt;/</span><span class="n">TableColumnItem</span><span class="p">&gt;</span>
-            <span class="p">&lt;/</span><span class="n">TableColumnItems</span><span class="p">&gt;&lt;/</span><span class="n">TableRowEntry</span><span class="p">&gt;</span>
-        <span class="p">&lt;/</span><span class="n">TableRowEntries</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="n">View</span><span class="p">&gt;&lt;/</span><span class="n">ViewDefinitons</span><span class="p">&gt;&lt;/</span><span class="n">Configuration</span><span class="p">&gt;</span>
-<span class="nb">Update-FormatData</span> <span class="s1">&#39;.\test.form.ps1xml&#39;</span>
-<span class="n">gps</span> <span class="n">e</span><span class="p">*</span> <span class="p">|</span> <span class="n">ft</span> <span class="n">-view</span> <span class="n">CPUCost</span>
-</pre></div>
-
-
-</figure>
-
-<h3>Output</h3>
-<ul>
-<li>Out-String: sends output as a series of strings</li>
-<li>Out-File: file</li>
-<li>Out-Printer: Out-Printer snagit</li>
-<li>Out-GridView: WPF grid<ul>
-<li>PowerShell v3 has -PassThru</li>
-</ul>
-</li>
-<li>Out-Null: supresses</li>
-<li>Out-Default: default formatter</li>
-<li>Out-Host: to the command line<ul>
-<li>Has -Paging</li>
-</ul>
-</li>
-</ul>
-<figure class='code'>
-<figcaption class='code-title'><span>View all properties</span></figcaption>
-
-<div class="highlight"><pre><span class="nv">$s</span> <span class="p">=</span> <span class="nb">Get-Service</span> <span class="p">|</span> <span class="n">ft</span> <span class="n">-property</span> <span class="p">*</span> <span class="n">-auto</span> <span class="p">|</span> <span class="nb">Out-String</span> <span class="n">-width</span> <span class="n">700</span> <span class="p">|</span> <span class="nb">Out-File</span> <span class="n">test</span><span class="p">.</span><span class="n">txt</span>
-</pre></div>
-
-
-</figure>
-
-<p>Constrained Language in XML: used by PowerShell remoting
-- Import-CLiXML
-- Export-CLiXML
-- ConvertTo-XML</p>
-<figure class='code'>
-<figcaption class='code-title'><span>XML</span></figcaption>
-
-<div class="highlight"><pre><span class="nv">$xml</span> <span class="p">=</span> <span class="n">gps</span> <span class="p">|</span> <span class="nb">ConvertTo-XML</span>
-<span class="nv">$xml</span><span class="p">.</span><span class="n">Save</span><span class="p">()</span>
-</pre></div>
-
-
-</figure>
-
-<figure class='code'>
-<figcaption class='code-title'><span>CSV</span></figcaption>
-
-<div class="highlight"><pre><span class="nv">$object</span> <span class="p">=</span> <span class="nb">Import-Csv</span> <span class="n">-name</span> <span class="n">test</span><span class="p">.</span><span class="n">csv</span>
-</pre></div>
-
-
-</figure>
-
-<figure class='code'>
-<figcaption class='code-title'><span>HTML</span></figcaption>
-
-<div class="highlight"><pre><span class="n">gps</span> <span class="p">|</span> <span class="nb">ConvertTo-HTML</span> <span class="p">|</span> <span class="nb">Out-File</span> <span class="n">test</span><span class="p">.</span><span class="n">html</span>
-</pre></div>
-
-
-</figure>
-                </div>
-            </article>
-            <hr/>
 
     <ul class="pagination">
             <li class="prev disabled"><a href="#">&laquo;</a></li>
@@ -1088,28 +852,28 @@ Notes to self            </a>
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
-                            <a href="http://ciwchris.github.io/tags/estimates.html">
-                                estimates
+                            <a href="http://ciwchris.github.io/tags/testing.html">
+                                testing
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
-                            <a href="http://ciwchris.github.io/tags/techradar.html">
-                                techradar
+                            <a href="http://ciwchris.github.io/tags/practice.html">
+                                practice
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
-                            <a href="http://ciwchris.github.io/tags/clojurescript.html">
-                                clojurescript
+                            <a href="http://ciwchris.github.io/tags/pluralsight.html">
+                                pluralsight
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
-                            <a href="http://ciwchris.github.io/tags/craftsmanship.html">
-                                craftsmanship
+                            <a href="http://ciwchris.github.io/tags/agile.html">
+                                agile
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
-                            <a href="http://ciwchris.github.io/tags/lisp.html">
-                                lisp
+                            <a href="http://ciwchris.github.io/tags/sicp.html">
+                                sicp
                             </a>
                         </li>
                     </ul>
