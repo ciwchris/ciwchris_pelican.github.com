@@ -61,6 +61,322 @@ Notes to self            </a>
             <article>
                 <header class="page-header">
                     <h1>
+                        <a href="http://ciwchris.github.io/blog/mocking-with-moq.html"
+                            rel="bookmark"
+                            title="Permalink to Mocking with Moq">
+                            Mocking with Moq
+                        </a>
+                    </h1>
+                </header>
+                <div class="entry-content">
+                    <div class="panel">
+                        <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2013-03-04T21:29:00"> Mon 04 March 2013</time>
+    </span>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://ciwchris.github.io/tags/c.html">c#</a>
+        /
+	<a href="http://ciwchris.github.io/tags/mocking.html">mocking</a>
+        /
+	<a href="http://ciwchris.github.io/tags/tests.html">tests</a>
+    
+</footer><!-- /.post-info -->                        </div>
+                    </div>
+                    <p>Notes for the pluralsight course <a href="http://pluralsight.com/training/Courses/TableOfContents/mocking-with-moq">Mocking With Moq</a>.</p>
+<h3>Unit tests should be</h3>
+<ul>
+<li><strong>Atomic:</strong> one small thing</li>
+<li><strong>Deterministic:</strong> pass or fail</li>
+<li><strong>Repeatable:</strong> shouldn't start failing if no code has changed</li>
+<li><strong>Isolated and order independent:</strong> nothing should affect it</li>
+<li><strong>Fast:</strong> milliseconds</li>
+<li><strong>Easy to setup:</strong> shouldn't take a lot of coding</li>
+</ul>
+<h3>Samples</h3>
+<figure class='code'>
+<figcaption class='code-title'><span>Verify a method is called</span></figcaption>
+
+<div class="highlight"><pre><span class="n">mockRepository</span><span class="p">.</span><span class="n">Setup</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">Save</span><span class="p">(</span><span class="n">It</span><span class="p">.</span><span class="n">IsAny</span><span class="p">&lt;</span><span class="n">Customer</span><span class="p">&gt;()));</span>
+
+<span class="n">mockRepository</span><span class="p">.</span><span class="n">VerifyAll</span><span class="p">();</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Verify a method was called n times</span></figcaption>
+
+<div class="highlight"><pre><span class="n">mockCustomerRepository</span><span class="p">.</span><span class="n">Verify</span><span class="p">(</span><span class="n">x</span><span class="p">=&gt;</span><span class="n">x</span><span class="p">.</span><span class="n">Save</span><span class="p">(</span><span class="n">It</span><span class="p">.</span><span class="n">IsAny</span><span class="p">&lt;</span><span class="n">Customer</span><span class="p">&gt;()),</span>
+    <span class="n">Times</span><span class="p">.</span><span class="n">Exactly</span><span class="p">(</span><span class="m">2</span><span class="p">));</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Mock return a value</span></figcaption>
+
+<div class="highlight"><pre><span class="n">mockAddressBuilder</span>
+    <span class="p">.</span><span class="n">Setup</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">From</span><span class="p">(</span><span class="n">It</span><span class="p">.</span><span class="n">IsAny</span><span class="p">&lt;</span><span class="n">CustomerToCreateDto</span><span class="p">&gt;()))</span>
+    <span class="p">.</span><span class="n">Returns</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="k">new</span> <span class="n">Address</span><span class="p">());</span>
+
+<span class="n">mockCustomerRepository</span><span class="p">.</span><span class="n">Verify</span><span class="p">(</span><span class="n">y</span><span class="p">=&gt;</span><span class="n">y</span><span class="p">.</span><span class="n">Save</span><span class="p">(</span><span class="n">It</span><span class="p">.</span><span class="n">IsAny</span><span class="p">&lt;</span><span class="n">Customer</span><span class="p">&gt;()));</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Using an out parameter</span></figcaption>
+
+<div class="highlight"><pre><span class="n">mockMailingAddressFactory</span>
+    <span class="p">.</span><span class="n">Setup</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">TryParse</span><span class="p">(</span><span class="n">It</span><span class="p">.</span><span class="n">IsAny</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;(),</span> <span class="k">out</span> <span class="n">mailingAddress</span><span class="p">))</span>
+    <span class="p">.</span><span class="n">Returns</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+
+<span class="n">mockCustomerRepository</span><span class="p">.</span><span class="n">Verify</span><span class="p">(</span><span class="n">x</span><span class="p">=&gt;</span><span class="n">x</span><span class="p">.</span><span class="n">Save</span><span class="p">(</span><span class="n">It</span><span class="p">.</span><span class="n">IsAny</span><span class="p">&lt;</span><span class="n">Customer</span><span class="p">&gt;()));</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Change the return value after each call to the mocked member</span></figcaption>
+
+<div class="highlight"><pre><span class="n">mockIdFactory</span><span class="p">.</span><span class="n">Setup</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">Create</span><span class="p">())</span>
+    <span class="p">.</span><span class="n">Returns</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="n">i</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">Callback</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="n">i</span><span class="p">++);</span>
+
+<span class="n">mockIdFactory</span><span class="p">.</span><span class="n">Verify</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">Create</span><span class="p">(),</span> <span class="n">Times</span><span class="p">.</span><span class="n">AtLeastOnce</span><span class="p">());</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Verify the arguments passed to the mocked method are as expected</span></figcaption>
+
+<div class="highlight"><pre><span class="n">mockFullNameBuilder</span><span class="p">.</span><span class="n">Setup</span><span class="p">(</span>
+    <span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">From</span><span class="p">(</span><span class="n">It</span><span class="p">.</span><span class="n">IsAny</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;(),</span> <span class="n">It</span><span class="p">.</span><span class="n">IsAny</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;()));</span>
+
+<span class="n">mockFullNameBuilder</span><span class="p">.</span><span class="n">Verify</span><span class="p">(</span><span class="n">x</span><span class="p">=&gt;</span><span class="n">x</span><span class="p">.</span><span class="n">From</span><span class="p">(</span>
+    <span class="n">It</span><span class="p">.</span><span class="n">Is</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;(</span>
+        <span class="n">fn</span><span class="p">=&gt;</span><span class="n">fn</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="n">customerToCreateDto</span><span class="p">.</span><span class="n">FirstName</span><span class="p">,</span>
+            <span class="n">StringComparison</span><span class="p">.</span><span class="n">InvariantCultureIgnoreCase</span><span class="p">)),</span>
+    <span class="n">It</span><span class="p">.</span><span class="n">Is</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;(</span>
+        <span class="n">fn</span><span class="p">=&gt;</span><span class="n">fn</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="n">customerToCreateDto</span><span class="p">.</span><span class="n">LastName</span><span class="p">,</span>
+            <span class="n">StringComparison</span><span class="p">.</span><span class="n">InvariantCultureIgnoreCase</span><span class="p">))));</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Conditionally return a value, control code flow</span></figcaption>
+
+<div class="highlight"><pre><span class="n">mockCustomerStatusFactory</span><span class="p">.</span><span class="n">Setup</span><span class="p">(</span>
+    <span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">CreateFrom</span><span class="p">(</span>
+        <span class="n">It</span><span class="p">.</span><span class="n">Is</span><span class="p">&lt;</span><span class="n">CustomerToCreateDto</span><span class="p">&gt;(</span>
+            <span class="n">y</span> <span class="p">=&gt;</span> <span class="n">y</span><span class="p">.</span><span class="n">DesiredStatus</span> <span class="p">==</span> <span class="n">CustomerStatus</span><span class="p">.</span><span class="n">Platinum</span><span class="p">)))</span>
+    <span class="p">.</span><span class="n">Returns</span><span class="p">(</span><span class="n">CustomerStatus</span><span class="p">.</span><span class="n">Platinum</span><span class="p">);</span>
+
+<span class="n">mockCustomerRepository</span><span class="p">.</span><span class="n">Verify</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">=&gt;</span><span class="n">x</span><span class="p">.</span><span class="n">SaveSpecial</span><span class="p">(</span><span class="n">It</span><span class="p">.</span><span class="n">IsAny</span><span class="p">&lt;</span><span class="n">Customer</span><span class="p">&gt;()));</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Throw an exception</span></figcaption>
+
+<div class="highlight"><pre><span class="n">mockCustomerAddressFactory</span>
+    <span class="p">.</span><span class="n">Setup</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">From</span><span class="p">(</span><span class="n">It</span><span class="p">.</span><span class="n">IsAny</span><span class="p">&lt;</span><span class="n">CustomerToCreateDto</span><span class="p">&gt;()))</span>
+    <span class="p">.</span><span class="n">Throws</span><span class="p">&lt;</span><span class="n">InvalidCustomerAddressException</span><span class="p">&gt;();</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Verify a setter has been set</span></figcaption>
+
+<div class="highlight"><pre><span class="n">mockCustomerRepository</span><span class="p">.</span><span class="n">VerifySet</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">=&gt;</span><span class="n">x</span><span class="p">.</span><span class="n">LocalTimeZone</span> <span class="p">=</span> <span class="n">It</span><span class="p">.</span><span class="n">IsAny</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;());</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Verify a getter has been called</span></figcaption>
+
+<div class="highlight"><pre><span class="n">mockApplicationSettings</span><span class="p">.</span><span class="n">Setup</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">WorkstationId</span><span class="p">).</span><span class="n">Returns</span><span class="p">(</span><span class="m">123</span><span class="p">);</span>
+
+<span class="n">mockApplicationSettings</span><span class="p">.</span><span class="n">VerifyGet</span><span class="p">(</span><span class="n">x</span><span class="p">=&gt;</span><span class="n">x</span><span class="p">.</span><span class="n">WorkstationId</span><span class="p">);</span>
+</pre></div>
+
+
+</figure>
+
+<p>For nested objects you don't have to mock each object; Moq will automatically return a mocked object if it can.</p>
+<figure class='code'>
+<figcaption class='code-title'><span>Recursive/nested properties, Moq realizes each is mockable and so will return a mock for each</span></figcaption>
+
+<div class="highlight"><pre><span class="n">mockApplicationSettings</span><span class="p">.</span><span class="n">Setup</span><span class="p">(</span>
+    <span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">SystemConfiguration</span><span class="p">.</span><span class="n">AuditingInformation</span><span class="p">.</span><span class="n">WorkstationId</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">Returns</span><span class="p">(</span><span class="m">123</span><span class="p">);</span>
+
+<span class="n">mockApplicationSettings</span><span class="p">.</span><span class="n">VerifyGet</span><span class="p">(</span>
+    <span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">SystemConfiguration</span><span class="p">.</span><span class="n">AuditingInformation</span><span class="p">.</span><span class="n">WorkstationId</span><span class="p">);</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Stub a property</span></figcaption>
+
+<div class="highlight"><pre><span class="n">mockApplicationSettings</span><span class="p">.</span><span class="n">SetupProperty</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">WorkstationId</span><span class="p">,</span> <span class="m">1234</span><span class="p">);</span>
+
+<span class="n">mockApplicationSettings</span><span class="p">.</span><span class="n">VerifyGet</span><span class="p">(</span><span class="n">x</span><span class="p">=&gt;</span><span class="n">x</span><span class="p">.</span><span class="n">WorkstationId</span><span class="p">);</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Stub all properties</span></figcaption>
+
+<div class="highlight"><pre><span class="n">mockApplicationSettings</span><span class="p">.</span><span class="n">SetupAllProperties</span><span class="p">();</span>
+<span class="n">mockApplicationSettings</span><span class="p">.</span><span class="n">Object</span><span class="p">.</span><span class="n">WorkstationId</span> <span class="p">=</span> <span class="m">2345</span><span class="p">;</span>
+
+<span class="n">mockApplicationSettings</span><span class="p">.</span><span class="n">VerifyGet</span><span class="p">(</span><span class="n">x</span><span class="p">=&gt;</span><span class="n">x</span><span class="p">.</span><span class="n">WorkstationId</span><span class="p">);</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Event</span></figcaption>
+
+<div class="highlight"><pre><span class="n">mockCustomerRepository</span><span class="p">.</span><span class="n">Raise</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">=&gt;</span><span class="n">x</span><span class="p">.</span><span class="n">NotifySalesTeam</span> <span class="p">+=</span> <span class="k">null</span><span class="p">,</span>
+    <span class="k">new</span> <span class="nf">NotifySalesTeamEventArgs</span><span class="p">(</span><span class="s">&quot;jim&quot;</span><span class="p">));</span>
+
+<span class="n">mockMailingRepository</span><span class="p">.</span><span class="n">Verify</span><span class="p">(</span>
+    <span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">NewCustomerMessage</span><span class="p">(</span><span class="n">It</span><span class="p">.</span><span class="n">IsAny</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;()));</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Custom event</span></figcaption>
+
+<div class="highlight"><pre><span class="n">mockCustomerRepository</span><span class="p">.</span><span class="n">Raise</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">=&gt;</span><span class="n">x</span><span class="p">.</span><span class="n">NotifySalesTeam</span> <span class="p">+=</span> <span class="k">null</span><span class="p">,</span>
+    <span class="s">&quot;jim&quot;</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
+
+<span class="n">mockMailingRepository</span><span class="p">.</span><span class="n">Verify</span><span class="p">(</span>
+    <span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">NewCustomerMessage</span><span class="p">(</span><span class="n">It</span><span class="p">.</span><span class="n">IsAny</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;()));</span>
+</pre></div>
+
+
+</figure>
+
+<p>Two types of mocks:</p>
+<ol>
+<li><strong>Loose:</strong> if the object doesn't have any expectations set it will return the default value for the object. It will not throw an exception when verify is called. This is the default behavior for Moq</li>
+<li><strong>Strict:</strong> exception will be thrown if the object hasn't been explicitly setup.</li>
+</ol>
+<figure class='code'>
+<figcaption class='code-title'><span>Strict mock behavior</span></figcaption>
+
+<div class="highlight"><pre><span class="kt">var</span> <span class="n">mockCustomerRepository</span> <span class="p">=</span> 
+    <span class="k">new</span> <span class="n">Mock</span><span class="p">&lt;</span><span class="n">ICustomerRepository</span><span class="p">&gt;(</span><span class="n">MockBehavior</span><span class="p">.</span><span class="n">Strict</span><span class="p">);</span>
+<span class="n">mockCustomerRepository</span><span class="p">.</span><span class="n">Setup</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">Save</span><span class="p">(</span><span class="n">It</span><span class="p">.</span><span class="n">IsAny</span><span class="p">&lt;</span><span class="n">Customer</span><span class="p">&gt;()));</span>
+
+<span class="n">mockCustomerRepository</span><span class="p">.</span><span class="n">Verify</span><span class="p">();</span>
+</pre></div>
+
+
+</figure>
+
+<p><strong>Partial mock:</strong> allows invocation of a base class implementation</p>
+<figure class='code'>
+<figcaption class='code-title'><span>Mock the SUT when working with a base class</span></figcaption>
+
+<div class="highlight"><pre><span class="n">mockNameFormatter</span><span class="p">.</span><span class="n">Object</span><span class="p">.</span><span class="n">From</span><span class="p">(</span><span class="k">new</span> <span class="n">Customer</span><span class="p">(</span><span class="s">&quot;Bob&quot;</span><span class="p">,</span> <span class="s">&quot;SAPBuilder&quot;</span><span class="p">));</span>
+
+<span class="n">mockNameFormatter</span><span class="p">.</span><span class="n">Verify</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">=&gt;</span><span class="n">x</span><span class="p">.</span><span class="n">ParseBadWordsFrom</span><span class="p">(</span><span class="n">It</span><span class="p">.</span><span class="n">IsAny</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;()),</span>
+    <span class="n">Times</span><span class="p">.</span><span class="n">Exactly</span><span class="p">(</span><span class="m">2</span><span class="p">));</span>
+</pre></div>
+
+
+</figure>
+
+<p><strong>Recursive:</strong> Set the default value of a mock to return a mocked object, <code>DefaultValue = DefaultValue.Mock</code>, instead of the object's default value, this only works if  the object is mockable. Then use <code>Mock.Get()</code> to retrieve the actual mock which can then be used like any other mocked object</p>
+<figure class='code'>
+<figcaption class='code-title'><span>Recursive mock</span></figcaption>
+
+<div class="highlight"><pre><span class="kt">var</span> <span class="n">mockAddressFormatterFactory</span> <span class="p">=</span> 
+    <span class="k">new</span> <span class="n">Mock</span><span class="p">&lt;</span><span class="n">IAddressFormatterFactory</span><span class="p">&gt;</span> 
+        <span class="p">{</span><span class="n">DefaultValue</span> <span class="p">=</span> <span class="n">DefaultValue</span><span class="p">.</span><span class="n">Mock</span><span class="p">};</span>
+<span class="kt">var</span> <span class="n">addressFormatter</span> <span class="p">=</span> <span class="n">mockAddressFormatterFactory</span>
+    <span class="p">.</span><span class="n">Object</span><span class="p">.</span><span class="n">From</span><span class="p">(</span><span class="n">It</span><span class="p">.</span><span class="n">IsAny</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;());</span>
+<span class="kt">var</span> <span class="n">mock</span> <span class="p">=</span> <span class="n">Mock</span><span class="p">.</span><span class="n">Get</span><span class="p">(</span><span class="n">addressFormatter</span><span class="p">);</span>
+
+<span class="n">mock</span><span class="p">.</span><span class="n">Verify</span><span class="p">(</span><span class="n">x</span><span class="p">=&gt;</span><span class="n">x</span><span class="p">.</span><span class="n">From</span><span class="p">(</span><span class="n">It</span><span class="p">.</span><span class="n">IsAny</span><span class="p">&lt;</span><span class="n">CustomerToCreateDto</span><span class="p">&gt;()));</span>
+</pre></div>
+
+
+</figure>
+
+<p>Use a mock factory when working with lots of dependencies. This centralizes the creation and verification of all mock objects.</p>
+<figure class='code'>
+<figcaption class='code-title'><span>Mock factory</span></figcaption>
+
+<div class="highlight"><pre><span class="kt">var</span> <span class="n">mockFactory</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MockRepository</span><span class="p">(</span><span class="n">MockBehavior</span><span class="p">.</span><span class="n">Loose</span><span class="p">)</span> 
+                <span class="p">{</span><span class="n">DefaultValue</span> <span class="p">=</span> <span class="n">DefaultValue</span><span class="p">.</span><span class="n">Mock</span><span class="p">};</span>
+<span class="kt">var</span> <span class="n">mockCustomerRepository</span> <span class="p">=</span> 
+    <span class="n">mockFactory</span><span class="p">.</span><span class="n">Create</span><span class="p">&lt;</span><span class="n">ICustomerRepository</span><span class="p">&gt;();</span>
+<span class="kt">var</span> <span class="n">mockCustomerAddressFormatter</span> <span class="p">=</span> 
+    <span class="n">mockFactory</span><span class="p">.</span><span class="n">Create</span><span class="p">&lt;</span><span class="n">ICustomerAddressFormatter</span><span class="p">&gt;();</span>
+
+<span class="n">mockFactory</span><span class="p">.</span><span class="n">Verify</span><span class="p">();</span>
+</pre></div>
+
+
+</figure>
+
+<p>When mocking protected members the member must be marked as virtual. You lose intellisense, method name must appear in a string. Must use <code>ItExpr</code> instead of <code>It</code>.</p>
+<figure class='code'>
+<figcaption class='code-title'><span>Protected members</span></figcaption>
+
+<div class="highlight"><pre><span class="n">mockCustomerNameFormatter</span><span class="p">.</span><span class="n">Protected</span><span class="p">()</span>
+    <span class="p">.</span><span class="n">Setup</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;(</span><span class="s">&quot;ParseBadWordsFrom&quot;</span><span class="p">,</span> <span class="n">ItExpr</span><span class="p">.</span><span class="n">IsAny</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;())</span>
+    <span class="p">.</span><span class="n">Returns</span><span class="p">(</span><span class="s">&quot;asdf&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">Verifiable</span><span class="p">();</span>
+
+<span class="n">mockCustomerNameFormatter</span><span class="p">.</span><span class="n">Verify</span><span class="p">();</span>
+</pre></div>
+
+
+</figure>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <header class="page-header">
+                    <h1>
                         <a href="http://ciwchris.github.io/blog/the-reasonable-expectations-of-your-CTO.html"
                             rel="bookmark"
                             title="Permalink to The reasonable expectations of your CTO">
@@ -328,28 +644,28 @@ Notes to self            </a>
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
-                            <a href="http://ciwchris.github.io/tags/testing.html">
-                                testing
+                            <a href="http://ciwchris.github.io/tags/mocking.html">
+                                mocking
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
-                            <a href="http://ciwchris.github.io/tags/practice.html">
-                                practice
+                            <a href="http://ciwchris.github.io/tags/law.html">
+                                law
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
-                            <a href="http://ciwchris.github.io/tags/pluralsight.html">
-                                pluralsight
+                            <a href="http://ciwchris.github.io/tags/tests.html">
+                                tests
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
-                            <a href="http://ciwchris.github.io/tags/agile.html">
-                                agile
+                            <a href="http://ciwchris.github.io/tags/techradar.html">
+                                techradar
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
-                            <a href="http://ciwchris.github.io/tags/sicp.html">
-                                sicp
+                            <a href="http://ciwchris.github.io/tags/craftsmanship.html">
+                                craftsmanship
                             </a>
                         </li>
                     </ul>
