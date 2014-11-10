@@ -11,3 +11,7 @@ Summary:
 - Set time
     - Set time => sudo date +%T -s "21:08:00"
     - Sync hardware clock => sudo hwclock -w
+
+- Change screen resolution
+    1. xrandr --current
+    1. xrandr --output LVDS1 --mode 1024x768
