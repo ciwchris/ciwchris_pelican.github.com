@@ -36,7 +36,7 @@ Summary:
 
 [Law of Demeter](http://en.wikipedia.org/wiki/Law_of_Demeter)
 
-> - *Don't talk to strangers.*
+> *Don't talk to strangers.*
 
 ### Other's of Interest
 
