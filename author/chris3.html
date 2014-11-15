@@ -61,6 +61,39 @@ Notes to self            </a>
             <article>
                 <header class="page-header">
                     <h1>
+                        <a href="http://ciwchris.github.io/blog/starting-a-technology-radar.html"
+                            rel="bookmark"
+                            title="Permalink to Starting a technology radar">
+                            Starting a technology radar
+                        </a>
+                    </h1>
+                </header>
+                <div class="entry-content">
+                    <div class="panel">
+                        <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2013-08-26T18:26:00"> Mon 26 August 2013</time>
+    </span>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://ciwchris.github.io/tags/techradar.html">techradar</a>
+    
+</footer><!-- /.post-info -->                        </div>
+                    </div>
+                    <p>I became intrigued by the idea of creating a <a href="http://www.thoughtworks.com/radar">Technology Radar</a> while listening to <a href="nealford.com">Neal Ford</a> on the <a href="http://thinkrelevance.com/blog/2013/07/26/neal-ford-of-thoughtworks-episode-036">Relevance Podcast</a>. Initially the plan was to <a href="http://nealford.com/memeagora/2013/05/28/build_your_own_technology_radar.html">create a radar</a> for our department at work. My thinking was that it would give focus to developers, which technology to concentrate on and which should be used in projects, as well as give visibility as to what directions developers are exploring, and therefore what may start appearing in projects. It would also give management a good visual, and explanation if we did a write up, as to what we are using and where we are heading. It's questionable whether any action will be taken to create one but after reading the section on creating a <em>Personal Radar</em> I became motivated to create my own.</p>
+<p>Why did I create my own radar? I consume information from a variety of sources. As a result I'm exposed to many interesting topics and ideas. I've come to realize it is too many. I tend to find one interesting topic, begin to pursue it only to be interrupted by the next interesting thing to come my way. In the end I have an awareness of many things but have learned none. I therefore concluded that I needed to focus on a small number of items, but still allow myself to be exposed to other items as well. I decided a <em>Personal Radar</em> may help me do just that. Each quarter, or perhaps twice a year, I will update a personal radar. The items I focus on will be selected from the radar. When I produce the next radar then I will select a new set of items to focus on. My hope is that I may become disciplined and learn an item more in-depth before moving on to the next interesting thing. So without further delay, below is my personal radar, probably for the remainder of the year, and explanation text, a work in progress.</p>
+<p><a href="/pages/technology-radar.html">Personal Radar</a><br />
+<a href="/technology-radar-explanation.html">Radar Explanation</a></p>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <header class="page-header">
+                    <h1>
                         <a href="http://ciwchris.github.io/blog/mocking-with-moq.html"
                             rel="bookmark"
                             title="Permalink to Mocking with Moq">
@@ -556,55 +589,6 @@ Notes to self            </a>
                 </div>
             </article>
             <hr/>
-            <article>
-                <header class="page-header">
-                    <h1>
-                        <a href="http://ciwchris.github.io/blog/reversing-a-file-in-vim.html"
-                            rel="bookmark"
-                            title="Permalink to Reversing a file in vim">
-                            Reversing a file in vim
-                        </a>
-                    </h1>
-                </header>
-                <div class="entry-content">
-                    <div class="panel">
-                        <div class="panel-body">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2013-02-11T14:30:00"> Mon 11 February 2013</time>
-    </span>
-
-
-
-<span class="label label-default">Tags</span>
-	<a href="http://ciwchris.github.io/tags/vim.html">vim</a>
-    
-</footer><!-- /.post-info -->                        </div>
-                    </div>
-                    <p>Digging through the Vim help docs <code>:h usr_12.txt</code> I came across the topic 'Reverse line order', <code>h 12.1</code>. Sounds interesting. The command is:</p>
-<figure class='code'>
-
-<div class="highlight"><pre><span class="p">:</span>global<span class="sr">/^/</span><span class="k">m</span> <span class="m">0</span>
-</pre></div>
-
-
-</figure>
-
-<p>While familar with <code>:global</code> the rest of the command was mysterious. The documentation did a good job breaking this down. <code>^</code> will match the beginning of every line. <code>m 0</code> will <code>:move</code> the line below the line number specified; in other words move the current line to the first line of the file. Line '0' is called the 'mythical zeroth line', according to the docs. The same came be done with a range using marks:</p>
-<figure class='code'>
-
-<div class="highlight"><pre><span class="p">:</span><span class="s1">&#39;t+1,.g/^/m &#39;</span><span class="k">t</span>
-</pre></div>
-
-
-<p></figure>
-`</p>
-<p>Here, assuming mark 't' has been set, then all lines between it and the current line will be reversed.</p>
-<p><code>:move</code> was also new to me, although straight forward. It's compliment, <code>:copy</code>, it also worth noting here, also defined as <code>:t</code>.</p>
-                </div>
-            </article>
-            <hr/>
 
     <ul class="pagination">
             <li class="prev"><a href="http://ciwchris.github.io/author/chris2.html">&laquo;</a>
@@ -615,7 +599,10 @@ Notes to self            </a>
                         href="http://ciwchris.github.io/author/chris2.html">2</a></li>
                 <li class="active"><a
                         href="http://ciwchris.github.io/author/chris3.html">3</a></li>
-            <li class="next disabled"><a href="#">&raquo;</a></li>
+                <li class=""><a
+                        href="http://ciwchris.github.io/author/chris4.html">4</a></li>
+            <li class="next"><a
+                    href="http://ciwchris.github.io/author/chris4.html">&raquo;</a></li>
     </ul>
         </div>
         <div class="col-sm-3 well well-sm" id="sidebar">
@@ -644,28 +631,28 @@ Notes to self            </a>
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
-                            <a href="http://ciwchris.github.io/tags/mocking.html">
-                                mocking
+                            <a href="http://ciwchris.github.io/tags/books.html">
+                                books
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
-                            <a href="http://ciwchris.github.io/tags/law.html">
-                                law
+                            <a href="http://ciwchris.github.io/tags/example.html">
+                                example
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://ciwchris.github.io/tags/angular.html">
+                                angular
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://ciwchris.github.io/tags/principle.html">
+                                principle
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
                             <a href="http://ciwchris.github.io/tags/tests.html">
                                 tests
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://ciwchris.github.io/tags/techradar.html">
-                                techradar
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://ciwchris.github.io/tags/craftsmanship.html">
-                                craftsmanship
                             </a>
                         </li>
                     </ul>

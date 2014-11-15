@@ -61,6 +61,122 @@ Notes to self            </a>
             <article>
                 <header class="page-header">
                     <h1>
+                        <a href="http://ciwchris.github.io/blog/records-and-protocols-in-clojure.html"
+                            rel="bookmark"
+                            title="Permalink to Records and Protocols in Clojure">
+                            Records and Protocols in Clojure
+                        </a>
+                    </h1>
+                </header>
+                <div class="entry-content">
+                    <div class="panel">
+                        <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2014-11-15T14:00:00"> Sat 15 November 2014</time>
+    </span>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://ciwchris.github.io/tags/clojure.html">clojure</a>
+        /
+	<a href="http://ciwchris.github.io/tags/example.html">example</a>
+    
+</footer><!-- /.post-info -->                        </div>
+                    </div>
+                    <p>How I explain Clojure records and protocols to myself. The example used will be adding numbers.</p>
+<p>Records are comparable to classes.</p>
+<figure class='code'>
+
+<div class="highlight"><pre><span class="c1">;; Define type TwoNum with a two parameter constructor</span>
+<span class="p">(</span><span class="kd">defrecord </span><span class="nv">TwoNum</span> <span class="p">[</span><span class="nv">a</span> <span class="nv">b</span><span class="p">])</span>
+
+<span class="c1">;; Create instance of TwoNum</span>
+<span class="p">(</span><span class="nf">TwoNum.</span> <span class="mi">1</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+
+</figure>
+
+<p>Protocols are interfaces.</p>
+<figure class='code'>
+
+<div class="highlight"><pre><span class="c1">;; Define interface Arithmetic with method add</span>
+<span class="p">(</span><span class="kd">defprotocol </span><span class="nv">Arithmetic</span>
+  <span class="p">(</span><span class="nf">add</span> <span class="p">[</span><span class="nv">arithmetic</span><span class="p">]))</span>
+</pre></div>
+
+
+</figure>
+
+<p>Records can implement a record in its definition or at a later time.</p>
+<figure class='code'>
+
+<div class="highlight"><pre><span class="c1">;; Extend the previously defined record to implement the protocol</span>
+<span class="p">(</span><span class="nf">extend-type</span> <span class="nv">TwoNum</span>
+  <span class="nv">Arithmetic</span>
+  <span class="p">(</span><span class="nf">add</span> <span class="p">[</span><span class="nv">number-object</span><span class="p">]</span> <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="ss">:a</span> <span class="nv">number-object</span><span class="p">)</span> <span class="p">(</span><span class="ss">:b</span> <span class="nv">number-object</span><span class="p">))))</span>
+
+<span class="c1">;; Implementing the interface in the record definition</span>
+<span class="p">(</span><span class="kd">defrecord </span><span class="nv">ThreeNum</span> <span class="p">[</span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">]</span>
+  <span class="nv">Arithmetic</span>
+  <span class="p">(</span><span class="nf">add</span> <span class="p">[</span><span class="nv">_</span><span class="p">]</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">)))</span>
+
+<span class="c1">;; Using the implementations</span>
+<span class="p">(</span><span class="nf">add</span> <span class="p">(</span><span class="nf">TwoNum.</span> <span class="mi">1</span> <span class="mi">2</span><span class="p">))</span>
+<span class="p">(</span><span class="nf">add</span> <span class="p">(</span><span class="nf">ThreeNum.</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
+</pre></div>
+
+
+</figure>
+
+<p>When the record definition implements the protocol it can access the fields (a, b and c) directly instead of going through the object, 'number-object', and so the underscore throw away syntax, '_', can be used. There is also a performance benefit when implementing within the definition. However, because records can be extended after they have already been defined Clojure is able to elegantly address the <a href="http://www.ibm.com/developerworks/library/j-clojure-protocols/">Expression Problem</a>.</p>
+<p>It is also possible to implement a protocol without defining a record using reify.</p>
+<figure class='code'>
+
+<div class="highlight"><pre><span class="c1">;; Creating an anonymous type</span>
+<span class="p">(</span><span class="kd">defn </span><span class="nv">reify-num</span>
+  <span class="p">[</span><span class="nv">a</span> <span class="nv">b</span><span class="p">]</span>
+  <span class="p">(</span><span class="nf">reify</span> <span class="nv">Arithmetic</span>
+        <span class="p">(</span><span class="nf">add</span> <span class="p">[</span><span class="nv">_</span><span class="p">]</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">a</span> <span class="nv">b</span><span class="p">))))</span>
+
+<span class="c1">;; Using the implementation of the anonymous type</span>
+<span class="p">(</span><span class="nf">add</span> <span class="p">(</span><span class="nf">reify-num</span> <span class="mi">1</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+
+
+</figure>
+
+<p>At times a common implementation could be used across types. To use a common implementation the implementation can be defined in a map and then used when extending the types.</p>
+<figure class='code'>
+
+<div class="highlight"><pre><span class="c1">;; Records which can use a common implementation</span>
+<span class="p">(</span><span class="kd">defrecord </span><span class="nv">TwoNum</span> <span class="p">[</span><span class="nv">a</span> <span class="nv">b</span><span class="p">])</span>
+<span class="p">(</span><span class="kd">defrecord </span><span class="nv">ThreeNum</span> <span class="p">[</span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">])</span>
+
+<span class="c1">;; Common implementation</span>
+<span class="p">(</span><span class="k">def </span><span class="nv">arithmetic-implementation</span>
+  <span class="p">{</span><span class="ss">:add</span> <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">number-object</span><span class="p">]</span> <span class="p">(</span><span class="nb">apply + </span><span class="p">(</span><span class="nb">vals </span><span class="nv">number-object</span><span class="p">)))})</span>
+
+<span class="c1">;; Extending the records using the common implementation</span>
+<span class="p">(</span><span class="nf">extend</span> <span class="nv">TwoNum</span> <span class="nv">Arithmetic</span> <span class="nv">arithmetic-implementation</span><span class="p">)</span>
+<span class="p">(</span><span class="nf">extend</span> <span class="nv">ThreeNum</span> <span class="nv">Arithmetic</span> <span class="nv">arithmetic-implementation</span><span class="p">)</span>
+
+<span class="c1">;; Using the implementations</span>
+<span class="p">(</span><span class="nf">add</span> <span class="p">(</span><span class="nf">TwoNum.</span> <span class="mi">1</span> <span class="mi">2</span><span class="p">))</span>
+<span class="p">(</span><span class="nf">add</span> <span class="p">(</span><span class="nf">ThreeNum.</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
+</pre></div>
+
+
+</figure>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <header class="page-header">
+                    <h1>
                         <a href="http://ciwchris.github.io/blog/eponymous-laws-laws-and-principles-on-the-topic-of-software-development.html"
                             rel="bookmark"
                             title="Permalink to Eponymous Laws, Laws and Principles on the topic of Software Development">
@@ -114,9 +230,7 @@ Notes to self            </a>
 <h3>Laws</h3>
 <p><a href="http://en.wikipedia.org/wiki/Law_of_Demeter">Law of Demeter</a></p>
 <blockquote>
-<ul>
-<li><em>Don't talk to strangers.</em></li>
-</ul>
+<p><em>Don't talk to strangers.</em></p>
 </blockquote>
 <h3>Other's of Interest</h3>
 <p><a href="http://en.wikipedia.org/wiki/Jeff_Atwood#Career">Atwood's Law</a></p>
@@ -371,119 +485,6 @@ Notes to self            </a>
                 </div>
             </article>
             <hr/>
-            <article>
-                <header class="page-header">
-                    <h1>
-                        <a href="http://ciwchris.github.io/blog/sicp-highlights.html"
-                            rel="bookmark"
-                            title="Permalink to Structure and Interpretation of Computer Programs: Highlighted Text">
-                            Structure and Interpretation of Computer Programs: Highlighted Text
-                        </a>
-                    </h1>
-                </header>
-                <div class="entry-content">
-                    <div class="panel">
-                        <div class="panel-body">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2014-02-17T20:48:00"> Mon 17 February 2014</time>
-    </span>
-
-
-
-<span class="label label-default">Tags</span>
-	<a href="http://ciwchris.github.io/tags/sicp.html">sicp</a>
-        /
-	<a href="http://ciwchris.github.io/tags/lisp.html">lisp</a>
-        /
-	<a href="http://ciwchris.github.io/tags/books.html">books</a>
-    
-</footer><!-- /.post-info -->                        </div>
-                    </div>
-                    <p>Text highlighted during an initial reading of
-<a href="http://mitpress.mit.edu/sicp/full-text/book/book-Z-H-10.html">Structure and Interpretation of Computer Programs</a></p>
-<h1>Chapter 1</h1>
-<ul>
-<li>Master software engineers have the ability to organize programs so that they can be reasonably sure that the resulting processes will perform the tasks intended.</li>
-<li>The most significant of these features is the fact that Lisp descriptions of processes, called procedures, can themselves be represented and manipulated as Lisp data.</li>
-</ul>
-<h2>1.1</h2>
-<ul>
-<li>In programming, we deal with two kinds of elements: procedures and data. (Later we will discover that they are really not so distinct.)</li>
-<li>substitution model</li>
-<li>normal-order evaluation vs applicative-order evaluation</li>
-<li>The word predicate is used for procedures that return true or false, as well as for expressions that evaluate to true or false.</li>
-<li>The contrast between function and procedure is a reflection of the general distinction between describing properties of things and describing how to do things, or, as it is sometimes referred to, the distinction between declarative knowledge and imperative knowledge.</li>
-<li>block structure</li>
-<li>lexical scoping</li>
-</ul>
-<h2>1.2</h2>
-<p>(having to do with mathematics and calculating space and operations)</p>
-<ul>
-<li>linear recursive process vs linear iterative process</li>
-<li>It will execute an iterative process in constant space, even if the iterative process is described by a recursive procedure. An implementation with this property is called tail-recursive.</li>
-</ul>
-<h2>1.3</h2>
-<ul>
-<li>Procedures that manipulate procedures are called higher-order procedures.</li>
-<li>Experienced programmers know how to choose procedural formulations that are particularly perspicuous, and where useful elements of the process are exposed as separate entities that can be reused in other applications.</li>
-<li>expert programmers know how to choose the level of abstraction appropriate to their task.</li>
-<li>Lisp, unlike other common programming languages, awards procedures full first-class status. This poses challenges for efficient implementation, but the resulting gain in expressive power is enormous.</li>
-</ul>
-<h1>Chapter 2</h1>
-<ul>
-<li>The general technique of isolating the parts of a program that deal with how data objects are represented from the parts of a program that deal with how data objects are used is a powerful design methodology called data abstraction.</li>
-<li>closure -- that the glue we use for combining data objects should allow us to combine not only primitive data objects, but compound data objects as well.</li>
-</ul>
-<h2>2.1</h2>
-<ul>
-<li>Data abstraction is a methodology that enables us to isolate how a compound data object is used from the details of how it is constructed from more primitive data objects.</li>
-<li>Data objects constructed from pairs are called list-structured data.</li>
-</ul>
-<h2>2.2</h2>
-<ul>
-<li>The word nil is a contraction of the Latin word nihil, which means 'nothing.'</li>
-<li>The difference between the two definitions is not that the computer is performing a different process (it isn't) but that we think about the process differently. In effect, map helps establish an abstraction barrier that isolates the implementation of procedures that transform lists from the details of how the elements of the list are extracted and combined.</li>
-<li>In working with compound data, we've stressed how data abstraction permits us to design programs without becoming enmeshed in the details of data representations, and how abstraction preserves for us the flexibility to experiment with alternative representations.</li>
-<li>The value of expressing programs as sequence operations is that this helps us make program designs that are modular, that is, designs that are constructed by combining relatively independent pieces.</li>
-<li>stratified design, the notion that a complex system should be structured as a sequence of levels that are described using a sequence of languages. Each level is constructed by combining parts that are regarded as primitive at that level, and the parts constructed at each level are used as primitives at the next level.</li>
-<li>Stratified design helps make programs robust, that is, it makes it likely that small changes in a specification will require correspondingly small changes in the program.</li>
-</ul>
-<h2>2.3</h2>
-<ul>
-<li>Symbolic differentiation is of special historical significance in Lisp. It was one of the motivating examples behind the development of a computer language for symbol manipulation. </li>
-<li>We can represent trees by using lists. Each node will be a list of three items: the entry at the node, the left subtree, and the right subtree.</li>
-<li>We have examined options for using lists to represent sets and have seen how the choice of representation for a data object can have a large impact on the performance of the programs that use the data.</li>
-<li>The designer can create an initial implementation using a simple, straightforward representation such as unordered lists. This will be unsuitable for the eventual system, but it can be useful in providing a 'quick and dirty' data base with which to test the rest of the system. Later on, the data representation can be modified to be more sophisticated. If the data base is accessed in terms of abstract selectors and constructors, this change in representation will not require any changes to the rest of the system.</li>
-</ul>
-<h2>2.4</h2>
-<ul>
-<li>These data-abstraction barriers are powerful tools for controlling complexity. By isolating the underlying representations of data objects, we can divide the task of designing a large program into smaller tasks that can be performed separately. </li>
-<li>So in addition to the data-abstraction barriers that isolate representation from use, we need abstraction barriers that isolate different design choices from each other and permit different choices to coexist in a single program. </li>
-<li>Our main technique for building generic procedures will be to work in terms of data objects that have type tags, that is, data objects that include explicit information about how they are to be processed.</li>
-<li>The principle of least commitment: The abstraction barrier formed by the selectors and constructors permits us to defer to the last possible moment the choice of a concrete representation for our data objects and thus retain maximum flexibility in our system design.</li>
-<li>The general strategy of checking the type of a datum and calling an appropriate procedure is called dispatching on type.</li>
-<li>data-directed programming: Here we will implement the interface as a single procedure that looks up the combination of the operation name and argument type in the table to find the correct procedure to apply, and then applies it to the contents of the argument.</li>
-<li>message passing: An alternative implementation strategy is to decompose the table into columns and, instead of using 'intelligent operations' that dispatch on data types, to work with 'intelligent data objects' that dispatch on operation names.</li>
-</ul>
-<h2>2.5</h2>
-<ul>
-<li>Often the different data types are not completely independent, and there may be ways by which objects of one type may be viewed as being of another type. This process is called coercion.</li>
-<li>In general, we can implement this idea by designing coercion procedures that transform an object of one type into an equivalent object of another type.</li>
-<li>hierarchy of types, in which, for example, integers are a subtype of rational numbers</li>
-<li>in which each type has at most one supertype and at most one subtype. Such a structure, called a tower,</li>
-</ul>
-<h1>Chapter 3</h1>
-<ul>
-<li>In particular, we need strategies to help us structure large systems so that they will be modular, that is, so that they can be divided 'naturally' into coherent parts that can be separately developed and maintained.</li>
-<li>The first organizational strategy concentrates on objects, viewing a large system as a collection of distinct objects whose behaviors may change over time. An alternative organizational strategy concentrates on the streams of information that flow in the system, much as an electrical engineer views a signal-processing system.</li>
-<li>The difficulties of dealing with objects, change, and identity are a fundamental consequence of the need to grapple with time in our computational models.</li>
-<li>delayed evaluation: The stream approach can be most fully exploited when we decouple simulated time in our model from the order of the events that take place in the computer during evaluation.</li>
-</ul>
-                </div>
-            </article>
-            <hr/>
 
     <ul class="pagination">
             <li class="prev disabled"><a href="#">&laquo;</a></li>
@@ -493,6 +494,8 @@ Notes to self            </a>
                         href="http://ciwchris.github.io/index2.html">2</a></li>
                 <li class=""><a
                         href="http://ciwchris.github.io/index3.html">3</a></li>
+                <li class=""><a
+                        href="http://ciwchris.github.io/index4.html">4</a></li>
             <li class="next"><a
                     href="http://ciwchris.github.io/index2.html">&raquo;</a></li>
     </ul>
@@ -523,28 +526,28 @@ Notes to self            </a>
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
-                            <a href="http://ciwchris.github.io/tags/mocking.html">
-                                mocking
+                            <a href="http://ciwchris.github.io/tags/books.html">
+                                books
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
-                            <a href="http://ciwchris.github.io/tags/law.html">
-                                law
+                            <a href="http://ciwchris.github.io/tags/example.html">
+                                example
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://ciwchris.github.io/tags/angular.html">
+                                angular
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://ciwchris.github.io/tags/principle.html">
+                                principle
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
                             <a href="http://ciwchris.github.io/tags/tests.html">
                                 tests
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://ciwchris.github.io/tags/techradar.html">
-                                techradar
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://ciwchris.github.io/tags/craftsmanship.html">
-                                craftsmanship
                             </a>
                         </li>
                     </ul>

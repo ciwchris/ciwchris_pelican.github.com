@@ -61,6 +61,122 @@ Notes to self            </a>
             <article>
                 <header class="page-header">
                     <h1>
+                        <a href="http://ciwchris.github.io/blog/records-and-protocols-in-clojure.html"
+                            rel="bookmark"
+                            title="Permalink to Records and Protocols in Clojure">
+                            Records and Protocols in Clojure
+                        </a>
+                    </h1>
+                </header>
+                <div class="entry-content">
+                    <div class="panel">
+                        <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2014-11-15T14:00:00"> Sat 15 November 2014</time>
+    </span>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://ciwchris.github.io/tags/clojure.html">clojure</a>
+        /
+	<a href="http://ciwchris.github.io/tags/example.html">example</a>
+    
+</footer><!-- /.post-info -->                        </div>
+                    </div>
+                    <p>How I explain Clojure records and protocols to myself. The example used will be adding numbers.</p>
+<p>Records are comparable to classes.</p>
+<figure class='code'>
+
+<div class="highlight"><pre><span class="c1">;; Define type TwoNum with a two parameter constructor</span>
+<span class="p">(</span><span class="kd">defrecord </span><span class="nv">TwoNum</span> <span class="p">[</span><span class="nv">a</span> <span class="nv">b</span><span class="p">])</span>
+
+<span class="c1">;; Create instance of TwoNum</span>
+<span class="p">(</span><span class="nf">TwoNum.</span> <span class="mi">1</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+
+</figure>
+
+<p>Protocols are interfaces.</p>
+<figure class='code'>
+
+<div class="highlight"><pre><span class="c1">;; Define interface Arithmetic with method add</span>
+<span class="p">(</span><span class="kd">defprotocol </span><span class="nv">Arithmetic</span>
+  <span class="p">(</span><span class="nf">add</span> <span class="p">[</span><span class="nv">arithmetic</span><span class="p">]))</span>
+</pre></div>
+
+
+</figure>
+
+<p>Records can implement a record in its definition or at a later time.</p>
+<figure class='code'>
+
+<div class="highlight"><pre><span class="c1">;; Extend the previously defined record to implement the protocol</span>
+<span class="p">(</span><span class="nf">extend-type</span> <span class="nv">TwoNum</span>
+  <span class="nv">Arithmetic</span>
+  <span class="p">(</span><span class="nf">add</span> <span class="p">[</span><span class="nv">number-object</span><span class="p">]</span> <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="ss">:a</span> <span class="nv">number-object</span><span class="p">)</span> <span class="p">(</span><span class="ss">:b</span> <span class="nv">number-object</span><span class="p">))))</span>
+
+<span class="c1">;; Implementing the interface in the record definition</span>
+<span class="p">(</span><span class="kd">defrecord </span><span class="nv">ThreeNum</span> <span class="p">[</span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">]</span>
+  <span class="nv">Arithmetic</span>
+  <span class="p">(</span><span class="nf">add</span> <span class="p">[</span><span class="nv">_</span><span class="p">]</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">)))</span>
+
+<span class="c1">;; Using the implementations</span>
+<span class="p">(</span><span class="nf">add</span> <span class="p">(</span><span class="nf">TwoNum.</span> <span class="mi">1</span> <span class="mi">2</span><span class="p">))</span>
+<span class="p">(</span><span class="nf">add</span> <span class="p">(</span><span class="nf">ThreeNum.</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
+</pre></div>
+
+
+</figure>
+
+<p>When the record definition implements the protocol it can access the fields (a, b and c) directly instead of going through the object, 'number-object', and so the underscore throw away syntax, '_', can be used. There is also a performance benefit when implementing within the definition. However, because records can be extended after they have already been defined Clojure is able to elegantly address the <a href="http://www.ibm.com/developerworks/library/j-clojure-protocols/">Expression Problem</a>.</p>
+<p>It is also possible to implement a protocol without defining a record using reify.</p>
+<figure class='code'>
+
+<div class="highlight"><pre><span class="c1">;; Creating an anonymous type</span>
+<span class="p">(</span><span class="kd">defn </span><span class="nv">reify-num</span>
+  <span class="p">[</span><span class="nv">a</span> <span class="nv">b</span><span class="p">]</span>
+  <span class="p">(</span><span class="nf">reify</span> <span class="nv">Arithmetic</span>
+        <span class="p">(</span><span class="nf">add</span> <span class="p">[</span><span class="nv">_</span><span class="p">]</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">a</span> <span class="nv">b</span><span class="p">))))</span>
+
+<span class="c1">;; Using the implementation of the anonymous type</span>
+<span class="p">(</span><span class="nf">add</span> <span class="p">(</span><span class="nf">reify-num</span> <span class="mi">1</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+
+
+</figure>
+
+<p>At times a common implementation could be used across types. To use a common implementation the implementation can be defined in a map and then used when extending the types.</p>
+<figure class='code'>
+
+<div class="highlight"><pre><span class="c1">;; Records which can use a common implementation</span>
+<span class="p">(</span><span class="kd">defrecord </span><span class="nv">TwoNum</span> <span class="p">[</span><span class="nv">a</span> <span class="nv">b</span><span class="p">])</span>
+<span class="p">(</span><span class="kd">defrecord </span><span class="nv">ThreeNum</span> <span class="p">[</span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">])</span>
+
+<span class="c1">;; Common implementation</span>
+<span class="p">(</span><span class="k">def </span><span class="nv">arithmetic-implementation</span>
+  <span class="p">{</span><span class="ss">:add</span> <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">number-object</span><span class="p">]</span> <span class="p">(</span><span class="nb">apply + </span><span class="p">(</span><span class="nb">vals </span><span class="nv">number-object</span><span class="p">)))})</span>
+
+<span class="c1">;; Extending the records using the common implementation</span>
+<span class="p">(</span><span class="nf">extend</span> <span class="nv">TwoNum</span> <span class="nv">Arithmetic</span> <span class="nv">arithmetic-implementation</span><span class="p">)</span>
+<span class="p">(</span><span class="nf">extend</span> <span class="nv">ThreeNum</span> <span class="nv">Arithmetic</span> <span class="nv">arithmetic-implementation</span><span class="p">)</span>
+
+<span class="c1">;; Using the implementations</span>
+<span class="p">(</span><span class="nf">add</span> <span class="p">(</span><span class="nf">TwoNum.</span> <span class="mi">1</span> <span class="mi">2</span><span class="p">))</span>
+<span class="p">(</span><span class="nf">add</span> <span class="p">(</span><span class="nf">ThreeNum.</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
+</pre></div>
+
+
+</figure>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <header class="page-header">
+                    <h1>
                         <a href="http://ciwchris.github.io/blog/eponymous-laws-laws-and-principles-on-the-topic-of-software-development.html"
                             rel="bookmark"
                             title="Permalink to Eponymous Laws, Laws and Principles on the topic of Software Development">
@@ -114,9 +230,7 @@ Notes to self            </a>
 <h3>Laws</h3>
 <p><a href="http://en.wikipedia.org/wiki/Law_of_Demeter">Law of Demeter</a></p>
 <blockquote>
-<ul>
-<li><em>Don't talk to strangers.</em></li>
-</ul>
+<p><em>Don't talk to strangers.</em></p>
 </blockquote>
 <h3>Other's of Interest</h3>
 <p><a href="http://en.wikipedia.org/wiki/Jeff_Atwood#Career">Atwood's Law</a></p>
@@ -1137,229 +1251,6 @@ Notes to self            </a>
                 </div>
             </article>
             <hr/>
-            <article>
-                <header class="page-header">
-                    <h1>
-                        <a href="http://ciwchris.github.io/blog/bash-shell-basics.html"
-                            rel="bookmark"
-                            title="Permalink to Bash shell basics">
-                            Bash shell basics
-                        </a>
-                    </h1>
-                </header>
-                <div class="entry-content">
-                    <div class="panel">
-                        <div class="panel-body">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2013-09-14T18:53:00"> Sat 14 September 2013</time>
-    </span>
-
-
-
-<span class="label label-default">Tags</span>
-	<a href="http://ciwchris.github.io/tags/cli.html">cli</a>
-    
-</footer><!-- /.post-info -->                        </div>
-                    </div>
-                    <p>Notes from the Pluralsight course <a href="http://pluralsight.com/training/Courses/TableOfContents/introduction-bash-shell-linux-mac-os">Introduction to the Bash Shell on Mac OS and Linux</a></p>
-<h3>Braces</h3>
-<figure class='code'>
-
-<div class="highlight"><pre>ls file?<span class="o">{</span>mine,yours<span class="o">}</span>.<span class="o">{</span>txt,png<span class="o">}</span>
-</pre></div>
-
-
-</figure>
-
-<h3>Commands</h3>
-<figure class='code'>
-
-<div class="highlight"><pre>grep 1978 oscars.tsv | sort &gt; 1978_films.txt
-cut -f 3 oscars.tsv | grep 4 | wc -l
-</pre></div>
-
-
-</figure>
-
-<figure class='code'>
-<figcaption class='code-title'><span>Sort second column as numbers in reverse order</span></figcaption>
-
-<div class="highlight"><pre>sort -rnk2 math_grades
-</pre></div>
-
-
-</figure>
-
-<figure class='code'>
-<figcaption class='code-title'><span>Unique entries with their count</span></figcaption>
-
-<div class="highlight"><pre>sort math_attendance | uniq -c | sort -nr
-</pre></div>
-
-
-</figure>
-
-<figure class='code'>
-<figcaption class='code-title'><span>Find the largest file in the directory</span></figcaption>
-
-<div class="highlight"><pre>ls -lS | head -n 2 | tail -n 1
-ls -lrS | tail -n 2 <span class="c"># Better way</span>
-</pre></div>
-
-
-</figure>
-
-<figure class='code'>
-<figcaption class='code-title'><span>Don't exit but update as new entries come in</span></figcaption>
-
-<div class="highlight"><pre>tail -f auth.log
-</pre></div>
-
-
-</figure>
-
-<figure class='code'>
-<figcaption class='code-title'><span>Number of files in a directory</span></figcaption>
-
-<div class="highlight"><pre>ls -a | wc -l
-</pre></div>
-
-
-</figure>
-
-<figure class='code'>
-<figcaption class='code-title'><span>Search for bruce, case insensitive, in a set of files</span></figcaption>
-
-<div class="highlight"><pre>grep -i bruce *grades
-</pre></div>
-
-
-</figure>
-
-<figure class='code'>
-<figcaption class='code-title'><span>Filter out using an extended regex before working with other content</span></figcaption>
-
-<div class="highlight"><pre>grep -Ev <span class="s2">&quot;^$|lecture&quot;</span> math_attendance | sort | uniq -c | sort -nr
-</pre></div>
-
-
-</figure>
-
-<figure class='code'>
-<figcaption class='code-title'><span>Search for txt files with curious in them</span></figcaption>
-
-<div class="highlight"><pre>find . -name <span class="s1">&#39;*.txt&#39;</span> -exec grep -l curious <span class="o">{}</span> <span class="se">\;</span>
-</pre></div>
-
-
-</figure>
-
-<figure class='code'>
-<figcaption class='code-title'><span>Change uppercase 'S' to lowercase 's'</span></figcaption>
-
-<div class="highlight"><pre>cat physics_grades | tr S s 
-tr S s &lt; physics_grades <span class="c"># More efficient method</span>
-</pre></div>
-
-
-</figure>
-
-<figure class='code'>
-<figcaption class='code-title'><span>Change from tab separated to semicolon separated</span></figcaption>
-
-<div class="highlight"><pre>tr <span class="se">\\</span>t <span class="se">\;</span> &lt; oscars.tsv &gt; oscars.csv
-</pre></div>
-
-
-</figure>
-
-<figure class='code'>
-<figcaption class='code-title'><span>Using sed</span></figcaption>
-
-<div class="highlight"><pre>sed <span class="s1">&#39;s/something/something new/g&#39;</span> one.txt &gt; two.txt
-</pre></div>
-
-
-</figure>
-
-<figure class='code'>
-<figcaption class='code-title'><span>Combine files using columns (not append)</span></figcaption>
-
-<div class="highlight"><pre>paste *grades
-join *grades <span class="c"># Using keys</span>
-</pre></div>
-
-
-</figure>
-
-<h3>Command Substitution</h3>
-<figure class='code'>
-
-<div class="highlight"><pre><span class="nb">echo</span> <span class="s2">&quot;hello `whoami`&quot;</span> <span class="c">#old form</span>
-<span class="nb">echo</span> <span class="s2">&quot;Buy milk&quot;</span> &gt; <span class="s2">&quot;notes$(date).txt&quot;</span>
-</pre></div>
-
-
-</figure>
-
-<h3>Copy / Paste</h3>
-<p>Select text and paste with middle mouse click</p>
-<h3>Movement keys</h3>
-<ul>
-<li>ctrl-a: start of line</li>
-<li>ctrl-e: end of line</li>
-<li>ctrl-f: forward 1 char</li>
-<li>ctrl-b: backward 1 char</li>
-<li>alt-f: forward 1 word</li>
-<li>alt-b: backward 1 word</li>
-<li>ctrl-d: delete 1 char</li>
-<li>ctrl-h: delete 1 char backward</li>
-<li>alt-d: delete 1 word</li>
-<li>ctrl-w: delete 1 word backward</li>
-<li>ctrl-k: delete rest of line</li>
-<li>ctrl-u: delete from start of line</li>
-<li>ctrl-r: search back in history</li>
-</ul>
-<h3>Processes</h3>
-<ul>
-<li>C-z: stop and return to a command prompt<ul>
-<li>fg or bg to start the process again</li>
-<li>or use the job id: fg %1</li>
-</ul>
-</li>
-<li>jobs: to list the running jobs</li>
-<li>kill %1: kill job 1</li>
-<li>or by process id<ul>
-<li>ps -ef: list all processes and show the owner</li>
-<li>kill 1234</li>
-</ul>
-</li>
-</ul>
-<h3>Customization</h3>
-<ul>
-<li>alias: view aliases</li>
-<li>\ls: run normal command, not the alias for it</li>
-<li>.bashrc: executed for non-login shells</li>
-<li>.profile or .bash_profile: executed for login shells</li>
-<li>echo $PS1: reading an environment variable</li>
-<li>PS1="\h:\W /u": set an environment variable</li>
-<li>env: list all environment variables</li>
-<li>EDITOR=vim: set the editor</li>
-<li>export EDITOR: to make it visible<ul>
-<li>or export EDITOR=vim</li>
-</ul>
-</li>
-<li>chsh: change shell<ul>
-<li>\bin\zsh: change to using zsh</li>
-</ul>
-</li>
-<li>echo $SHELL: view current shell</li>
-</ul>
-                </div>
-            </article>
-            <hr/>
 
     <ul class="pagination">
             <li class="prev disabled"><a href="#">&laquo;</a></li>
@@ -1399,28 +1290,28 @@ join *grades <span class="c"># Using keys</span>
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
-                            <a href="http://ciwchris.github.io/tags/mocking.html">
-                                mocking
+                            <a href="http://ciwchris.github.io/tags/books.html">
+                                books
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
-                            <a href="http://ciwchris.github.io/tags/law.html">
-                                law
+                            <a href="http://ciwchris.github.io/tags/example.html">
+                                example
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://ciwchris.github.io/tags/angular.html">
+                                angular
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://ciwchris.github.io/tags/principle.html">
+                                principle
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
                             <a href="http://ciwchris.github.io/tags/tests.html">
                                 tests
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://ciwchris.github.io/tags/techradar.html">
-                                techradar
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://ciwchris.github.io/tags/craftsmanship.html">
-                                craftsmanship
                             </a>
                         </li>
                     </ul>

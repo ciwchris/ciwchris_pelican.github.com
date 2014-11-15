@@ -61,6 +61,229 @@ Notes to self            </a>
             <article>
                 <header class="page-header">
                     <h1>
+                        <a href="http://ciwchris.github.io/blog/bash-shell-basics.html"
+                            rel="bookmark"
+                            title="Permalink to Bash shell basics">
+                            Bash shell basics
+                        </a>
+                    </h1>
+                </header>
+                <div class="entry-content">
+                    <div class="panel">
+                        <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2013-09-14T18:53:00"> Sat 14 September 2013</time>
+    </span>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://ciwchris.github.io/tags/cli.html">cli</a>
+    
+</footer><!-- /.post-info -->                        </div>
+                    </div>
+                    <p>Notes from the Pluralsight course <a href="http://pluralsight.com/training/Courses/TableOfContents/introduction-bash-shell-linux-mac-os">Introduction to the Bash Shell on Mac OS and Linux</a></p>
+<h3>Braces</h3>
+<figure class='code'>
+
+<div class="highlight"><pre>ls file?<span class="o">{</span>mine,yours<span class="o">}</span>.<span class="o">{</span>txt,png<span class="o">}</span>
+</pre></div>
+
+
+</figure>
+
+<h3>Commands</h3>
+<figure class='code'>
+
+<div class="highlight"><pre>grep 1978 oscars.tsv | sort &gt; 1978_films.txt
+cut -f 3 oscars.tsv | grep 4 | wc -l
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Sort second column as numbers in reverse order</span></figcaption>
+
+<div class="highlight"><pre>sort -rnk2 math_grades
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Unique entries with their count</span></figcaption>
+
+<div class="highlight"><pre>sort math_attendance | uniq -c | sort -nr
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Find the largest file in the directory</span></figcaption>
+
+<div class="highlight"><pre>ls -lS | head -n 2 | tail -n 1
+ls -lrS | tail -n 2 <span class="c"># Better way</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Don't exit but update as new entries come in</span></figcaption>
+
+<div class="highlight"><pre>tail -f auth.log
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Number of files in a directory</span></figcaption>
+
+<div class="highlight"><pre>ls -a | wc -l
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Search for bruce, case insensitive, in a set of files</span></figcaption>
+
+<div class="highlight"><pre>grep -i bruce *grades
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Filter out using an extended regex before working with other content</span></figcaption>
+
+<div class="highlight"><pre>grep -Ev <span class="s2">&quot;^$|lecture&quot;</span> math_attendance | sort | uniq -c | sort -nr
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Search for txt files with curious in them</span></figcaption>
+
+<div class="highlight"><pre>find . -name <span class="s1">&#39;*.txt&#39;</span> -exec grep -l curious <span class="o">{}</span> <span class="se">\;</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Change uppercase 'S' to lowercase 's'</span></figcaption>
+
+<div class="highlight"><pre>cat physics_grades | tr S s 
+tr S s &lt; physics_grades <span class="c"># More efficient method</span>
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Change from tab separated to semicolon separated</span></figcaption>
+
+<div class="highlight"><pre>tr <span class="se">\\</span>t <span class="se">\;</span> &lt; oscars.tsv &gt; oscars.csv
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Using sed</span></figcaption>
+
+<div class="highlight"><pre>sed <span class="s1">&#39;s/something/something new/g&#39;</span> one.txt &gt; two.txt
+</pre></div>
+
+
+</figure>
+
+<figure class='code'>
+<figcaption class='code-title'><span>Combine files using columns (not append)</span></figcaption>
+
+<div class="highlight"><pre>paste *grades
+join *grades <span class="c"># Using keys</span>
+</pre></div>
+
+
+</figure>
+
+<h3>Command Substitution</h3>
+<figure class='code'>
+
+<div class="highlight"><pre><span class="nb">echo</span> <span class="s2">&quot;hello `whoami`&quot;</span> <span class="c">#old form</span>
+<span class="nb">echo</span> <span class="s2">&quot;Buy milk&quot;</span> &gt; <span class="s2">&quot;notes$(date).txt&quot;</span>
+</pre></div>
+
+
+</figure>
+
+<h3>Copy / Paste</h3>
+<p>Select text and paste with middle mouse click</p>
+<h3>Movement keys</h3>
+<ul>
+<li>ctrl-a: start of line</li>
+<li>ctrl-e: end of line</li>
+<li>ctrl-f: forward 1 char</li>
+<li>ctrl-b: backward 1 char</li>
+<li>alt-f: forward 1 word</li>
+<li>alt-b: backward 1 word</li>
+<li>ctrl-d: delete 1 char</li>
+<li>ctrl-h: delete 1 char backward</li>
+<li>alt-d: delete 1 word</li>
+<li>ctrl-w: delete 1 word backward</li>
+<li>ctrl-k: delete rest of line</li>
+<li>ctrl-u: delete from start of line</li>
+<li>ctrl-r: search back in history</li>
+</ul>
+<h3>Processes</h3>
+<ul>
+<li>C-z: stop and return to a command prompt<ul>
+<li>fg or bg to start the process again</li>
+<li>or use the job id: fg %1</li>
+</ul>
+</li>
+<li>jobs: to list the running jobs</li>
+<li>kill %1: kill job 1</li>
+<li>or by process id<ul>
+<li>ps -ef: list all processes and show the owner</li>
+<li>kill 1234</li>
+</ul>
+</li>
+</ul>
+<h3>Customization</h3>
+<ul>
+<li>alias: view aliases</li>
+<li>\ls: run normal command, not the alias for it</li>
+<li>.bashrc: executed for non-login shells</li>
+<li>.profile or .bash_profile: executed for login shells</li>
+<li>echo $PS1: reading an environment variable</li>
+<li>PS1="\h:\W /u": set an environment variable</li>
+<li>env: list all environment variables</li>
+<li>EDITOR=vim: set the editor</li>
+<li>export EDITOR: to make it visible<ul>
+<li>or export EDITOR=vim</li>
+</ul>
+</li>
+<li>chsh: change shell<ul>
+<li>\bin\zsh: change to using zsh</li>
+</ul>
+</li>
+<li>echo $SHELL: view current shell</li>
+</ul>
+                </div>
+            </article>
+            <hr/>
+            <article>
+                <header class="page-header">
+                    <h1>
                         <a href="http://ciwchris.github.io/blog/starting-a-technology-radar.html"
                             rel="bookmark"
                             title="Permalink to Starting a technology radar">
@@ -507,88 +730,6 @@ Notes to self            </a>
                 </div>
             </article>
             <hr/>
-            <article>
-                <header class="page-header">
-                    <h1>
-                        <a href="http://ciwchris.github.io/blog/examining-the-contents-of-a-macro.html"
-                            rel="bookmark"
-                            title="Permalink to Examining the contents of a macro">
-                            Examining the contents of a macro
-                        </a>
-                    </h1>
-                </header>
-                <div class="entry-content">
-                    <div class="panel">
-                        <div class="panel-body">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2013-02-13T15:42:00"> Wed 13 February 2013</time>
-    </span>
-
-
-
-<span class="label label-default">Tags</span>
-	<a href="http://ciwchris.github.io/tags/vim.html">vim</a>
-    
-</footer><!-- /.post-info -->                        </div>
-                    </div>
-                    <p>Macros are a breeze in Vim! But often I make a mistake while recording the macro, undo my change and repeat. Hopefully I get it right the next time, but I'd rather not look at the statistics. It turns out the registers Vim stores macros in are the same set of registers used for other operations. What this means is that I can <code>put</code> the contents of the register, modify it and then <code>yank</code> it back in. Let's say I had the following list of names:</p>
-<figure class='code'>
-<figcaption class='code-title'><span>John Smith</span></figcaption>
-
-<div class="highlight"><pre><span class="n">Joe</span> <span class="n">Smith</span>
-<span class="n">Bob</span> <span class="n">Smith</span>
-<span class="n">Mike</span> <span class="n">Smith</span>
-<span class="n">Juan</span> <span class="n">Carlos</span>
-<span class="n">Jane</span> <span class="n">Smith</span>
-<span class="n">Mike</span> <span class="n">Jones</span>
-<span class="n">David</span> <span class="n">Smith</span>
-<span class="n">Sarah</span> <span class="n">Smith</span>
-<span class="n">James</span> <span class="n">Smith</span>
-</pre></div>
-
-
-</figure>
-
-<p>And I want to swap the first name and last name. There are many ways to do this but using a macro one may write:</p>
-<figure class='code'>
-
-<div class="highlight"><pre>^dwA ^[pxj
-</pre></div>
-
-
-</figure>
-
-<p>I can read these commands into register <code>a</code> by yanking the line like so, <code>"ay$</code>. Now I can use it as a macro to swap the names, <code>10@a</code>. Voilà!</p>
-<figure class='code'>
-<figcaption class='code-title'><span>Smith John</span></figcaption>
-
-<div class="highlight"><pre><span class="n">Smith</span> <span class="n">Joe</span>
-<span class="n">Smith</span> <span class="n">Bob</span>
-<span class="n">Smith</span> <span class="n">Mike</span>
-<span class="n">Carlos</span> <span class="n">Juan</span>
-<span class="n">Smith</span> <span class="n">Jane</span>
-<span class="n">Jones</span> <span class="n">Mike</span>
-<span class="n">Smith</span> <span class="n">David</span>
-<span class="n">Smith</span> <span class="n">Sarah</span>
-<span class="n">Smith</span> <span class="n">James</span>
-</pre></div>
-
-
-</figure>
-
-<p>To always make this macro avaiable I can save it in my <code>.vimrc</code>.</p>
-<figure class='code'>
-
-<div class="highlight"><pre><span class="k">let</span> @<span class="k">a</span><span class="p">=</span><span class="s1">&#39;^dwA ^[pxj&#39;</span>
-</pre></div>
-
-
-</figure>
-                </div>
-            </article>
-            <hr/>
 
     <ul class="pagination">
             <li class="prev"><a href="http://ciwchris.github.io/category/.html.html">&laquo;</a>
@@ -629,28 +770,28 @@ Notes to self            </a>
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
-                            <a href="http://ciwchris.github.io/tags/mocking.html">
-                                mocking
+                            <a href="http://ciwchris.github.io/tags/books.html">
+                                books
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
-                            <a href="http://ciwchris.github.io/tags/law.html">
-                                law
+                            <a href="http://ciwchris.github.io/tags/example.html">
+                                example
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://ciwchris.github.io/tags/angular.html">
+                                angular
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-4">
+                            <a href="http://ciwchris.github.io/tags/principle.html">
+                                principle
                             </a>
                         </li>
                         <li class="list-group-item tag-4">
                             <a href="http://ciwchris.github.io/tags/tests.html">
                                 tests
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://ciwchris.github.io/tags/techradar.html">
-                                techradar
-                            </a>
-                        </li>
-                        <li class="list-group-item tag-4">
-                            <a href="http://ciwchris.github.io/tags/craftsmanship.html">
-                                craftsmanship
                             </a>
                         </li>
                     </ul>

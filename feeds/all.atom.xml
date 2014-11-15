@@ -1,5 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Notes to self</title><link href="http://ciwchris.github.io/" rel="alternate"></link><link href="http://ciwchris.github.io/feeds/all.atom.xml" rel="self"></link><id>http://ciwchris.github.io/</id><updated>2014-11-09T19:00:00-08:00</updated><entry><title>Eponymous Laws, Laws and Principles on the topic of Software Development</title><link href="http://ciwchris.github.io/blog/eponymous-laws-laws-and-principles-on-the-topic-of-software-development.html" rel="alternate"></link><updated>2014-11-09T19:00:00-08:00</updated><author><name>Chris</name></author><id>tag:ciwchris.github.io,2014-11-09:blog/eponymous-laws-laws-and-principles-on-the-topic-of-software-development.html</id><summary type="html">&lt;h3&gt;Eponymous Laws&lt;/h3&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Notes to self</title><link href="http://ciwchris.github.io/" rel="alternate"></link><link href="http://ciwchris.github.io/feeds/all.atom.xml" rel="self"></link><id>http://ciwchris.github.io/</id><updated>2014-11-15T14:00:00-08:00</updated><entry><title>Records and Protocols in Clojure</title><link href="http://ciwchris.github.io/blog/records-and-protocols-in-clojure.html" rel="alternate"></link><updated>2014-11-15T14:00:00-08:00</updated><author><name>Chris</name></author><id>tag:ciwchris.github.io,2014-11-15:blog/records-and-protocols-in-clojure.html</id><summary type="html">&lt;p&gt;How I explain Clojure records and protocols to myself. The example used will be adding numbers.&lt;/p&gt;
+&lt;p&gt;Records are comparable to classes.&lt;/p&gt;
+&lt;figure class='code'&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c1"&gt;;; Define type TwoNum with a two parameter constructor&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;defrecord &lt;/span&gt;&lt;span class="nv"&gt;TwoNum&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+
+&lt;span class="c1"&gt;;; Create instance of TwoNum&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;TwoNum.&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;Protocols are interfaces.&lt;/p&gt;
+&lt;figure class='code'&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c1"&gt;;; Define interface Arithmetic with method add&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;defprotocol &lt;/span&gt;&lt;span class="nv"&gt;Arithmetic&lt;/span&gt;
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;add&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nv"&gt;arithmetic&lt;/span&gt;&lt;span class="p"&gt;]))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;Records can implement a record in its definition or at a later time.&lt;/p&gt;
+&lt;figure class='code'&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c1"&gt;;; Extend the previously defined record to implement the protocol&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;extend-type&lt;/span&gt; &lt;span class="nv"&gt;TwoNum&lt;/span&gt;
+  &lt;span class="nv"&gt;Arithmetic&lt;/span&gt;
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;add&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nv"&gt;number-object&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:a&lt;/span&gt; &lt;span class="nv"&gt;number-object&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:b&lt;/span&gt; &lt;span class="nv"&gt;number-object&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+
+&lt;span class="c1"&gt;;; Implementing the interface in the record definition&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;defrecord &lt;/span&gt;&lt;span class="nv"&gt;ThreeNum&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt; &lt;span class="nv"&gt;c&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+  &lt;span class="nv"&gt;Arithmetic&lt;/span&gt;
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;add&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nv"&gt;_&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt; &lt;span class="nv"&gt;c&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+
+&lt;span class="c1"&gt;;; Using the implementations&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;add&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;TwoNum.&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;add&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;ThreeNum.&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;When the record definition implements the protocol it can access the fields (a, b and c) directly instead of going through the object, 'number-object', and so the underscore throw away syntax, '_', can be used. There is also a performance benefit when implementing within the definition. However, because records can be extended after they have already been defined Clojure is able to elegantly address the &lt;a href="http://www.ibm.com/developerworks/library/j-clojure-protocols/"&gt;Expression Problem&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;It is also possible to implement a protocol without defining a record using reify.&lt;/p&gt;
+&lt;figure class='code'&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c1"&gt;;; Creating an anonymous type&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;defn &lt;/span&gt;&lt;span class="nv"&gt;reify-num&lt;/span&gt;
+  &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;reify&lt;/span&gt; &lt;span class="nv"&gt;Arithmetic&lt;/span&gt;
+        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;add&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nv"&gt;_&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+
+&lt;span class="c1"&gt;;; Using the implementation of the anonymous type&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;add&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;reify-num&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;At times a common implementation could be used across types. To use a common implementation the implementation can be defined in a map and then used when extending the types.&lt;/p&gt;
+&lt;figure class='code'&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c1"&gt;;; Records which can use a common implementation&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;defrecord &lt;/span&gt;&lt;span class="nv"&gt;TwoNum&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;defrecord &lt;/span&gt;&lt;span class="nv"&gt;ThreeNum&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt; &lt;span class="nv"&gt;c&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+
+&lt;span class="c1"&gt;;; Common implementation&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;def &lt;/span&gt;&lt;span class="nv"&gt;arithmetic-implementation&lt;/span&gt;
+  &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="ss"&gt;:add&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;fn &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nv"&gt;number-object&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;apply + &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;vals &lt;/span&gt;&lt;span class="nv"&gt;number-object&lt;/span&gt;&lt;span class="p"&gt;)))})&lt;/span&gt;
+
+&lt;span class="c1"&gt;;; Extending the records using the common implementation&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;extend&lt;/span&gt; &lt;span class="nv"&gt;TwoNum&lt;/span&gt; &lt;span class="nv"&gt;Arithmetic&lt;/span&gt; &lt;span class="nv"&gt;arithmetic-implementation&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;extend&lt;/span&gt; &lt;span class="nv"&gt;ThreeNum&lt;/span&gt; &lt;span class="nv"&gt;Arithmetic&lt;/span&gt; &lt;span class="nv"&gt;arithmetic-implementation&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;;; Using the implementations&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;add&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;TwoNum.&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;add&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;ThreeNum.&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/figure&gt;</summary><category term="clojure"></category><category term="example"></category></entry><entry><title>Eponymous Laws, Laws and Principles on the topic of Software Development</title><link href="http://ciwchris.github.io/blog/eponymous-laws-laws-and-principles-on-the-topic-of-software-development.html" rel="alternate"></link><updated>2014-11-09T19:00:00-08:00</updated><author><name>Chris</name></author><id>tag:ciwchris.github.io,2014-11-09:blog/eponymous-laws-laws-and-principles-on-the-topic-of-software-development.html</id><summary type="html">&lt;h3&gt;Eponymous Laws&lt;/h3&gt;
 &lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Brooks's_law"&gt;Brooks's law&lt;/a&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;em&gt;adding manpower to a late software project makes it later&lt;/em&gt;&lt;/p&gt;
@@ -27,9 +111,7 @@
 &lt;h3&gt;Laws&lt;/h3&gt;
 &lt;p&gt;&lt;a href="http://en.wikipedia.org/wiki/Law_of_Demeter"&gt;Law of Demeter&lt;/a&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;em&gt;Don't talk to strangers.&lt;/em&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;Don't talk to strangers.&lt;/em&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3&gt;Other's of Interest&lt;/h3&gt;
 &lt;p&gt;&lt;a href="http://en.wikipedia.org/wiki/Jeff_Atwood#Career"&gt;Atwood's Law&lt;/a&gt;&lt;/p&gt;
